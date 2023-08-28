@@ -70,3 +70,13 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+/Assets/Colloborators/Darik/Animations
+/Assets/Colloborators/Darik/Animations.meta
+/Assets/Colloborators/Darik/Resources
+/Assets/Colloborators/Darik/Resources.meta
+/Assets/Colloborators/Darik/Scenes
+/Assets/Colloborators/Darik/Scenes.meta
+/Assets/Colloborators/Darik/Configs
+/Assets/Colloborators/Darik/Configs.meta
+/Assets/Imports
+/Assets/Imports.meta
