@@ -10,7 +10,7 @@ namespace Darik
         private static void Init()
         {
             // 게임을 시작하기 전 필요한 설정들
-            if (Darik.GameManager.Instance == null)
+            if (GameManager.Instance == null)
             {
                 GameObject gameManager = new GameObject() { name = "GameManager" };
                 gameManager.AddComponent<GameManager>();
