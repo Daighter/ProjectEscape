@@ -42,19 +42,19 @@ public class GameManager : MonoBehaviour
         // 게임을 시작하기 전 필요한 설정들
         GameObject resourceObj = new GameObject() { name = "ResourceManager" };
         resourceObj.transform.SetParent(transform);
-        resourceManager = resourceObj.AddComponent<ResourceManager>();
+        resourceManager = resourceObj.AddComponent<Darik.ResourceManager>();
 
         GameObject dataObj = new GameObject() { name = "DataManager" };
         dataObj.transform.SetParent(transform);
-        dataManager = dataObj.AddComponent<DataManager>();
+        dataManager = dataObj.AddComponent<Darik.DataManager>();
 
         GameObject poolObj = new GameObject() { name = "PoolManager" };
         poolObj.transform.SetParent(transform);
-        poolManager = poolObj.AddComponent<PoolManager>();
+        poolManager = poolObj.AddComponent<Darik.PoolManager>();
 
         GameObject sceneObj = new GameObject() { name = "SceneManager" };
         sceneObj.transform.SetParent(transform);
-        sceneManager = sceneObj.AddComponent<SceneManager>();
+        sceneManager = sceneObj.AddComponent<Darik.SceneManager>();
 
         /*
         GameObject uiObj = new GameObject() { name = "UIManager" };
