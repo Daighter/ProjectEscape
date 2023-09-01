@@ -7,16 +7,20 @@ namespace Lee
     public class UnLock : MonoBehaviour
     {
         private Rigidbody rb;
-
-
+       
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
         }
-
+        
         public void OnSelectKey()
         {
-            rb.freezeRotation = false;
+            rb.isKinematic = false;
+        }
+        
+        public void OnUnSelectKey()
+        {
+            rb.isKinematic = true;
         }
     }
 }
