@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 namespace Jeong
 {
@@ -9,36 +11,54 @@ namespace Jeong
     {
 
         [SerializeField] GameObject Dial;
+        [SerializeField] GameObject ExitPoint;
+        [SerializeField] GameObject ExitCube;
 
-        Transform numPos;
+        [SerializeField] Transform frequencyPointer;
 
         [SerializeField] float basePos;
-
+        
         RadioDial radioDial;
 
+        bool ch180 = false;
 
-    /*    private void Start()
+        private void Awake()
         {
-            numPos = GetComponent<Transform>();
             radioDial = GetComponent<RadioDial>();
-
-            basePos = 0f;
-
-            
-
-
-            //numPos.position = new Vector3(0.5f, basePos, 1.2f);
-            
+            frequencyPointer = GameObject.Find("Frequency Pointer").GetComponent<Transform>();
+            // ExitPoint = GameObject.Find("SceneChangeTrigger").GetComponent<GameObject>();
         }
 
-        private void OnEnable()
+        
+
+        private void Update()
         {
-            if(radioDial.value != 0)
+            StartCoroutine(ChangePointerPositionRoutine());
+        }
+
+        private IEnumerator ChangePointerPositionRoutine()
+        {
+            basePos = radioDial.value;
+            frequencyPointer.transform.localPosition = new Vector3(0.5f, basePos, 2f);
+            SelectChannelRoutine();
+            yield return new WaitForFixedUpdate();
+        }
+
+        private void SelectChannelRoutine()
+        {
+            if (0.55f <= basePos&&basePos < 0.60f)
             {
-                basePos = radioDial.value;
-                // Debug.Log($"Dial value is {radioDial.value}");
-            }  
-        }*/
+                ch180 = true;
+                ExitPoint.SetActive(true);
+                ExitCube.SetActive(true);
+            }
+            else
+            {
+                ch180 = false;
+                ExitPoint.SetActive(false);
+                ExitCube.SetActive(false);
+            }
+        }
     }
 
 }
