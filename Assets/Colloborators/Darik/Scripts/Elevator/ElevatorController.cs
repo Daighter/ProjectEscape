@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using static UnityEngine.UI.GridLayoutGroup;
 
 namespace Darik
 {
@@ -12,9 +15,11 @@ namespace Darik
         [SerializeField] ElevatorInsideDoor elevator;
         [SerializeField] ElevatorOutsideDoor b1OutsideDoor;
         [SerializeField] ElevatorOutsideDoor b2OutsideDoor;
+        public string state;
 
-        private bool isCommanded = false;
-        private int targetFloor = 0;
+        public bool isCommanded = false;
+        public int targetFloor = 0;
+        private bool isMove = false;
 
         protected void Awake()
         {
@@ -66,12 +71,12 @@ namespace Darik
 
             public override void Setup()
             {
-                elevator.transform.position = new Vector3(elevator.transform.position.x, -3, elevator.transform.position.z);
+                
             }
 
             public override void Enter()
             {
-
+                owner.state = "Idle";
             }
 
             public override void Update()
@@ -82,41 +87,10 @@ namespace Darik
             public override void Transition()
             {
                 if (owner.isCommanded)
+                {
                     stateMachine.ChangeState(State.Move);
-                owner.isCommanded = false;
-            }
-
-            public override void Exit()
-            {
-
-            }
-        }
-
-        private class MoveToB1State : ElevatorControllerState
-        {
-            public MoveToB1State(ElevatorController owner, StateMachine<State, ElevatorController> stateMachine) : base(owner, stateMachine)
-            {
-            }
-
-            public override void Setup()
-            {
-
-            }
-
-            public override void Enter()
-            {
-                elevator.isAlived = false;
-            }
-
-            public override void Update()
-            {
-                elevator.Move(owner.targetFloor);
-            }
-
-            public override void Transition()
-            {
-                if (elevator.isAlived)
-                    stateMachine.ChangeState(State.Open);
+                    owner.isCommanded = false;
+                }
             }
 
             public override void Exit()
@@ -139,21 +113,24 @@ namespace Darik
             public override void Enter()
             {
                 elevator.isAlived = false;
+                owner.isMove = true;
+                owner.state = "Move";
             }
 
             public override void Update()
             {
-
+                elevator.Move(owner.targetFloor);
             }
 
             public override void Transition()
             {
-
+                if (elevator.isAlived)
+                    stateMachine.ChangeState(State.Open);
             }
 
             public override void Exit()
             {
-
+                owner.isMove = false;
             }
         }
 
@@ -170,11 +147,20 @@ namespace Darik
 
             public override void Enter()
             {
+                elevator.isClosed = true;
                 owner.StartCoroutine(elevator.OpenCoroutine());
                 if (elevator.CurFloor == -1)
+                {
+                    owner.b1OutsideDoor.isClosed = true;
                     owner.StartCoroutine(owner.b1OutsideDoor.OpenCoroutine());
+                }
                 else if (elevator.CurFloor == -2)
+                {
+                    owner.b2OutsideDoor.isClosed = true;
                     owner.StartCoroutine(owner.b2OutsideDoor.OpenCoroutine());
+                }
+
+                owner.state = "Open";
             }
 
             public override void Update()
@@ -186,12 +172,12 @@ namespace Darik
             {
                 if (elevator.CurFloor == -1)
                 {
-                    if (!elevator.IsClosed && !owner.b1OutsideDoor.IsClosed)
+                    if (!elevator.isClosed && !owner.b1OutsideDoor.isClosed)
                         stateMachine.ChangeState(State.Wait);
                 }
                 else if (elevator.CurFloor == -2)
                 {
-                    if (!elevator.IsClosed && !owner.b2OutsideDoor.IsClosed)
+                    if (!elevator.isClosed && !owner.b2OutsideDoor.isClosed)
                         stateMachine.ChangeState(State.Wait);
                 }
             }
@@ -210,33 +196,42 @@ namespace Darik
 
             public override void Setup()
             {
-
+                
             }
 
             public override void Enter()
             {
+                elevator.isClosed = false;
                 owner.StartCoroutine(elevator.CloseCoroutine());
                 if (elevator.CurFloor == -1)
+                {
+                    owner.b1OutsideDoor.isClosed = false;
                     owner.StartCoroutine(owner.b1OutsideDoor.CloseCoroutine());
+                }
                 else if (elevator.CurFloor == -2)
+                {
+                    owner.b2OutsideDoor.isClosed = false;
                     owner.StartCoroutine(owner.b2OutsideDoor.CloseCoroutine());
+                }
+
+                owner.state = "Close";
             }
 
             public override void Update()
             {
-                
+
             }
 
             public override void Transition()
             {
                 if (elevator.CurFloor == -1)
                 {
-                    if (elevator.IsClosed && owner.b1OutsideDoor.IsClosed)
+                    if (elevator.isClosed && owner.b1OutsideDoor.isClosed)
                         stateMachine.ChangeState(State.Idle);
                 }
                 else if (elevator.CurFloor == -2)
                 {
-                    if (elevator.IsClosed && owner.b2OutsideDoor.IsClosed)
+                    if (elevator.isClosed && owner.b2OutsideDoor.isClosed)
                         stateMachine.ChangeState(State.Idle);
                 }
             }
@@ -263,6 +258,7 @@ namespace Darik
             public override void Enter()
             {
                 curTime = 0f;
+                owner.state = "Wait";
             }
 
             public override void Update()
