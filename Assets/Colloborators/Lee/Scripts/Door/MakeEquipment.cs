@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Darik
+namespace Lee
 {
-    public class ElevatorOutsideDoor : Elevator
+    public class MakeEquipment : MonoBehaviour
     {
 
     }
