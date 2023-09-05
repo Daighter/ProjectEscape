@@ -17,18 +17,18 @@ namespace Jeong
         RadioDial radioDial;
 
 
-        private void Start()
+    /*    private void Start()
         {
             numPos = GetComponent<Transform>();
             radioDial = GetComponent<RadioDial>();
 
             basePos = 0f;
 
-            Debug.Log($"numPos {numPos.position}");
+            
 
 
-            numPos.position = new Vector3(0.5f, basePos, 1.2f);
-            Debug.Log($"numPos {numPos.position}");
+            //numPos.position = new Vector3(0.5f, basePos, 1.2f);
+            
         }
 
         private void OnEnable()
@@ -36,9 +36,9 @@ namespace Jeong
             if(radioDial.value != 0)
             {
                 basePos = radioDial.value;
-                Debug.Log($"Dial value is {radioDial.value}");
+                // Debug.Log($"Dial value is {radioDial.value}");
             }  
-        }
+        }*/
     }
 
 }
