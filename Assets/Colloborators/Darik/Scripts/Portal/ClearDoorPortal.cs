@@ -11,7 +11,7 @@ namespace Darik
 
         private void OnTriggerEnter(Collider other)
         {
-            if (playerLayer.Contain(other.gameObject.layer))
+            if (playerLayer.Contain(other.gameObject.layer) && sceneName != null)
                 GameManager.Scene.LoadScene(sceneName);
         }
     }
