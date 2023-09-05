@@ -2,75 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElevatorInsideDoor : MonoBehaviour
+namespace Darik
 {
-    [SerializeField] Transform leftDoor;
-    [SerializeField] Transform rightDoor;
-
-    private const float closeXPoint = -1.246985f;
-    private const float OpenXPointL = -0.546985f;
-    private const float OpenXPointR = -1.946985f;
-    private bool isClosed;
-    private float moveSpeed = 1f;
-
-    private void Start()
+    public class ElevatorInsideDoor : Elevator
     {
-        leftDoor.position = new Vector3(closeXPoint, leftDoor.position.y, leftDoor.position.z);
-        rightDoor.position = new Vector3(closeXPoint, rightDoor.position.y, rightDoor.position.z);
-        isClosed = true;
-    }
+        [SerializeField] private float moveSpeed = 1f;
 
-    public void Open()
-    {
-        StartCoroutine(DoorOpenCoroutine());
-    }
+        public bool isAlived = true;
+        private int curFloor = 0;
 
-    public void Close()
-    {
-        StartCoroutine(DoorCloseCoroutine());
-    }
+        public int CurFloor { get { return curFloor; } }
 
-    IEnumerator DoorOpenCoroutine()
-    {
-        while (isClosed)
+        protected override void Start()
         {
-            OpenMovement();
-            yield return null;
+            base.Start();
+
+            curFloor = -2;
+            transform.position = new Vector3(transform.position.x, -6, transform.position.z);
         }
-    }
 
-    IEnumerator DoorCloseCoroutine()
-    {
-        while (!isClosed)
+        public void Move(int targetFloor)
         {
-            CloseMovement();
-            yield return null;
-        }
-    }
-
-    private void OpenMovement()
-    {
-        leftDoor.Translate(Vector3.right * moveSpeed * Time.deltaTime, Space.World);
-        rightDoor.Translate(Vector3.right * -moveSpeed * Time.deltaTime, Space.World);
-
-        if (leftDoor.position.x <= OpenXPointL)
-        {
-            leftDoor.position = new Vector3(OpenXPointL, leftDoor.position.y, leftDoor.position.z);
-            rightDoor.position = new Vector3(OpenXPointR, rightDoor.position.y, rightDoor.position.z);
-            isClosed = false;
-        }
-    }
-
-    private void CloseMovement()
-    {
-        leftDoor.Translate(Vector3.right * -moveSpeed * Time.deltaTime, Space.World);
-        rightDoor.Translate(Vector3.right * moveSpeed * Time.deltaTime, Space.World);
-
-        if (leftDoor.position.x >= closeXPoint)
-        {
-            leftDoor.position = new Vector3(closeXPoint, leftDoor.position.y, leftDoor.position.z);
-            rightDoor.position = new Vector3(closeXPoint, rightDoor.position.y, rightDoor.position.z);
-            isClosed = true;
+            if (targetFloor == -1)
+            {
+                transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+                if (transform.position.y >= -3)
+                {
+                    transform.position = new Vector3(transform.position.x, -3, transform.position.z);
+                    curFloor = -1;
+                    isAlived = true;
+                }
+            }
+            else if (targetFloor == -2)
+            {
+                transform.Translate(Vector3.up * -moveSpeed * Time.deltaTime);
+                if (transform.position.y <= -6)
+                {
+                    transform.position = new Vector3(transform.position.x, -6, transform.position.z);
+                    curFloor = -2;
+                    isAlived = true;
+                }
+            }
         }
     }
 }
