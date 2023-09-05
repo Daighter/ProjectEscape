@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElevatorOutsideDoor : MonoBehaviour
+namespace Darik
 {
+    public class ElevatorOutsideDoor : Elevator
+    {
 
+    }
 }
