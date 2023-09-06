@@ -9,7 +9,7 @@ namespace Lee
     {
         public void OnLoad()
         {
-            SaveManager.instance.LoadData();
+            SaveData.Current = (SaveData)SerializetionManager.Load(Application.persistentDataPath + "/saves/Save.save");
         }
     }
 }

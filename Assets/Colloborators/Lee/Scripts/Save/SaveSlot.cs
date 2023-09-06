@@ -4,16 +4,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using TMPro;
+using UnityEditor.SceneManagement;
 
 namespace Lee
 {
     public class SaveSlot : MonoBehaviour
     {
         public GameObject creat;    // 플레이어 닉네임 입력UI
-        public Text[] slotText;     // 슬롯버튼 아래에 존재하는 Text들
-        public Text newPlayerName;	// 새로 입력된 플레이어의 닉네임
+        public TMP_Text[] slotText;     // 슬롯버튼 아래에 존재하는 Text들
+        public TMP_Text newPlayerName;	// 새로 입력된 플레이어의 닉네임
 
-        public string sceneName;
         bool[] savefile = new bool[3];	// 세이브파일 존재유무 저장
 
         void Start()
@@ -21,7 +22,7 @@ namespace Lee
             // 슬롯별로 저장된 데이터가 존재하는지 판단.
             for (int i = 0; i < 3; i++)
             {
-                if (File.Exists(SaveManager.instance.path + $"{i}"))    // 데이터가 있는 경우
+                if (File.Exists(SaveManager.instance.savePath + $"{i}"))    // 데이터가 있는 경우
                 {
                     savefile[i] = true;         // 해당 슬롯 번호의 bool배열 true로 변환
                     SaveManager.instance.nowSlot = i;   // 선택한 슬롯 번호 저장
@@ -44,7 +45,7 @@ namespace Lee
             if (savefile[number])   // bool 배열에서 현재 슬롯번호가 true라면 = 데이터 존재한다는 뜻
             {
                 SaveManager.instance.LoadData();    // 데이터를 로드하고
-                GoGame();   // 게임씬으로 이동
+                LoadButton();   // 게임씬으로 이동
             }
             else    // bool 배열에서 현재 슬롯번호가 false라면 데이터가 없다는 뜻
             {
@@ -57,13 +58,15 @@ namespace Lee
             creat.gameObject.SetActive(true);
         }
 
-        public void GoGame()    // 게임씬으로 이동
+        public void LoadButton()    // 게임씬으로 이동
         {
             if (!savefile[SaveManager.instance.nowSlot])    // 현재 슬롯번호의 데이터가 없다면
             {
                 SaveManager.instance.nowPlayer.name = newPlayerName.text; // 입력한 이름을 복사해옴
                 SaveManager.instance.SaveData(); // 현재 정보를 저장함.
             }
+            SaveManager.instance.LoadData();
         }
+        
     }
 }

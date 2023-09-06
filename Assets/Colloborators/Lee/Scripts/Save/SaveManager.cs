@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEditor.SceneManagement;
 
 namespace Lee
 {
-    public class PlayerData
+    public class PlayerData_2
     {
         // 이름, 레벨, 코인, 착용중인 무기
         public string name;
-        public int level = 1;
-        public int coin = 100;
-        public int item = -1;
+        public Vector3 position;
+        public Quaternion rotation;
+        public string sceneName;
     }
 
     public class SaveManager : MonoBehaviour
@@ -19,9 +20,9 @@ namespace Lee
         public static SaveManager instance; // 싱글톤패턴
         private string sceneName;
 
-        public PlayerData nowPlayer = new PlayerData(); // 플레이어 데이터 생성
+        public PlayerData_2 nowPlayer = new PlayerData_2(); // 플레이어 데이터 생성
 
-        public string path; // 경로
+        public string savePath; // 경로
         public int nowSlot; // 현재 슬롯번호
 
         private void Awake()
@@ -37,36 +38,31 @@ namespace Lee
             }
             DontDestroyOnLoad(this.gameObject);
             #endregion
-            path = Application.persistentDataPath + "/save";    // 경로 지정
-            print(path);
+            savePath = Application.persistentDataPath + "/save";    // 경로 지정
+            print(savePath);
+        }
+
+        public void AutoSave()
+        {
         }
 
         public void SaveData()
         {
-            sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             string data = JsonUtility.ToJson(nowPlayer);
-            File.WriteAllText(path + nowSlot.ToString(), data);
+            File.WriteAllText(savePath + nowSlot.ToString(), data);
         }
 
         public void LoadData()
         {
-            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != sceneName)
-            {
-                string data = File.ReadAllText(path + nowSlot.ToString());
-                nowPlayer = JsonUtility.FromJson<PlayerData>(data);
-                UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-            }
-            else
-            {
-                string data = File.ReadAllText(path + nowSlot.ToString());
-                nowPlayer = JsonUtility.FromJson<PlayerData>(data);
-            }
+             string data = File.ReadAllText(savePath + nowSlot.ToString());
+             nowPlayer = JsonUtility.FromJson<PlayerData_2>(data);
+             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
 
         public void DataClear()
         {
             nowSlot = -1;
-            nowPlayer = new PlayerData();
+            nowPlayer = new PlayerData_2();
         }
     }
 }
