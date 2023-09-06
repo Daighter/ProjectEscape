@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
-using static UnityEngine.UI.GridLayoutGroup;
 
 namespace Darik
 {
@@ -12,9 +10,9 @@ namespace Darik
         public enum State { Idle, Move, Open, Close, Wait }
         StateMachine<State, ElevatorController> stateMachine;
 
-        [SerializeField] ElevatorInsideDoor elevator;
-        [SerializeField] ElevatorOutsideDoor b1OutsideDoor;
-        [SerializeField] ElevatorOutsideDoor b2OutsideDoor;
+        [SerializeField] ElevatorInside elevator;
+        [SerializeField] ElevatorOutside b1Outside;
+        [SerializeField] ElevatorOutside b2Outside;
         public string state;
 
         public bool isCommanded = false;
@@ -42,13 +40,44 @@ namespace Darik
             stateMachine.Update();
         }
 
-        public void Command(int targetFloor)
+        public void MoveCommand(int targetFloor)
         {
-            if (targetFloor == -1 || targetFloor == -2)
+            if (targetFloor == -1)
             {
-                isCommanded = true;
-                this.targetFloor = targetFloor;
+                if (elevator.CurFloor != -1)
+                {
+                    this.targetFloor = targetFloor;
+                    isCommanded = true;
+                }
+                else
+                {
+                    // TODO : Button Return;
+                }
             }
+            if (targetFloor == -2)
+            {
+                if (elevator.CurFloor != -2)
+                {
+                    this.targetFloor = targetFloor;
+                    isCommanded = true;
+                }
+                else
+                {
+                    // TODO : Button Return;
+                }
+            }
+        }
+
+        public void CallAtB1()
+        {
+            targetFloor = -1;
+            isCommanded = true;
+        }
+
+        public void CallAtB2()
+        {
+            targetFloor = -2;
+            isCommanded = true;
         }
 
         #region State
@@ -56,7 +85,7 @@ namespace Darik
         {
             protected GameObject gameObject => owner.gameObject;
             protected Transform transform => owner.transform;
-            protected ElevatorInsideDoor elevator => owner.elevator;
+            protected ElevatorInside elevator => owner.elevator;
 
             protected ElevatorControllerState(ElevatorController owner, StateMachine<State, ElevatorController> stateMachine) : base(owner, stateMachine)
             {
@@ -151,13 +180,13 @@ namespace Darik
                 owner.StartCoroutine(elevator.OpenCoroutine());
                 if (elevator.CurFloor == -1)
                 {
-                    owner.b1OutsideDoor.isClosed = true;
-                    owner.StartCoroutine(owner.b1OutsideDoor.OpenCoroutine());
+                    owner.b1Outside.isClosed = true;
+                    owner.StartCoroutine(owner.b1Outside.OpenCoroutine());
                 }
                 else if (elevator.CurFloor == -2)
                 {
-                    owner.b2OutsideDoor.isClosed = true;
-                    owner.StartCoroutine(owner.b2OutsideDoor.OpenCoroutine());
+                    owner.b2Outside.isClosed = true;
+                    owner.StartCoroutine(owner.b2Outside.OpenCoroutine());
                 }
 
                 owner.state = "Open";
@@ -172,12 +201,12 @@ namespace Darik
             {
                 if (elevator.CurFloor == -1)
                 {
-                    if (!elevator.isClosed && !owner.b1OutsideDoor.isClosed)
+                    if (!elevator.isClosed && !owner.b1Outside.isClosed)
                         stateMachine.ChangeState(State.Wait);
                 }
                 else if (elevator.CurFloor == -2)
                 {
-                    if (!elevator.isClosed && !owner.b2OutsideDoor.isClosed)
+                    if (!elevator.isClosed && !owner.b2Outside.isClosed)
                         stateMachine.ChangeState(State.Wait);
                 }
             }
@@ -205,13 +234,13 @@ namespace Darik
                 owner.StartCoroutine(elevator.CloseCoroutine());
                 if (elevator.CurFloor == -1)
                 {
-                    owner.b1OutsideDoor.isClosed = false;
-                    owner.StartCoroutine(owner.b1OutsideDoor.CloseCoroutine());
+                    owner.b1Outside.isClosed = false;
+                    owner.StartCoroutine(owner.b1Outside.CloseCoroutine());
                 }
                 else if (elevator.CurFloor == -2)
                 {
-                    owner.b2OutsideDoor.isClosed = false;
-                    owner.StartCoroutine(owner.b2OutsideDoor.CloseCoroutine());
+                    owner.b2Outside.isClosed = false;
+                    owner.StartCoroutine(owner.b2Outside.CloseCoroutine());
                 }
 
                 owner.state = "Close";
@@ -226,12 +255,12 @@ namespace Darik
             {
                 if (elevator.CurFloor == -1)
                 {
-                    if (elevator.isClosed && owner.b1OutsideDoor.isClosed)
+                    if (elevator.isClosed && owner.b1Outside.isClosed)
                         stateMachine.ChangeState(State.Idle);
                 }
                 else if (elevator.CurFloor == -2)
                 {
-                    if (elevator.isClosed && owner.b2OutsideDoor.isClosed)
+                    if (elevator.isClosed && owner.b2Outside.isClosed)
                         stateMachine.ChangeState(State.Idle);
                 }
             }
