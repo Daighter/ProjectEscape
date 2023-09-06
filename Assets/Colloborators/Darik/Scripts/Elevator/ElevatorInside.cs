@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Darik
 {
-    public class ElevatorInsideDoor : Elevator
+    public class ElevatorInside : Elevator
     {
         [SerializeField] private float moveSpeed = 1f;
 
