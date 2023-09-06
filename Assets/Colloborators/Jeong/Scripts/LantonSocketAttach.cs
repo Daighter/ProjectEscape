@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Jeong
 {
-    public class SocketAttach : MonoBehaviour
+    public class LantonSocketAttach : MonoBehaviour
     {
         [SerializeField] XRSocketInteractor lantonSocket;
 

@@ -46,11 +46,19 @@ namespace Jeong
 
         private void SelectChannelRoutine()
         {
-            if (0.55f <= basePos&&basePos < 0.60f)
+
+            if (!radioDial.enabled)
+                return;
+
+            else if (0.55f <= basePos&&basePos < 0.60f)
             {
                 ch180 = true;
-                ExitPoint.SetActive(true);
-                ExitCube.SetActive(true);
+                if(ch180)
+                {
+                    ExitPoint.SetActive(true);
+                    ExitCube.SetActive(true);
+                }
+                
             }
             else
             {
