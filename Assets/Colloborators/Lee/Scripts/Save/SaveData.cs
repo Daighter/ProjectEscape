@@ -5,14 +5,10 @@ using UnityEngine;
 namespace Lee
 {
     [System.Serializable]
-    public class SaveData : MonoBehaviour
+    public class SaveData
     {
-        private static SaveData current;
-        public static SaveData Current { get { return current; } set { if (current == null) { current = new SaveData(); } } }
+        public static SaveData current;
 
-        public PlayerData playerData;
-        public int interatorObject;
-
-
+        public List<ObjectData> objs;
     }
 }

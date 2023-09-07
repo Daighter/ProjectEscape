@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
@@ -56,6 +57,17 @@ namespace Lee
         public static BinaryFormatter GetBinaryFormatter() 
         {
             BinaryFormatter formatter = new BinaryFormatter();
+
+            SurrogateSelector selector = new SurrogateSelector();
+
+            ObjectPositionSurrogate objectPosition = new ObjectPositionSurrogate();
+
+            ObjectRotationSurrogate objectRotation = new ObjectRotationSurrogate();
+
+            selector.AddSurrogate(typeof(Vector3), new StreamingContext(StreamingContextStates.All), objectPosition);
+            selector.AddSurrogate(typeof(Quaternion), new StreamingContext(StreamingContextStates.All), objectRotation);
+
+            formatter.SurrogateSelector = selector;
 
             return formatter;
         }
