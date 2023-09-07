@@ -11,8 +11,6 @@ namespace Bae
     public class UIManager : MonoBehaviour
     {
         Canvas fadeCanvas;
-        Canvas talkCanvas;
-        TMP_Text TalkText;
         public FadeInOut fadeScene;
 
         private void OnEnable()
@@ -30,20 +28,5 @@ namespace Bae
         {
             fadeScene.FadeOut();
         }
-        /*
-        //Test Sceneº¯°æ¿ë
-        public void GoToScene(string sceneName)
-        {
-            StartCoroutine(GoTOSceneRoutine(sceneName));
-        }
-
-        IEnumerator GoTOSceneRoutine(string sceneName)
-        {
-            FadeOut();
-            yield return new WaitForSeconds(fadeScene.fadeDuration);           
-            GameManager.Scene.LoadScene(sceneName);
-            FadeIn();
-        }
-        */
     }
 }

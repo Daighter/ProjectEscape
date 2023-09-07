@@ -19,14 +19,14 @@ namespace Bae
         }
         private void OnTriggerEnter(Collider other)
         {
-            if(other.transform.tag!= "Figure")//임시 태그 "Finish" 나중에는 "Figure"로 바꿔야함
+            if(other.transform.tag!= "Figure")//피규어가 아닌것이 들어갈 때
             {
                 other.transform.position = notBurn.position;
                 return;
             }
             FigureState figureState=other.GetComponent<FigureState>();
             other.gameObject.SetActive(false);
-            if(figureState.figureState!="Offer")//피규어가 아닌것이 들어갈 때
+            if(figureState.figureState!="Offer")//재물이 아닌것일 때
             {
                 figure.Add(figureState);
                 overStack++;
