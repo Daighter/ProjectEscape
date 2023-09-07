@@ -17,5 +17,15 @@ namespace Darik
         {
             elevatorController.MoveCommand(-2);
         }
+
+        public void OpenTheDoor()
+        {
+            elevatorController.OpenTheDoor();
+        }
+
+        public void CloseTheDoor()
+        {
+            elevatorController.CloseTheDoor();
+        }
     }
 }

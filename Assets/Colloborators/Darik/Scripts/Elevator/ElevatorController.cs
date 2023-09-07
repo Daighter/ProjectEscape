@@ -10,11 +10,16 @@ namespace Darik
         public enum State { Idle, Move, Open, Close, Wait }
         StateMachine<State, ElevatorController> stateMachine;
 
+        [SerializeField] AudioSource elevatorOpenSound;
+        [SerializeField] AudioSource elevatorCloseSound;
+        [SerializeField] AudioSource elevatorUpSound;
+        [SerializeField] AudioSource elevatorDawnSound;
+
         [SerializeField] ElevatorInside elevator;
         [SerializeField] ElevatorOutside b1Outside;
         [SerializeField] ElevatorOutside b2Outside;
-        public string state;
 
+        public string state;
         public bool isCommanded = false;
         public int targetFloor = 0;
         private bool isMove = false;
@@ -27,6 +32,8 @@ namespace Darik
             stateMachine.AddState(State.Open, new OpenState(this, stateMachine));
             stateMachine.AddState(State.Close, new CloseState(this, stateMachine));
             stateMachine.AddState(State.Wait, new WaitState(this, stateMachine));
+
+            AddSounds();
         }
 
         private void Start()
@@ -38,6 +45,12 @@ namespace Darik
         private void Update()
         {
             stateMachine.Update();
+        }
+
+        private void AddSounds()
+        {
+            //GameManager.Sound.AddElevatorSound("elevatorOpenSound", elevatorOpenSound);
+            //GameManager.Sound.AddElevatorSound("elevatorCloseSound", elevatorCloseSound);
         }
 
         public void MoveCommand(int targetFloor)
@@ -78,6 +91,18 @@ namespace Darik
         {
             targetFloor = -2;
             isCommanded = true;
+        }
+
+        public void OpenTheDoor()
+        {
+            if (!isMove)
+                stateMachine.ChangeState(State.Open);
+        }
+
+        public void CloseTheDoor()
+        {
+            if (!isMove)
+                stateMachine.ChangeState(State.Close);
         }
 
         #region State
@@ -141,7 +166,7 @@ namespace Darik
 
             public override void Enter()
             {
-                elevator.isAlived = false;
+                elevator.isArrived = false;
                 owner.isMove = true;
                 owner.state = "Move";
             }
@@ -153,7 +178,7 @@ namespace Darik
 
             public override void Transition()
             {
-                if (elevator.isAlived)
+                if (elevator.isArrived)
                     stateMachine.ChangeState(State.Open);
             }
 
@@ -190,6 +215,7 @@ namespace Darik
                 }
 
                 owner.state = "Open";
+                //GameManager.Sound.PlayElevatorSound("elevatorOpenSound");
             }
 
             public override void Update()
@@ -244,6 +270,7 @@ namespace Darik
                 }
 
                 owner.state = "Close";
+                //GameManager.Sound.PlayElevatorSound("elevatorCloseSound");
             }
 
             public override void Update()
