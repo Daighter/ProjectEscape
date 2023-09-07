@@ -6,28 +6,28 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/NoVR/MainRoomScene.unity
+    path: Assets/Scenes/YesVR/MainRoomSceneT.unity
     guid: f6110dfd8d099144184b314846c09a71
   - enabled: 0
-    path: Assets/Scenes/NoVR/PrisonScene.unity
+    path: Assets/Scenes/YesVR/PrisonSceneT.unity
     guid: 474b181969486e345b972333090b4025
   - enabled: 0
-    path: Assets/Scenes/NoVR/Bae.unity
+    path: Assets/Scenes/YesVR/BaeT.unity
     guid: 6e3b2f7e43e4f3d4c9a380790cdcb73b
   - enabled: 0
-    path: Assets/Scenes/NoVR/Jeong.unity
+    path: Assets/Scenes/YesVR/JeongT.unity
     guid: 17c8d85bd63319946891d06f622196bc
   - enabled: 1
-    path: Assets/Scenes/YesVR/MainRoomScene.unity
+    path: Assets/Scenes/NoVR/MainRoomScene.unity
     guid: 10652dd96952c7148a0e4dad921f3f19
   - enabled: 1
-    path: Assets/Scenes/YesVR/PrisonScene.unity
+    path: Assets/Scenes/NoVR/PrisonScene.unity
     guid: 1b142764dc1de0f42aba0a0050a4ff51
   - enabled: 1
-    path: Assets/Scenes/YesVR/Bae.unity
+    path: Assets/Scenes/NoVR/Bae.unity
     guid: d9adbe8447dd6234d9c7a641b5a66cb0
   - enabled: 1
-    path: Assets/Scenes/YesVR/Jeong.unity
+    path: Assets/Scenes/NoVR/Jeong.unity
     guid: f0388b31103cf384fa2c8d8eb45fef05
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 370cb97999c4cbc49ac3148096aa2057,

@@ -2882,7 +2882,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-307756
+  m_Name: pb_Mesh-309570
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3208,6 +3208,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 411868060}
     m_Modifications:
+    - target: {fileID: 6566210392454299078, guid: bdcb4d18caf8a9d4bb9216d166d4384c,
+        type: 3}
+      propertyPath: sceneName
+      value: MainRoomSceneT
+      objectReference: {fileID: 0}
     - target: {fileID: 6566210392454299079, guid: bdcb4d18caf8a9d4bb9216d166d4384c,
         type: 3}
       propertyPath: m_Name
