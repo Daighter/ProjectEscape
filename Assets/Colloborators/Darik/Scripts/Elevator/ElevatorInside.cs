@@ -9,7 +9,7 @@ namespace Darik
         [SerializeField] private float moveSpeed = 1f;
 
         private PlayerTrigger playerTrigger;
-        public bool isAlived = true;
+        public bool isArrived = true;
         private int curFloor = 0;
 
         public int CurFloor { get { return curFloor; } }
@@ -39,7 +39,7 @@ namespace Darik
                 {
                     transform.position = new Vector3(transform.position.x, -3, transform.position.z);
                     curFloor = -1;
-                    isAlived = true;
+                    isArrived = true;
                 }
             }
             else if (targetFloor == -2)
@@ -52,7 +52,7 @@ namespace Darik
                 {
                     transform.position = new Vector3(transform.position.x, -6, transform.position.z);
                     curFloor = -2;
-                    isAlived = true;
+                    isArrived = true;
                 }
             }
         }
