@@ -7,6 +7,9 @@ namespace Jeong
 {
     public class WoodBox : MonoBehaviour
     {
+        [SerializeField] GameObject boxKey;
+        [SerializeField] GameObject bomb;
+        [SerializeField] GameObject effect;
         Rigidbody rigid;
         XRGrabInteractable grabInteractable;
 
@@ -19,16 +22,14 @@ namespace Jeong
         private void Start()
         {
             grabInteractable.enabled = false;
+            bomb.SetActive(false);
+            effect.SetActive(false);
             rigid.constraints = RigidbodyConstraints.FreezeAll;
-            
-
         }
-
-
 
         public void Open()
         {
-            Debug.Log("Open");
+            Debug.Log("BoxOpen");
             grabInteractable.enabled = true;
             if(!grabInteractable.enabled)
             {
@@ -40,8 +41,12 @@ namespace Jeong
             {
                 Debug.Log("Open/RigidbodyConstraints.None");
                 rigid.constraints = RigidbodyConstraints.None;
+                bomb.SetActive(true);
+                Destroy(boxKey, 2f);
+                Destroy(gameObject, 2f);
+                effect.SetActive(true);
             }
-            
+
         }
     }
 
