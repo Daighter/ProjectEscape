@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.UI;
 
 namespace UnityEngine.XR.Content.Interaction
 {
@@ -16,6 +17,8 @@ namespace UnityEngine.XR.Content.Interaction
             internal bool m_InPressRegion = false;
             internal bool m_WrongSide = false;
         }
+
+        [SerializeField] private Image color;
 
         [Serializable]
         public class ValueChangeEvent : UnityEvent<float> { }
@@ -242,6 +245,8 @@ namespace UnityEngine.XR.Content.Interaction
                             m_OnPress.Invoke();
                         else
                             m_OnRelease.Invoke();
+
+                        ChangeColor(m_Toggled);
                     }
                 }
             }
@@ -257,7 +262,10 @@ namespace UnityEngine.XR.Content.Interaction
                     if (m_Pressed)
                         m_OnRelease.Invoke();
                 }
+
+                ChangeColor(pressed);
             }
+
             m_Pressed = pressed;
 
             // Call value change event
@@ -296,6 +304,14 @@ namespace UnityEngine.XR.Content.Interaction
         void OnValidate()
         {
             SetButtonHeight(0.0f);
+        }
+
+        private void ChangeColor(bool pressed)
+        {
+            if (pressed)
+                color.color = Color.red;
+            else
+                color.color = Color.black;
         }
     }
 }
