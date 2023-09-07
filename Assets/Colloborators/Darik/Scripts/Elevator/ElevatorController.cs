@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Darik
@@ -10,14 +9,10 @@ namespace Darik
         public enum State { Idle, Move, Open, Close, Wait }
         StateMachine<State, ElevatorController> stateMachine;
 
-        [SerializeField] AudioSource elevatorOpenSound;
-        [SerializeField] AudioSource elevatorCloseSound;
-        [SerializeField] AudioSource elevatorUpSound;
-        [SerializeField] AudioSource elevatorDawnSound;
-
         [SerializeField] ElevatorInside elevator;
         [SerializeField] ElevatorOutside b1Outside;
         [SerializeField] ElevatorOutside b2Outside;
+        [SerializeField] ElevatorSoundPlayer soundPlayer;
 
         public string state;
         public bool isCommanded = false;
@@ -32,8 +27,6 @@ namespace Darik
             stateMachine.AddState(State.Open, new OpenState(this, stateMachine));
             stateMachine.AddState(State.Close, new CloseState(this, stateMachine));
             stateMachine.AddState(State.Wait, new WaitState(this, stateMachine));
-
-            AddSounds();
         }
 
         private void Start()
@@ -45,12 +38,6 @@ namespace Darik
         private void Update()
         {
             stateMachine.Update();
-        }
-
-        private void AddSounds()
-        {
-            //GameManager.Sound.AddElevatorSound("elevatorOpenSound", elevatorOpenSound);
-            //GameManager.Sound.AddElevatorSound("elevatorCloseSound", elevatorCloseSound);
         }
 
         public void MoveCommand(int targetFloor)
@@ -169,6 +156,11 @@ namespace Darik
                 elevator.isArrived = false;
                 owner.isMove = true;
                 owner.state = "Move";
+
+                if (owner.targetFloor == -1 && owner.elevator.CurFloor == -2)
+                    owner.soundPlayer.PlayGoUpSound();
+                else if (owner.targetFloor == -2 && owner.elevator.CurFloor == -1)
+                    owner.soundPlayer.PlayGoDawnSound();
             }
 
             public override void Update()
@@ -185,6 +177,8 @@ namespace Darik
             public override void Exit()
             {
                 owner.isMove = false;
+
+                owner.soundPlayer.PlayOpenSound();
             }
         }
 
@@ -215,7 +209,6 @@ namespace Darik
                 }
 
                 owner.state = "Open";
-                //GameManager.Sound.PlayElevatorSound("elevatorOpenSound");
             }
 
             public override void Update()
@@ -270,7 +263,6 @@ namespace Darik
                 }
 
                 owner.state = "Close";
-                //GameManager.Sound.PlayElevatorSound("elevatorCloseSound");
             }
 
             public override void Update()
@@ -330,7 +322,7 @@ namespace Darik
 
             public override void Exit()
             {
-
+                owner.soundPlayer.PlayCloseSound();
             }
         }
         #endregion
