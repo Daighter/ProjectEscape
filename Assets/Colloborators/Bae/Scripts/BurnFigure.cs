@@ -19,7 +19,7 @@ namespace Bae
         }
         private void OnTriggerEnter(Collider other)
         {
-            if(other.transform.tag!="Finish")//임시 태그 "Finish" 나중에는 "Figure"로 바꿔야함
+            if(other.transform.tag!= "Figure")//임시 태그 "Finish" 나중에는 "Figure"로 바꿔야함
             {
                 other.transform.position = notBurn.position;
                 return;
