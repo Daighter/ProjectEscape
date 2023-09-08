@@ -9,43 +9,42 @@ namespace Lee
     {
         public ObjectData objData;
 
-        public void Start()
+        private void Start()
         {
-            if (string.IsNullOrEmpty(objData.id))
-            {
-                objData.id = System.DateTime.Now.ToLongDateString() + System.DateTime.Now.ToLongTimeString() + Random.Range(0, int.MaxValue).ToString();
-                SaveData.current.objs.Add(objData);
-            }
             objData.id = gameObject.name;
+            SaveData.current.objs.Add(objData);
         }
-
         public void OnEnable()
         {
             GameManager.Event.AddListener(EventType.OnSave, this);
+            GameManager.Event.AddListener(EventType.OnLoad, this);
         }
 
-        public void DataBackUp()
+        public void DataSave()
         {
             objData.position = transform.position;
             objData.rotation = transform.rotation;
         }
 
-        public void ObjDestroy()    // 기존 오브젝트 업데이트 방식이 문제가 있을경우 이 함수를 이용해서 삭제후 재생성 방식으로 전환
+        public void DataLoad()
         {
-            Destroy(gameObject);
+            transform.position = objData.position;
+            transform.rotation = objData.rotation;
         }
 
         public void OnEvent(EventType eventType, Component Sender, object Param = null) // 저장 이벤트 발생시 위치,방향을 Data에 담음
         {
             if(eventType == EventType.OnSave)
             {
-                DataBackUp();
+                Debug.Log("아임퉁퉁이");
+                DataSave();
             }
 
-            //if(eventType == EventType.OnLoad) // 불러올시 삭제하고 다시 생성하는 과정으로 설계하기
-            //{
-            //    ObjDestroy();
-            //}
+            if (eventType == EventType.OnLoad)
+            {
+                Debug.Log("아임비실이");
+                DataLoad();
+            }
         }
     }
 
