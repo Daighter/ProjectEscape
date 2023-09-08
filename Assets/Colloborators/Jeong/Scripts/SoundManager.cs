@@ -6,14 +6,14 @@ namespace Jeong
 {
     public class SoundManager : MonoBehaviour
     {
-        Dictionary<string, AudioSource> caveRoomSound;
+        Dictionary<string, AudioSource> caveSound;
         Dictionary<string, AudioSource> elevatorSound;
         Dictionary<string, AudioSource> prisonSound;
         Dictionary<string, AudioSource> dungeonSound;
 
         private void Awake()
         {
-            caveRoomSound = new Dictionary<string, AudioSource>();
+            caveSound = new Dictionary<string, AudioSource>();
             elevatorSound = new Dictionary<string, AudioSource>();
             prisonSound = new Dictionary<string, AudioSource>();
             dungeonSound = new Dictionary<string, AudioSource>();
@@ -33,8 +33,12 @@ namespace Jeong
 
         public void PlayElevatorSound(string name)
         {
-           
             elevatorSound[name].Play();
+        }
+
+        public bool ContainkeysElevatorSound(string name)
+        {
+            return elevatorSound.ContainsKey(name);
         }
 
         public void LogElevatorSound(string name) // 디버그 로그 확인용
@@ -61,6 +65,11 @@ namespace Jeong
             prisonSound[name].Play();
         }
 
+        public bool ContainkeysPrisonSound(string name)
+        {
+            return prisonSound.ContainsKey(name);
+        }
+
         public void LogPrisonSound(string name) // 디버그 로그 확인용
         {
             Debug.Log($"{name} Sound log");
@@ -84,6 +93,11 @@ namespace Jeong
             dungeonSound[name].Play();
         }
 
+        public bool ContainkeysDungeonSound(string name)
+        {
+            return dungeonSound.ContainsKey(name);
+        }
+
         public void LogDungeonSound(string name) // 디버그 로그 확인용
         {
             Debug.Log($"{name} Sound log");
@@ -92,22 +106,27 @@ namespace Jeong
 
         // 동굴 사운드
         #region CaveSound
-        public void AddCaveRadioSound(string name, AudioSource audioSource)
+        public void AddCaveSound(string name, AudioSource audioSource)
         {
-            caveRoomSound.Add(name, audioSource);
+            caveSound.Add(name, audioSource);
         }
 
-        public void RemoveCaveRadioSound(string name)
+        public void RemoveCaveSound(string name)
         {
-            caveRoomSound.Remove(name);
+            caveSound.Remove(name);
         }
 
-        public void PlayCaveRadioSound(string name)
+        public void PlayCaveSound(string name)
         {
-            caveRoomSound[name].Play();
+            caveSound[name].Play();
         }
 
-        public void LogCaveRadioSound(string name) // 디버그 로그 확인용
+        public bool ContainkeysCaveSound(string name)
+        {
+            return caveSound.ContainsKey(name);
+        }
+
+        public void LogCaveSound(string name) // 디버그 로그 확인용
         {
             Debug.Log($"{name} Play");
         }
