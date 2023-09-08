@@ -18,7 +18,7 @@ namespace Lee
                 Directory.CreateDirectory(Application.persistentDataPath + "/saves");
             }
 
-            string path = Application.persistentDataPath + "/saves" + saveName + ".save";
+            string path = Application.persistentDataPath + "/saves/" + saveName + ".save";
 
             FileStream file = File.Create(path);
 
