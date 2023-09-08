@@ -7,18 +7,18 @@ namespace Bae
 {
     public class FadeInOut : MonoBehaviour
     {
-        bool test = true;
         public float fadeDuration = 2;
         public Color fadeColor;
         public Image image;
 
-
-        private void Awake()//test¿ë
+        private void OnEnable()
         {
-            if(test)
-            {
-                FadeIn();
-            }
+            FadeIn();
+        }
+
+        private void OnDisable()
+        {
+            FadeOut();
         }
 
         public void FadeIn()
