@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Jeong
+namespace Darik
 {
-    public class Scripts : MonoBehaviour
+    public class ElevatorOutside : Elevator
     {
-      
-    }
 
+    }
 }
