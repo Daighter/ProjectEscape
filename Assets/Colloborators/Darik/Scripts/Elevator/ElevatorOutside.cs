@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Darik
 {
-    public class ElevatorOutsideDoor : Elevator
+    public class ElevatorOutside : Elevator
     {
 
     }
