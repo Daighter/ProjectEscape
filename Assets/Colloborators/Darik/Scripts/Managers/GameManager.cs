@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private static Darik.DataManager dataManager;
     private static Darik.SceneManager sceneManager;
     //private static UIManager uiManager;
+    private static Jeong.SoundManager soundManager;
 
     public static GameManager Instance { get { return instance; } }
     public static Darik.ResourceManager Resource { get { return resourceManager; } }
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     public static Darik.PoolManager Pool { get { return poolManager; } }
     public static Darik.SceneManager Scene { get { return sceneManager; } }
     //public static UIManager UI { get { return uiManager; } }
+    public static Jeong.SoundManager Sound { get { return soundManager; } }
 
     private void Awake()            // 유니티용 중복제거
     {
@@ -60,5 +62,9 @@ public class GameManager : MonoBehaviour
         GameObject uiObj = new GameObject() { name = "UIManager" };
         uiObj.transform.SetParent(transform);
         uiManager = uiObj.AddComponent<UIManager>();*/
+
+        GameObject soundObj = new GameObject() { name = "SoundManager" };
+        soundObj.transform.SetParent(transform);
+        soundManager = soundObj.AddComponent<Jeong.SoundManager>();
     }
 }

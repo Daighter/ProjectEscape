@@ -8,19 +8,18 @@ namespace Darik
     {
         [SerializeField] protected Transform leftDoor;
         [SerializeField] protected Transform rightDoor;
-        [SerializeField] private float moveSpeed = 1f;
+        [SerializeField] protected float doorMoveSpeed = 1f;
 
-        private const float closeXPoint = -1.246985f;
-        private const float OpenXPointL = -0.546985f;
-        private const float OpenXPointR = -1.946985f;
-        private bool isClosed;
+        [SerializeField] protected Transform closePosition;
+        [SerializeField] protected Transform openLPosition;
+        [SerializeField] protected Transform openRPosition;
 
-        public bool IsClosed { get { return isClosed; } }
+        public bool isClosed;
 
         protected virtual void Start()
         {
-            leftDoor.position = new Vector3(closeXPoint, leftDoor.position.y, leftDoor.position.z);
-            rightDoor.position = new Vector3(closeXPoint, rightDoor.position.y, rightDoor.position.z);
+            leftDoor.position = closePosition.position;
+            rightDoor.position = closePosition.position;
             isClosed = true;
         }
 
@@ -44,26 +43,26 @@ namespace Darik
 
         private void OpenMovement()
         {
-            leftDoor.Translate(Vector3.right * -moveSpeed * Time.deltaTime, Space.World);
-            rightDoor.Translate(Vector3.right * moveSpeed * Time.deltaTime, Space.World);
+            leftDoor.Translate(Vector3.right * doorMoveSpeed * Time.deltaTime);
+            rightDoor.Translate(Vector3.right * -doorMoveSpeed * Time.deltaTime);
 
-            if (leftDoor.position.x <= OpenXPointL)
+            if (leftDoor.position.x >= openLPosition.position.x)
             {
-                leftDoor.position = new Vector3(OpenXPointL, leftDoor.position.y, leftDoor.position.z);
-                rightDoor.position = new Vector3(OpenXPointR, rightDoor.position.y, rightDoor.position.z);
+                leftDoor.position = openLPosition.position;
+                rightDoor.position = openRPosition.position;
                 isClosed = false;
             }
         }
 
         private void CloseMovement()
         {
-            leftDoor.Translate(Vector3.right * moveSpeed * Time.deltaTime, Space.World);
-            rightDoor.Translate(Vector3.right * -moveSpeed * Time.deltaTime, Space.World);
+            leftDoor.Translate(Vector3.right * -doorMoveSpeed * Time.deltaTime);
+            rightDoor.Translate(Vector3.right * doorMoveSpeed * Time.deltaTime);
 
-            if (leftDoor.position.x >= closeXPoint)
+            if (leftDoor.position.x <= closePosition.position.x)
             {
-                leftDoor.position = new Vector3(closeXPoint, leftDoor.position.y, leftDoor.position.z);
-                rightDoor.position = new Vector3(closeXPoint, rightDoor.position.y, rightDoor.position.z);
+                leftDoor.position = closePosition.position;
+                rightDoor.position = closePosition.position;
                 isClosed = true;
             }
         }
