@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Darik
@@ -13,8 +12,9 @@ namespace Darik
         [SerializeField] ElevatorInside elevator;
         [SerializeField] ElevatorOutside b1Outside;
         [SerializeField] ElevatorOutside b2Outside;
-        public string state;
+        [SerializeField] ElevatorSoundPlayer soundPlayer;
 
+        public string state;
         public bool isCommanded = false;
         public int targetFloor = 0;
         private bool isMove = false;
@@ -80,6 +80,18 @@ namespace Darik
             isCommanded = true;
         }
 
+        public void OpenTheDoor()
+        {
+            if (!isMove)
+                stateMachine.ChangeState(State.Open);
+        }
+
+        public void CloseTheDoor()
+        {
+            if (!isMove)
+                stateMachine.ChangeState(State.Close);
+        }
+
         #region State
         private abstract class ElevatorControllerState : StateBase<State, ElevatorController>
         {
@@ -141,9 +153,14 @@ namespace Darik
 
             public override void Enter()
             {
-                elevator.isAlived = false;
+                elevator.isArrived = false;
                 owner.isMove = true;
                 owner.state = "Move";
+
+                if (owner.targetFloor == -1 && owner.elevator.CurFloor == -2)
+                    owner.soundPlayer.PlayGoUpSound();
+                else if (owner.targetFloor == -2 && owner.elevator.CurFloor == -1)
+                    owner.soundPlayer.PlayGoDawnSound();
             }
 
             public override void Update()
@@ -153,13 +170,15 @@ namespace Darik
 
             public override void Transition()
             {
-                if (elevator.isAlived)
+                if (elevator.isArrived)
                     stateMachine.ChangeState(State.Open);
             }
 
             public override void Exit()
             {
                 owner.isMove = false;
+
+                owner.soundPlayer.PlayOpenSound();
             }
         }
 
@@ -303,7 +322,7 @@ namespace Darik
 
             public override void Exit()
             {
-
+                owner.soundPlayer.PlayCloseSound();
             }
         }
         #endregion
