@@ -11,7 +11,7 @@ namespace Bae
     public class UIManager : MonoBehaviour
     {
         Canvas fadeCanvas;
-        public FadeInOut fadeScene;
+        FadeInOut fadeScene;
 
         private void OnEnable()
         {
