@@ -15,7 +15,7 @@ namespace Bae
         IEnumerator GoTOSceneRoutine(string sceneName)
         {
             uiManager.FadeOut();
-            yield return new WaitForSeconds(uiManager.fadeScene.fadeDuration);
+            yield return null;
             SceneManager.LoadScene(sceneName);
         }
     }
