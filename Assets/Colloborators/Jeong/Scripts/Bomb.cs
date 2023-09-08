@@ -26,6 +26,14 @@ namespace Jeong
         private void Start()
         {
             lanton.SetActive(false);
+            rock1.SetActive(true);
+            rock2.SetActive(true);
+            rock3.SetActive(true);
+            rock4.SetActive(true);
+            rock5.SetActive(true);
+            rock6.SetActive(true);
+            rock7.SetActive(true);
+            gameObject.SetActive(true);
         }
 
         public void Delete()
@@ -35,16 +43,15 @@ namespace Jeong
 
             lanton.SetActive(true);
             Debug.Log("Bomb");
-            Destroy(bomb, 2.5f);
-            Destroy(rock1, 3.3f);
-            Destroy(rock2, 3.5f);
-            Destroy(rock3, 3.7f);
-            Destroy(rock4, 3.9f);
-            Destroy(rock5, 4.1f);
-            Destroy(rock6, 4.3f);
-            Destroy(rock7, 4.5f);
-            Destroy(gameObject, 4.5f);
-
+            bomb.SetActive(false);
+            rock1.SetActive(false);
+            rock2.SetActive(false);
+            rock3.SetActive(false);
+            rock4.SetActive(false);
+            rock5.SetActive(false);
+            rock6.SetActive(false);
+            rock7.SetActive(false);
+            gameObject.SetActive(false);
 
             // GameManager.Sound.PlayCaveBombSound("bombAudio");
             
