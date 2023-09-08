@@ -33,7 +33,7 @@ namespace Jeong
         private void Start()
         {
             ch180 = false;
-            RescueMessage.SetActive(false);
+            //RescueMessage.SetActive(false);
             ExitPoint.SetActive(false);
             ExitCube.SetActive(false);
         }
@@ -61,7 +61,7 @@ namespace Jeong
                 ch180 = true;
                 if(ch180)
                 {
-                    RescueMessage.SetActive(true);
+                    //RescueMessage.SetActive(true);
                     ExitPoint.SetActive(true);
                     ExitCube.SetActive(true);
                 }
