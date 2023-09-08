@@ -26,7 +26,6 @@ namespace Lee
         
         public void OnSelectKey()
         {
-            rb.AddForce(rb.velocity *0,ForceMode.Impulse);
             rb.isKinematic = false;
             hinge.limits = openDoorLimits;
         }
