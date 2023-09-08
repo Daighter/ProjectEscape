@@ -8,7 +8,7 @@ namespace Darik
     {
         [SerializeField] protected string sceneName;
 
-        public void LoadPrisonRoomScene()
+        public void LoadMiniRoomScene()
         {
             if (sceneName != null)
                 GameManager.Scene.LoadScene(sceneName);

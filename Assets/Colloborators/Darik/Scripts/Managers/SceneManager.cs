@@ -10,9 +10,6 @@ namespace Darik
     {
         private BaseScene curScene;
 
-        public UnityAction OnFadeIn;
-        public UnityAction OnFadeOut;
-
         public BaseScene CurScene
         {
             get
@@ -31,7 +28,7 @@ namespace Darik
 
         IEnumerator LoadingCoroutine(string sceneName)
         {
-            OnFadeOut?.Invoke();
+            //GameManager.UI.FadeOut();
             yield return new WaitForSeconds(0.5f);
             Time.timeScale = 0f;
 
@@ -50,7 +47,7 @@ namespace Darik
             }
 
             Time.timeScale = 1f;
-            OnFadeIn?.Invoke();
+            //GameManager.UI.FadeIn();
             yield return new WaitForSeconds(0.5f);
         }
     }
