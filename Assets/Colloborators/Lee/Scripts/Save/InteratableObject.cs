@@ -12,6 +12,7 @@ namespace Lee
         private void Start()
         {
             objData.id = gameObject.name;
+
             SaveData.current.objs.Add(objData);
         }
         public void OnEnable()
@@ -36,13 +37,11 @@ namespace Lee
         {
             if(eventType == EventType.OnSave)
             {
-                Debug.Log("아임퉁퉁이");
                 DataSave();
             }
 
             if (eventType == EventType.OnLoad)
             {
-                Debug.Log("아임비실이");
                 DataLoad();
             }
         }
