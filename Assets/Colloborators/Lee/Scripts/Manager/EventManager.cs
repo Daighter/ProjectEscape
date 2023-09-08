@@ -62,7 +62,6 @@ namespace Lee
                 if (!ListenList[i].Equals(null)) //If object is not null, then send message via interfaces
                     ListenList[i].OnEvent(eventType, Sender, Param);
             }
-            RemoveEvent(eventType);
         }
 
         public void RemoveEvent(EventType eventType)        // 이벤트 삭제
