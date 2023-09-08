@@ -22,7 +22,8 @@ namespace Darik
 
             for (int i = 0; i < sounds.Length; i++)
             {
-                GameManager.Sound.AddElevatorSound(keys[i], sounds[i]);
+                if (!GameManager.Sound.elevatorSound.ContainsKey(keys[i]))
+                    GameManager.Sound.AddElevatorSound(keys[i], sounds[i]);
             }
         }
 
