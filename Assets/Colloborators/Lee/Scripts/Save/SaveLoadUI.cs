@@ -9,12 +9,12 @@ namespace Lee
         public void OnSave()
         {
             GameManager.Event.PostNotification(EventType.OnSave, this);
-            SerializetionManager.Save("ObjectSave", SaveData.current);
+            SaveManager_Binary.Save("ObjectSave", SaveData.current);
         }
 
         public void OnLoad()
         {
-            SaveData.current = (SaveData)SerializetionManager.Load(Application.persistentDataPath + "/saves/toysave.save");
+            SaveData.current = (SaveData)SaveManager_Binary.Load(Application.persistentDataPath + "/saves/toysave.save");
 
             for(int i = 0; i<SaveData.current.objs.Count; i++) 
             {

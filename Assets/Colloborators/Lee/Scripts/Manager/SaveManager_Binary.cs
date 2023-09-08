@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Lee
 {
-    public class SerializetionManager : MonoBehaviour
+    public class SaveManager_Binary : MonoBehaviour
     {
         public static bool Save(string saveName, object saveData)
         {
