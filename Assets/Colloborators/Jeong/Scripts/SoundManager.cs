@@ -23,6 +23,8 @@ namespace Jeong
         #region Elevator
         public void AddElevatorSound(string name, AudioSource audioSource)
         {
+            if (ContainkeysElevatorSound(name))
+                RemoveElevatorSound(name);
             elevatorSound.Add(name, audioSource);
         }
 
@@ -51,6 +53,8 @@ namespace Jeong
         #region Prison
         public void AddPrisonSound(string name, AudioSource audioSource)
         {
+            if(ContainkeysPrisonSound(name))
+                RemovePrisonSound(name);
             prisonSound.Add(name, audioSource);
         }
 
@@ -61,7 +65,6 @@ namespace Jeong
 
         public void PlayPrisonSound(string name)
         {
-
             prisonSound[name].Play();
         }
 
@@ -80,6 +83,8 @@ namespace Jeong
         #region Dungeon
         public void AddDungeonSound(string name, AudioSource audioSource)
         {
+            if(ContainkeysDungeonSound(name))
+                RemoveDungeonSound(name);
             dungeonSound.Add(name, audioSource);
         }
 
@@ -108,6 +113,8 @@ namespace Jeong
         #region CaveSound
         public void AddCaveSound(string name, AudioSource audioSource)
         {
+            if(ContainkeysCaveSound(name))
+                RemoveCaveSound(name);
             caveSound.Add(name, audioSource);
         }
 
