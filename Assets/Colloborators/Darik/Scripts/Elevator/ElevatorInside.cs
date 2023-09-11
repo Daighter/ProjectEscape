@@ -50,7 +50,7 @@ namespace Darik
                 if (transform.position.y >= -3)
                 {
                     transform.position = new Vector3(transform.position.x, -3, transform.position.z);
-                    curFloor = -1;
+                    CurFloor = -1;
                     isArrived = true;
                 }
             }
