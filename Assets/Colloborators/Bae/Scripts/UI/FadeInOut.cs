@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,21 +12,10 @@ namespace Bae
         public Color fadeColor;
         public Image image;
 
-        private void Awake()
-        {
-            
-            transform.gameObject.SetActive(true);
-        }
         private void OnEnable()
         {
             FadeIn();
         }
-
-        private void OnDisable()
-        {
-            FadeOut();
-        }
-
         public void FadeIn()
         {
             Fade(1, 0);
