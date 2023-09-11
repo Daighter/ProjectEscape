@@ -6,13 +6,25 @@ namespace Darik
 {
     public class ElevatorInside : Elevator
     {
+        [SerializeField] ElevatorFloorViewer[] floorViewerTexts;
         [SerializeField] private float moveSpeed = 1f;
 
         private PlayerTrigger playerTrigger;
         public bool isArrived = true;
         private int curFloor = 0;
 
-        public int CurFloor { get { return curFloor; } }
+        public int CurFloor
+        {
+            get { return curFloor; }
+            set
+            {
+                curFloor = value;
+                foreach (ElevatorFloorViewer text in floorViewerTexts)
+                {
+                    text.SetFloor(value);
+                }
+            }
+        }
 
         private void Awake()
         {
@@ -23,7 +35,7 @@ namespace Darik
         {
             base.Start();
 
-            curFloor = -1;
+            CurFloor = -1;
             transform.position = new Vector3(transform.position.x, -3, transform.position.z);
         }
 
@@ -51,7 +63,7 @@ namespace Darik
                 if (transform.position.y <= -6)
                 {
                     transform.position = new Vector3(transform.position.x, -6, transform.position.z);
-                    curFloor = -2;
+                    CurFloor = -2;
                     isArrived = true;
                 }
             }
