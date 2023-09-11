@@ -13,6 +13,7 @@ namespace Jeong
         [SerializeField] GameObject Dial;
         [SerializeField] GameObject ExitPoint;
         [SerializeField] GameObject ExitCube;
+        [SerializeField] GameObject RescueMessage;
 
         [SerializeField] Transform frequencyPointer;
 
@@ -29,7 +30,13 @@ namespace Jeong
             // ExitPoint = GameObject.Find("SceneChangeTrigger").GetComponent<GameObject>();
         }
 
-        
+        private void Start()
+        {
+            ch180 = false;
+            //RescueMessage.SetActive(false);
+            ExitPoint.SetActive(false);
+            ExitCube.SetActive(false);
+        }
 
         private void Update()
         {
@@ -46,7 +53,6 @@ namespace Jeong
 
         private void SelectChannelRoutine()
         {
-
             if (!radioDial.enabled)
                 return;
 
@@ -55,10 +61,10 @@ namespace Jeong
                 ch180 = true;
                 if(ch180)
                 {
+                    //RescueMessage.SetActive(true);
                     ExitPoint.SetActive(true);
                     ExitCube.SetActive(true);
                 }
-                
             }
             else
             {
