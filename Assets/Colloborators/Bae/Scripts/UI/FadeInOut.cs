@@ -11,6 +11,11 @@ namespace Bae
         public Color fadeColor;
         public Image image;
 
+        private void Awake()
+        {
+            
+            transform.gameObject.SetActive(true);
+        }
         private void OnEnable()
         {
             FadeIn();
