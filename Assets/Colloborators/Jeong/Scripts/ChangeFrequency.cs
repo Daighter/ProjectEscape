@@ -10,11 +10,9 @@ namespace Jeong
     public class ChangeFrequency : MonoBehaviour
     {
 
-        [SerializeField] GameObject Dial;
+        [SerializeField] GameObject Dial;        
         [SerializeField] GameObject ExitPoint;
-        [SerializeField] GameObject ExitCube;
         [SerializeField] GameObject RescueMessage;
-
         [SerializeField] Transform frequencyPointer;
 
         [SerializeField] float basePos;
@@ -27,7 +25,6 @@ namespace Jeong
         {
             radioDial = GetComponent<RadioDial>();
             frequencyPointer = GameObject.Find("Frequency Pointer").GetComponent<Transform>();
-            // ExitPoint = GameObject.Find("SceneChangeTrigger").GetComponent<GameObject>();
         }
 
         private void Start()
@@ -35,7 +32,6 @@ namespace Jeong
             ch180 = false;
             //RescueMessage.SetActive(false);
             ExitPoint.SetActive(false);
-            ExitCube.SetActive(false);
         }
 
         private void Update()
@@ -63,14 +59,12 @@ namespace Jeong
                 {
                     //RescueMessage.SetActive(true);
                     ExitPoint.SetActive(true);
-                    ExitCube.SetActive(true);
                 }
             }
             else
             {
                 ch180 = false;
                 ExitPoint.SetActive(false);
-                ExitCube.SetActive(false);
             }
         }
     }
