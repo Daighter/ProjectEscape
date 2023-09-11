@@ -37,7 +37,10 @@ namespace Darik
         public void UpdateTimerState(bool state)
         {
             if (!isMainRoom)
+            {
+                Debug.Log(state);
                 updateTimer = state;
+            }
         }
     }
 }
