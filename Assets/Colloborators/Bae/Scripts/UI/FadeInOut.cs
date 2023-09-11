@@ -36,6 +36,7 @@ namespace Bae
         public IEnumerator FadeRoutine(float alphIn, float alphOut)
         {
             float timer = 0;
+            Time.timeScale = 0f;
             while (timer < fadeDuration)
             {
                 Color newColor = fadeColor;
@@ -43,13 +44,14 @@ namespace Bae
 
                 image.color = newColor;
 
-                timer += Time.deltaTime;
+                timer += Time.unscaledDeltaTime;
                 yield return null;
             }
-
+            
             Color newColor2 = fadeColor;
             newColor2.a = alphOut;
             image.color = newColor2;
+            Time.timeScale = 1f;
         }
     }
 }
