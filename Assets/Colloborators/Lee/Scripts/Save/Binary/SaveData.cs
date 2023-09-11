@@ -7,8 +7,24 @@ namespace Lee
     [System.Serializable]
     public class SaveData
     {
-        public static SaveData current;
+        private static SaveData _current;
 
         public List<ObjectData> objs;
+
+        public static SaveData current
+        {
+            get
+            {
+                if (_current == null)
+                {
+                    _current = new SaveData();
+                    _current.objs = new List<ObjectData>();
+                }
+                return _current;
+            }
+            set { _current = value; }
+        } 
     }
 }
+    
+

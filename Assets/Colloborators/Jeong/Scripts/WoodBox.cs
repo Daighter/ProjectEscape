@@ -22,6 +22,8 @@ namespace Jeong
         private void Start()
         {
             grabInteractable.enabled = false;
+            boxKey.SetActive(true);
+            gameObject.SetActive(true);
             bomb.SetActive(false);
             effect.SetActive(false);
             rigid.constraints = RigidbodyConstraints.FreezeAll;
@@ -42,8 +44,8 @@ namespace Jeong
                 Debug.Log("Open/RigidbodyConstraints.None");
                 rigid.constraints = RigidbodyConstraints.None;
                 bomb.SetActive(true);
-                Destroy(boxKey, 2f);
-                Destroy(gameObject, 2f);
+                boxKey.SetActive(false);
+                gameObject.SetActive(false);
                 effect.SetActive(true);
             }
 

@@ -14,19 +14,8 @@ namespace Lee
 
         public void OnLoad()
         {
-            SaveData.current = (SaveData)SaveManager_Binary.Load(Application.persistentDataPath + "/saves/toysave.save");
-
-            for(int i = 0; i<SaveData.current.objs.Count; i++) 
-            {
-                ObjectData objectData = SaveData.current.objs[i];
-                //GameObject obj = Instantiate(objs[(int)objectData.objtype]);
-                //InteratableObject interatableObject = obj.GetComponent<InteratableObject>();
-                InteratableObject interatableObject = GetComponent<InteratableObject>();
-                interatableObject.objData = objectData;
-                interatableObject.transform.position = objectData.position;
-                interatableObject.transform.rotation = objectData.rotation;
-            }
-
+            SaveData.current = (SaveData)SaveManager_Binary.Load(Application.persistentDataPath + "/saves/ObjectSave.save");
+            GameManager.Event.PostNotification(EventType.OnLoad, this);
         }
 
 
