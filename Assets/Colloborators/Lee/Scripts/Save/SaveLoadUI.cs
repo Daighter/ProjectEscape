@@ -8,14 +8,15 @@ namespace Lee
     {
         public void OnSave()
         {
-            GameManager.Event.PostNotification(EventType.OnSave, this);
             SaveManager_Binary.Save("ObjectSave", SaveData.current);
+            GameManager.ObjM.SaveObj();
+            
         }
 
         public void OnLoad()
         {
             SaveData.current = (SaveData)SaveManager_Binary.Load(Application.persistentDataPath + "/saves/ObjectSave.save");
-            GameManager.Event.PostNotification(EventType.OnLoad, this);
+            GameManager.ObjM.LoadObj();
         }
 
 

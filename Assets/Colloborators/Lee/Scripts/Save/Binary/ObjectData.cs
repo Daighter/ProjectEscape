@@ -7,11 +7,15 @@ namespace Lee
     [System.Serializable]
     public class ObjectData
     {
-        public string id;
+        public string name;
+
+        public string prefabPath;
 
         public Vector3 position;
 
         public Quaternion rotation;
+
+        public bool isIeventory;
     }
 }
 

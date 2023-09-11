@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private static Jeong.SoundManager soundManager;
     private static Lee.EventManager eventManager;
     private static Lee.SaveManager_Binary saveManager;
+    private static Lee.ObjectSaveManager objectSaveManager;
 
     public static GameManager Instance { get { return instance; } }
     public static Darik.ResourceManager Resource { get { return resourceManager; } }
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public static Jeong.SoundManager Sound { get { return soundManager; } }
     public static Lee.EventManager Event { get { return eventManager; } }
     public static Lee.SaveManager_Binary Save { get { return saveManager; } }
+    public static Lee.ObjectSaveManager ObjM { get { return objectSaveManager; } }
 
     private void Awake()            // 유니티용 중복제거
     {
@@ -77,5 +79,9 @@ public class GameManager : MonoBehaviour
         GameObject saveObj = new GameObject() { name = "SaveManager" };
         saveObj.transform.SetParent(transform);
         saveManager = saveObj.AddComponent<Lee.SaveManager_Binary>();
+
+        GameObject ObjM = new GameObject() { name = "ObjectSaveManager" };
+        ObjM.transform.SetParent(transform);
+        objectSaveManager = ObjM.AddComponent<Lee.ObjectSaveManager>();
     }
 }

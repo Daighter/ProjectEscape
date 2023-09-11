@@ -9,8 +9,8 @@ namespace Lee
     {
         private static SaveData _current;
 
-        public List<ObjectData> objs;
-
+        public List<ObjectData> objList;
+        
         public static SaveData current
         {
             get
@@ -18,7 +18,7 @@ namespace Lee
                 if (_current == null)
                 {
                     _current = new SaveData();
-                    _current.objs = new List<ObjectData>();
+                    _current.objList = new List<ObjectData>();
                 }
                 return _current;
             }

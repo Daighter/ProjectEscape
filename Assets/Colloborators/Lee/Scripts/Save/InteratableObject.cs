@@ -1,50 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Lee
 {
-    public class InteratableObject : MonoBehaviour, IEventListener
+    [System.Serializable]
+    public class InteratableObject : MonoBehaviour
     {
-        public ObjectData objData;
+        // public ObjectData objData;
+        public string id => gameObject.name;
+        public string resourcePath => $"Puzzle/{gameObject.name}";
+        public Vector3 position => transform.position;
+        public Quaternion rotation => transform.rotation;
 
-        private void Start()
-        {
-            objData.id = gameObject.name;
+        private bool isSokect = false;
 
-            SaveData.current.objs.Add(objData);
-        }
-        public void OnEnable()
-        {
-            GameManager.Event.AddListener(EventType.OnSave, this);
-            GameManager.Event.AddListener(EventType.OnLoad, this);
-        }
-
-        public void DataSave()
-        {
-            objData.position = transform.position;
-            objData.rotation = transform.rotation;
-        }
-
-        public void DataLoad()
-        {
-            transform.position = objData.position;
-            transform.rotation = objData.rotation;
-        }
-
-        public void OnEvent(EventType eventType, Component Sender, object Param = null) // 저장 이벤트 발생시 위치,방향을 Data에 담음
-        {
-            if(eventType == EventType.OnSave)
-            {
-                DataSave();
-            }
-
-            if (eventType == EventType.OnLoad)
-            {
-                DataLoad();
-            }
-        }
+        public bool IsSokect { get { return isSokect; } set { isSokect = value; } }
     }
+
+    
+
 
 }
