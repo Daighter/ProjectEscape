@@ -32,17 +32,22 @@ namespace Bae
         }
         public void IronMaidenClose()
         {
+            StartCoroutine(CloseRoutine());
+        }
+        public void IronMaidenOpen()
+        {
+            ani.SetBool("IronState", true);
+        }
 
-            ani.SetTrigger("Close");
+        IEnumerator CloseRoutine()
+        {
+            ani.SetBool("IronState", false);
+            yield return new WaitForSeconds(0.5f);
             if (offer != null)
             {
                 offer.SetActive(false);
                 skeleton.SetActive(true);
             }
-        }
-        public void IronMaidenOpen()
-        {
-            ani.SetTrigger("Open");
         }
     }
 }

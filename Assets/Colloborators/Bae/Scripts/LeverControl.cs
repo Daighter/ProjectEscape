@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Bae
 {
     public class LeverControl : XRBaseInteractable
     {
+        
 
         [SerializeField]
         UnityEvent leverMaxEvent;
@@ -24,7 +26,8 @@ namespace Bae
         [SerializeField]
         float leverMin=-90f;
 
-
+        float timer = 0;
+        bool isControllable=true;
         IXRSelectInteractor interactor; 
 
         protected override void OnEnable()
@@ -51,6 +54,12 @@ namespace Bae
             interactor = null;
         }
 
+        public override bool IsSelectableBy(IXRSelectInteractor interactor)
+        {
+            return base.IsSelectableBy(interactor) && isControllable;//vr로 잡을수 있는가 없는가의 여부
+
+        }
+
         public override void ProcessInteractable(XRInteractionUpdateOrder.UpdatePhase updatePhase)//vr이 그랩되었을 때 매순간 업데이트 되는 클래스
         {
             base.ProcessInteractable(updatePhase);
@@ -68,20 +77,15 @@ namespace Bae
         {
             var direction=GetLookDirection();       //바라보는 방향
             var angle = Mathf.Atan2(direction.z, direction.y) * Mathf.Rad2Deg; //각도
-            
-            angle = Mathf.Clamp(angle, leverMin, leverMax);
 
-            BoxCollider boxCollider =handle.GetComponentInChildren<BoxCollider>();
+            angle = Mathf.Clamp(angle, leverMin, leverMax);
             SetAngle(angle);
-            if(Mathf.Approximately(angle,leverMax))
+            
+            if (Mathf.Approximately(angle,leverMax))
             {
                 leverMaxEvent.Invoke();
-                StartCoroutine(LeverEnable(boxCollider));
-            }
-            else if(Mathf.Approximately(angle, leverMin))
-            {
-                leverMinEvent.Invoke();
-                StartCoroutine(LeverEnable(boxCollider));
+                isControllable = false;
+                StartCoroutine(LeverEnable());
             }
         }
 
@@ -102,11 +106,24 @@ namespace Bae
                 handle.localRotation = Quaternion.Euler(angle,0f, 0f);
             }
         }
-        IEnumerator LeverEnable(BoxCollider col)
+        IEnumerator LeverEnable()
         {
-            col.enabled = false;
-            yield return new WaitForSeconds(1);
-            col.enabled = true;
+            float defaultAngle;
+            float maxTimer = 1.5f;
+            while(timer< maxTimer)
+            {
+                defaultAngle = Mathf.Lerp(leverMax, leverMin, timer / maxTimer);
+                timer += Time.deltaTime;
+                SetAngle(defaultAngle);
+                yield return null;
+                
+            }                
+
+            SetAngle(leverMin);
+            leverMinEvent.Invoke();
+            isControllable = true;
+            timer = 0;
+            
         }
     }
 
