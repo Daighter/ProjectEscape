@@ -13,12 +13,12 @@ namespace Lee
     public class InteratableObject : MonoBehaviour
     {
         private XRGrabInteractable xRGrab;
-        public string id;
-        public string resourcePath;
-        public Vector3 position;
-        public Quaternion rotation;
 
-        public Vector3 scale;
+        public string resourcePath;
+        public Vector3 position=> transform.position;
+        public Quaternion rotation => transform.rotation;
+
+        public Vector3 scale => transform.localScale;
 
         private bool isInven = false;
 
@@ -26,20 +26,26 @@ namespace Lee
 
         private void Awake()
         {
-            id = gameObject.name;
-            resourcePath = $"Puzzle/{gameObject.name}";
-            position = transform.position;
-            rotation = transform.rotation;
-            scale = transform.localScale;
             xRGrab = GetComponent<XRGrabInteractable>();
             xRGrab.selectExited.AddListener(OnSelectExited);
+            xRGrab.selectEntered.AddListener(OnSelectEntered);
         }
+
+        private void OnEnable()
+        {
+            resourcePath = $"Puzzle/{gameObject.name}";
+        }
+
+        private void OnSelectEntered(SelectEnterEventArgs args)
+        {
+            if (IsInven == false)
+                args.interactableObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+
         private void OnSelectExited(SelectExitEventArgs args)
         {
             if (IsInven == true)
-                args.interactableObject.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
-            // 이벤트가 호출되었을 때 실행할 작업을 여기에 추가
-            // 예: 선택이 해제될 때 OnInven 메서드 호출
+                args.interactableObject.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -47,6 +53,14 @@ namespace Lee
             if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
             {
                 IsInven = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
+            {
+                IsInven = false;
             }
         }
     }

@@ -19,6 +19,8 @@ namespace Lee
         public Vector3 scale;
 
         public bool isIeventory;
+
+        
     }
 }
 
