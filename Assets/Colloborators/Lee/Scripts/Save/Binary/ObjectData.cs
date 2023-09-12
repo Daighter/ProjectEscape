@@ -16,7 +16,7 @@ namespace Lee
 
         public Quaternion rotation;
 
-        public Scale scale;
+        public Vector3 scale;
 
         public bool isIeventory;
     }

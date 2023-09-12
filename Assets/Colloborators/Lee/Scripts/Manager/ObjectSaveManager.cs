@@ -20,7 +20,7 @@ using static UnityEditor.Rendering.FilterWindow;
                   objectData.prefabPath = target.resourcePath;
                   objectData.position = target.position;
                   objectData.rotation = target.rotation;
-                  objectData.isIeventory = target.IsSokect;
+                  objectData.isIeventory = target.IsInven;
                   SaveData.current.objList.Add(objectData);
                 }
         }
@@ -51,34 +51,12 @@ using static UnityEditor.Rendering.FilterWindow;
                     objectData.prefabPath = target.resourcePath;
                     objectData.position = target.position;
                     objectData.rotation = target.rotation;
-                    objectData.isIeventory = target.IsSokect;
+                    objectData.isIeventory = target.IsInven;
                     SaveData.current.objList.Add(objectData);
                     Debug.Log("자동저장");
                 }
             }
         }
-
-        public void AutoSave()
-        {
-            // Scene 이동시 해당씬 저장 정보 불러오고 다시 저장
-            LoadObj();
-            SaveObj();
-        }
-
-        private void OnEnable()
-        {
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += ObjectSaveManagerSceneLoaded;
-        }
-        private void OnDisable()
-        {
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= ObjectSaveManagerSceneLoaded;
-        }
-        private void ObjectSaveManagerSceneLoaded(Scene arg0, LoadSceneMode arg1)
-        {
-            //씬이 바뀜에 따라 이벤트 의존성을 제거해준다.
-            AutoSave();
-        }
-
     }
 }
 
