@@ -9,6 +9,11 @@ namespace Darik
         public float progress { get; protected set; }
         protected abstract IEnumerator LoadingCoroutine();
 
+        protected void Awake()
+        {
+            GameManager.ObjM.SaveObj();
+        }
+
         public void LoadAsync()
         {
             StartCoroutine(LoadingCoroutine());
