@@ -38,7 +38,9 @@ using static UnityEditor.Rendering.FilterWindow;
                 foreach (ObjectData obj in SaveData.current.objList)
                 {
                     InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(obj.prefabPath);
-                    GameManager.Resource.Instantiate(targetPrefab, obj.position, obj.rotation);                }
+                    GameManager.Resource.Instantiate(targetPrefab, obj.position, obj.rotation);
+                    Debug.Log("Load1");
+                }
             }
 
             else

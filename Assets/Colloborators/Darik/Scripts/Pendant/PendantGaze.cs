@@ -40,6 +40,9 @@ namespace Darik
             {
                 Debug.Log(state);
                 updateTimer = state;
+
+                if (!state)
+                    curGazedTime = 0f;
             }
         }
     }
