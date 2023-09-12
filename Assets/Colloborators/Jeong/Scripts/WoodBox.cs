@@ -10,21 +10,22 @@ namespace Jeong
         [SerializeField] GameObject boxKey;
         [SerializeField] GameObject bomb;
         [SerializeField] GameObject effect;
+        [SerializeField] GameObject hintPaper;
         Rigidbody rigid;
-        XRGrabInteractable grabInteractable;
+        
 
         private void Awake()
         {
             rigid = GetComponent<Rigidbody>();
-            grabInteractable = GetComponent<XRGrabInteractable>();
+            
         }
 
         private void Start()
         {
-            grabInteractable.enabled = false;
             boxKey.SetActive(true);
             gameObject.SetActive(true);
             bomb.SetActive(false);
+            hintPaper.SetActive(false);
             effect.SetActive(false);
             rigid.constraints = RigidbodyConstraints.FreezeAll;
         }
@@ -32,23 +33,13 @@ namespace Jeong
         public void Open()
         {
             Debug.Log("BoxOpen");
-            grabInteractable.enabled = true;
-            if(!grabInteractable.enabled)
-            {
-                Debug.Log("Open/RigidbodyConstraints.FreezeAll");
-                return;
-            }
-
-            else if (grabInteractable.enabled) 
-            {
-                Debug.Log("Open/RigidbodyConstraints.None");
-                rigid.constraints = RigidbodyConstraints.None;
-                bomb.SetActive(true);
-                boxKey.SetActive(false);
-                gameObject.SetActive(false);
-                effect.SetActive(true);
-            }
-
+          
+            rigid.constraints = RigidbodyConstraints.None;
+            hintPaper.SetActive(true);
+            bomb.SetActive(true);
+            boxKey.SetActive(false);
+            gameObject.SetActive(false);
+            effect.SetActive(true);
         }
     }
 
