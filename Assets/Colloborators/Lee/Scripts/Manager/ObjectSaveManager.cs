@@ -8,7 +8,6 @@ using static UnityEditor.Rendering.FilterWindow;
 {
     public class ObjectSaveManager : MonoBehaviour
     {
-        ObjectData objData;
         public void SaveObj()
         {
             SaveData.current.objList = new List<ObjectData>();
@@ -59,9 +58,11 @@ using static UnityEditor.Rendering.FilterWindow;
             }
         }
 
-        public void RemoveObjList()        // 저장지우기
+        public void AutoSave()
         {
-            //SaveData.current.objList.Remove(objData);
+            // Scene 이동시 해당씬 저장 정보 불러오고 다시 저장
+            LoadObj();
+            SaveObj();
         }
 
         private void OnEnable()
@@ -75,7 +76,7 @@ using static UnityEditor.Rendering.FilterWindow;
         private void ObjectSaveManagerSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
             //씬이 바뀜에 따라 이벤트 의존성을 제거해준다.
-            RemoveObjList();
+            AutoSave();
         }
 
     }

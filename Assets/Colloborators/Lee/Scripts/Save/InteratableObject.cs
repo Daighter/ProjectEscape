@@ -16,6 +16,8 @@ namespace Lee
         public Vector3 position => transform.position;
         public Quaternion rotation => transform.rotation;
 
+        public Vector3 scale => transform.localScale;
+
         private bool isSokect = false;
 
         public bool IsSokect { get { return isSokect; } set { isSokect = value; } }

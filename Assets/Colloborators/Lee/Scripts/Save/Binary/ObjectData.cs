@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Lee
 {
@@ -14,6 +15,8 @@ namespace Lee
         public Vector3 position;
 
         public Quaternion rotation;
+
+        public Scale scale;
 
         public bool isIeventory;
     }
