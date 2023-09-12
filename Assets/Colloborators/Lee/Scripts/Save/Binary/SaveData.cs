@@ -18,7 +18,6 @@ namespace Lee
                 if (_current == null)
                 {
                     _current = new SaveData();
-                    _current.objList = new List<ObjectData>();
                 }
                 return _current;
             }

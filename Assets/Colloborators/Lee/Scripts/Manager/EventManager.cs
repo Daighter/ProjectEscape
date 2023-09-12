@@ -51,7 +51,6 @@ namespace Lee
             List<IEventListener> ListenList = null;
 
             //이벤트 리스너(대기자)가 없으면 그냥 리턴.
-
             if (!Listeners.TryGetValue(eventType, out ListenList))
                 return;
 

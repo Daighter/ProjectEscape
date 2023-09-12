@@ -10,7 +10,7 @@ namespace Lee
     [System.Serializable]
     public class InteratableObject : MonoBehaviour
     {
-        // public ObjectData objData;
+        public ObjectData objData;
         public string id => gameObject.name;
         public string resourcePath => $"Puzzle/{gameObject.name}";
         public Vector3 position => transform.position;

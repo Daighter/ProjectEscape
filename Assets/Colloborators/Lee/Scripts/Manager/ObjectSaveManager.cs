@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEditor.Rendering.FilterWindow;
 
     namespace Lee
@@ -10,67 +11,73 @@ using static UnityEditor.Rendering.FilterWindow;
         ObjectData objData;
         public void SaveObj()
         {
-            
+            SaveData.current.objList = new List<ObjectData>();
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
-           if(targets == null)
-           {
+
                foreach (InteratableObject target in targets)
                {
-                  //target.name = target.name;
-                  //target.prefabPath = target.resourcePath;
-                  //target.position = target.position;
-                  //target.rotation = target.rotation;
-                  //target.isIeventory = target.IsSokect;
-                  //SaveData.current.objList.Add(objData);
+                  ObjectData objectData = new ObjectData();
+                  objectData.name = target.name;
+                  objectData.prefabPath = target.resourcePath;
+                  objectData.position = target.position;
+                  objectData.rotation = target.rotation;
+                  objectData.isIeventory = target.IsSokect;
+                  SaveData.current.objList.Add(objectData);
                 }
-           }
-                
-           
-           for (int i = 0; i < SaveData.current.objList.Count; i++)
-           {
-               for (int j = 0; j < targets.Length; j++)
-               {
-                   if(SaveData.current.objList[i].name == targets[j].name)
-                   {
-                         SaveData.current.objList[i].position = targets[j].transform.position;
-                         SaveData.current.objList[i].rotation = targets[j].transform.rotation;
-                         SaveData.current.objList[i].isIeventory = targets[j].IsSokect;
-                   }
-               }
-           }
         }
-
 
         public void LoadObj() 
         {
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
-            Debug.Log("dsdafasdf");
 
-              foreach (InteratableObject target in targets)
-              {
-                  Destroy(target.gameObject);
-              }
-            
-             
-            for (int i = 0; i < SaveData.current.objList.Count; i++)                // 세이브데이터 List 와 배열을 비교하면서 오브젝트 이름이 맞으면 위치,방향,bool을 업데이트 해주는 형식
+            if (SaveData.current.objList != null)
             {
-                for (int j = 0; j < targets.Length; j++)
+                foreach (InteratableObject target in targets)
                 {
-                    if (SaveData.current.objList[i].name == targets[j].name)
-                    {
-                        string name = SaveData.current.objList[i].name;
-                        GameObject obj = GameManager.Resource.Load<GameObject>($"Puzzle/{name}");
-                        GameManager.Resource.Instantiate(obj, SaveData.current.objList[i].position, SaveData.current.objList[i].rotation);
-                        targets[j].IsSokect = SaveData.current.objList[i].isIeventory;
-                    }
+                    Destroy(target.gameObject);
+                }
+                foreach (ObjectData obj in SaveData.current.objList)
+                {
+                    InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(obj.prefabPath);
+                    GameManager.Resource.Instantiate(targetPrefab, obj.position, obj.rotation);                }
+            }
+
+            else
+            {
+                SaveData.current.objList = new List<ObjectData>();
+                foreach (InteratableObject target in targets)
+                {
+                    ObjectData objectData = new ObjectData();
+                    objectData.name = target.name;
+                    objectData.prefabPath = target.resourcePath;
+                    objectData.position = target.position;
+                    objectData.rotation = target.rotation;
+                    objectData.isIeventory = target.IsSokect;
+                    SaveData.current.objList.Add(objectData);
+                    Debug.Log("자동저장");
                 }
             }
         }
 
         public void RemoveObjList()        // 저장지우기
         {
-            SaveData.current.objList.Remove(objData);
+            //SaveData.current.objList.Remove(objData);
         }
+
+        private void OnEnable()
+        {
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += ObjectSaveManagerSceneLoaded;
+        }
+        private void OnDisable()
+        {
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= ObjectSaveManagerSceneLoaded;
+        }
+        private void ObjectSaveManagerSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            //씬이 바뀜에 따라 이벤트 의존성을 제거해준다.
+            RemoveObjList();
+        }
+
     }
 }
 
