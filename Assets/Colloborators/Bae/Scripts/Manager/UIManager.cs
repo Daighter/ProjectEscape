@@ -15,8 +15,8 @@ namespace Bae
 
         private void OnEnable()
         {
-            fadeCanvas = GameManager.Resource.Instantiate<Canvas>("UI/FadeCanvas", true);
-            fadeScene = fadeCanvas.GetComponent<FadeInOut>();
+            //fadeCanvas = GameManager.Resource.Instantiate<Canvas>("UI/FadeCanvas", true);
+            //fadeScene = fadeCanvas.GetComponent<FadeInOut>();
         }
 
         public void FadeIn()

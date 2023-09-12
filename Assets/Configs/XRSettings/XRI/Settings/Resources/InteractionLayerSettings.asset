@@ -33,15 +33,15 @@ MonoBehaviour:
   - 
   - 
   - 
+  - Figure
+  - DungeonJewel
+  - Rune
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - SceneChangeJewel
+  - Pendant
+  - 3FStairKey
   - Poke
   - Teleport
