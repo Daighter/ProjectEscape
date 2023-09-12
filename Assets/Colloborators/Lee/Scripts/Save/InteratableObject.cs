@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -31,6 +32,14 @@ namespace Lee
             rotation = transform.rotation;
             scale = transform.localScale;
             xRGrab = GetComponent<XRGrabInteractable>();
+            xRGrab.selectExited.AddListener(OnSelectExited);
+        }
+        private void OnSelectExited(SelectExitEventArgs args)
+        {
+            if (IsInven == true)
+                args.interactableObject.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
+            // 이벤트가 호출되었을 때 실행할 작업을 여기에 추가
+            // 예: 선택이 해제될 때 OnInven 메서드 호출
         }
 
         private void OnTriggerEnter(Collider other)
@@ -38,14 +47,6 @@ namespace Lee
             if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
             {
                 IsInven = true;
-            }
-        }
-
-        public void OnInven()
-        {
-            if(IsInven==true)
-            {
-                scale = new Vector3(0.005f, 0.005f, 0.005f);
             }
         }
     }
