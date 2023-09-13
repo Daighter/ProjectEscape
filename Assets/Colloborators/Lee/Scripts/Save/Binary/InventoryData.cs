@@ -5,9 +5,11 @@ using UnityEngine;
 
 namespace Lee
 {
-    //[System.Serializable]
-    //public class InventoryData : MonoBehaviour
-    //{
-    //    public List<ObjectData> inventoryList = new List<ObjectData>();
-    //}
+    [System.Serializable]
+    public class InventoryData
+    {
+        public string inObjName;
+
+        public string inObjprefabPath;
+    }
 }

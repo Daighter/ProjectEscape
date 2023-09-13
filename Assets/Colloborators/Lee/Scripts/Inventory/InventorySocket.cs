@@ -10,25 +10,21 @@ using static UnityEditor.Progress;
 
 namespace Lee
 {
-    public class InventorySocket : MonoBehaviour
+    public class InventorySocket : XRGridSocket
     {
         private XRSocketInteractor socketInteractor;
         private List<GameObject> sockets;
         private GameObject socket;
         private InteratableObject interatableObject;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             socketInteractor = GetComponent<XRSocketInteractor>();
 
             socket = GameManager.Resource.Load<GameObject>("UI/Socket");
 
             sockets = new List<GameObject>();
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            Debug.Log("¿¿æ÷");
         }
 
         public void OnCreat()

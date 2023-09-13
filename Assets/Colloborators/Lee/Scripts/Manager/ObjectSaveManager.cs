@@ -13,17 +13,32 @@ namespace Lee
     {
         public void SaveObj()
         {
-            SaveData.current.objList = new List<ObjectData>();
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
+            SaveData.current.invenList.Clear();
+            SaveData.current.objList.Clear();
+
+            SaveData.current.invenList = new List<InventoryData>();
+            SaveData.current.objList = new List<ObjectData>();
 
             foreach (InteratableObject target in targets)
             {
-                ObjectData objectData = new ObjectData();
-                objectData.name = target.name;
-                objectData.prefabPath = $"Puzzle/{target.name}";
-                objectData.position = target.position;
-                objectData.rotation = target.rotation;
-                SaveData.current.objList.Add(objectData);
+                if(target.isInven == true)
+                {
+
+                    InventoryData inventoryData = new InventoryData ();
+                    inventoryData.inObjName = target.name;
+                    inventoryData.inObjprefabPath = $"Puzzle/{target.name}";
+                    SaveData.current.invenList.Add (inventoryData);
+                }
+                else
+                {
+                    ObjectData objectData = new ObjectData();
+                    objectData.name = target.name;
+                    objectData.prefabPath = $"Puzzle/{target.name}";
+                    objectData.position = target.position;
+                    objectData.rotation = target.rotation;
+                    SaveData.current.objList.Add(objectData);
+                }
             }
         }
 

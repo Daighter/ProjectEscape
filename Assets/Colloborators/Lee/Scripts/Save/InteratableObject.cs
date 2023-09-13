@@ -35,7 +35,7 @@ namespace Lee
         private void OnSelectExited(SelectExitEventArgs args)
         {
             if (isInven == true)
-                args.interactableObject.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+                args.interactableObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             if (isInven == false)
                 args.interactableObject.transform.localScale = new Vector3(1f, 1f, 1f);
         }
@@ -54,6 +54,11 @@ namespace Lee
             {
                 isInven = false;
             }
+        }
+
+        public void Arem()
+        {
+            Debug.Log("호버응애");
         }
     }
 }
