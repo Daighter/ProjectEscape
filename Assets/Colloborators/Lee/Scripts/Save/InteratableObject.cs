@@ -14,45 +14,37 @@ namespace Lee
     {
         private XRGrabInteractable xRGrab;
 
+        private string objname;
+        public string Objname {  get { return objname; } set { objname = value; } }
+
         public string resourcePath;
+        public string ResourcePath { get { return resourcePath; } set { resourcePath = value; } }   
         public Vector3 position=> transform.position;
         public Quaternion rotation => transform.rotation;
 
         public Vector3 scale => transform.localScale;
 
-        private bool isInven = false;
-
-        public bool IsInven { get { return isInven; } set { isInven = value; } }
+        public bool isInven = false;
 
         private void Awake()
         {
             xRGrab = GetComponent<XRGrabInteractable>();
             xRGrab.selectExited.AddListener(OnSelectExited);
-            xRGrab.selectEntered.AddListener(OnSelectEntered);
-        }
-
-        private void OnEnable()
-        {
-            resourcePath = $"Puzzle/{gameObject.name}";
-        }
-
-        private void OnSelectEntered(SelectEnterEventArgs args)
-        {
-            if (IsInven == false)
-                args.interactableObject.transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
         private void OnSelectExited(SelectExitEventArgs args)
         {
-            if (IsInven == true)
+            if (isInven == true)
                 args.interactableObject.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+            if (isInven == false)
+                args.interactableObject.transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
             {
-                IsInven = true;
+                isInven = true;
             }
         }
 
@@ -60,7 +52,7 @@ namespace Lee
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
             {
-                IsInven = false;
+                isInven = false;
             }
         }
     }
