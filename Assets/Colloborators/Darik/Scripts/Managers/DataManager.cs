@@ -39,18 +39,47 @@ namespace Darik
             }
         }
 
-        public void SetColor(int sceneNum)
+        public void SetPendantColor(int sceneNum, Renderer renderer)
         {
             Debug.Log(colors[sceneNum]);
+            renderer.material = LoadMaterial(colors[sceneNum]);
+        }
+
+        public Material LoadMaterial(Color color)
+        {
+            Material material = null;
+
+            switch (color)
+            {
+                case Color.Red:
+                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Red");      break;
+                case Color.Orange:
+                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Orange");   break;
+                case Color.Yellow:
+                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/yellow");   break;
+                case Color.Green:
+                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Green");    break;
+                case Color.Blue:
+                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Blue");     break;
+                case Color.Purple:
+                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Purple");   break;
+            }
+
+            return material;
         }
         #endregion
 
+        #region DungeonRecipe
         private string[] dolls = { "", "", "", "", "", "" };
-        private int[] times = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 
         public string[] recipeDolls = new string[3];
+        #endregion
+
+        #region CaveTime
+        private int[] times = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 
         public int[] caveTime = new int[3];
         public bool isCaveClear = false;
+        #endregion
     }
 }
