@@ -11,18 +11,18 @@ namespace Darik
         [SerializeField] private string MainRoomSceneName;
         [SerializeField] private float maxGazeSeconds = 5f;
 
-        private Renderer material;
+        private new Renderer renderer;
         private bool updateTimer = false;
         private float curGazedTime = 0f;
 
         private void Awake()
         {
-            material = GetComponent<Renderer>();
+            renderer = GetComponent<Renderer>();
         }
 
         private void Start()
         {
-            GameManager.Data.SetColor(GameManager.Scene.CurScene.SceneNum);
+            GameManager.Data.SetPendantColor(GameManager.Scene.CurScene.SceneNum, renderer);
         }
 
         private void Update()
