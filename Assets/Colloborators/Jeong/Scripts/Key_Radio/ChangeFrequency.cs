@@ -5,11 +5,11 @@ namespace Jeong
 {
     public class ChangeFrequency : MonoBehaviour
     {
-
         [SerializeField] GameObject Dial;
 
         [SerializeField] Transform frequencyPointer;
 
+        [SerializeField] Radio radio;
         [SerializeField] RadioDial radioDial;
 
         [SerializeField] public float basePos;
@@ -27,35 +27,33 @@ namespace Jeong
             ch180 = false;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            StartCoroutine(ChangePointerPositionRoutine());
+            SelectChannel();
         }
 
-        private IEnumerator ChangePointerPositionRoutine()
+        private void SelectChannel()
         {
-            SelectChannelRoutine();
-            yield return new WaitForFixedUpdate();
-        }
+            if(radio.radioPlay)
+            {
+                if (0.55f <= basePos && basePos < 0.60f)
+                {
+                    ch180 = true;
+                    radioDial.enabled = false;
+                    frequencyPointer.transform.localPosition = new Vector3(0.5f, 0.57f, 2f);
+                }
 
-        private void SelectChannelRoutine()
-        {
-            if (!radioDial.enabled)
+                else
+                {
+                    ch180 = false;
+                    basePos = radioDial.value;
+                    frequencyPointer.transform.localPosition = new Vector3(0.5f, basePos, 2f);
+                }
+            }
+            else if (!radio.radioPlay)
                 return;
 
-            else if (0.55f <= basePos&&basePos < 0.60f)
-            {
-                ch180 = true;
-                radioDial.enabled = false;
-                frequencyPointer.transform.localPosition = new Vector3(0.5f, 0.57f, 2f);
-            }
-
-            else
-            {
-                ch180 = false;
-                basePos = radioDial.value;
-                frequencyPointer.transform.localPosition = new Vector3(0.5f, basePos, 2f);
-            }
+            
         }
     }
 

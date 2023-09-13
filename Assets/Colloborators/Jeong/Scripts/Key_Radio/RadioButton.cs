@@ -5,18 +5,44 @@ namespace Jeong
 {
     public class RadioButton : MonoBehaviour
     {
-        XRPokeInteractor interactor;
         Animator anim;
+        int buttonCount = 0;
+
+         [SerializeField] Radio radio;
 
         private void Awake()
         {
             anim = GetComponent<Animator>();
         }
 
-        public void PressButton()
+        public void Start()
         {
-            anim.SetTrigger("IsPressed");
+            anim.SetBool("IsPressed", false);
         }
+
+
+        public void PressPlayButton()
+        {
+            if (radio.radioPowerOn)
+            {
+                if (buttonCount == 0)
+                {
+                    anim.SetBool("IsPressed", true);
+                    buttonCount += 1;
+                    radio.radioPlay = true;
+                }
+
+                else if (buttonCount == 1)
+                {
+                    anim.SetBool("IsPressed", false);
+                    buttonCount -= 1;
+                    radio.radioPlay = false;
+                }
+            }
+            else
+                return;
+        }
+      
     }
 }
 
