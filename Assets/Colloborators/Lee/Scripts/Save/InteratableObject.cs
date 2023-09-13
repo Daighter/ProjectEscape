@@ -1,51 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.XR.Interaction.Toolkit;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Lee
 {
-    public class InteratableObject : MonoBehaviour, IEventListener
+    [System.Serializable]
+    public class InteratableObject : MonoBehaviour
     {
-        public ObjectData objData;
+        private XRGrabInteractable xRGrab;
+        public string id;
+        public string resourcePath;
+        public Vector3 position;
+        public Quaternion rotation;
 
-        private void Start()
-        {
-            objData.id = gameObject.name;
-            SaveData.current.objs.Add(objData);
-        }
-        public void OnEnable()
-        {
-            GameManager.Event.AddListener(EventType.OnSave, this);
-            GameManager.Event.AddListener(EventType.OnLoad, this);
-        }
+        public Vector3 scale;
 
-        public void DataSave()
-        {
-            objData.position = transform.position;
-            objData.rotation = transform.rotation;
-        }
+        private bool isInven = false;
 
-        public void DataLoad()
+        public bool IsInven { get { return isInven; } set { isInven = value; } }
+
+        private void Awake()
         {
-            transform.position = objData.position;
-            transform.rotation = objData.rotation;
+            id = gameObject.name;
+            resourcePath = $"Puzzle/{gameObject.name}";
+            position = transform.position;
+            rotation = transform.rotation;
+            scale = transform.localScale;
+            xRGrab = GetComponent<XRGrabInteractable>();
         }
 
-        public void OnEvent(EventType eventType, Component Sender, object Param = null) // 저장 이벤트 발생시 위치,방향을 Data에 담음
+        private void OnTriggerEnter(Collider other)
         {
-            if(eventType == EventType.OnSave)
+            if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
             {
-                Debug.Log("아임퉁퉁이");
-                DataSave();
+                IsInven = true;
             }
+        }
 
-            if (eventType == EventType.OnLoad)
+        public void OnInven()
+        {
+            if(IsInven==true)
             {
-                Debug.Log("아임비실이");
-                DataLoad();
+                scale = new Vector3(0.005f, 0.005f, 0.005f);
             }
         }
     }
-
 }
