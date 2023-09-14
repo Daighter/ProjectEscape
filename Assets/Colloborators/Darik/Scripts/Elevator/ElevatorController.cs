@@ -42,54 +42,69 @@ namespace Darik
 
         public void MoveCommand(int targetFloor)
         {
-            if (targetFloor == -1)
+            if (GameManager.Data.isElevatorPowerOn)
             {
-                if (elevator.CurFloor != -1)
+                if (targetFloor == -1)
                 {
-                    this.targetFloor = targetFloor;
-                    isCommanded = true;
+                    if (elevator.CurFloor != -1)
+                    {
+                        this.targetFloor = targetFloor;
+                        isCommanded = true;
+                    }
+                    else
+                    {
+                        // TODO : Button Return;
+                    }
                 }
-                else
+                if (targetFloor == -2)
                 {
-                    // TODO : Button Return;
-                }
-            }
-            if (targetFloor == -2)
-            {
-                if (elevator.CurFloor != -2)
-                {
-                    this.targetFloor = targetFloor;
-                    isCommanded = true;
-                }
-                else
-                {
-                    // TODO : Button Return;
+                    if (elevator.CurFloor != -2)
+                    {
+                        this.targetFloor = targetFloor;
+                        isCommanded = true;
+                    }
+                    else
+                    {
+                        // TODO : Button Return;
+                    }
                 }
             }
         }
 
         public void CallAtB1()
         {
-            targetFloor = -1;
-            isCommanded = true;
+            if (GameManager.Data.isElevatorPowerOn)
+            {
+                targetFloor = -1;
+                isCommanded = true;
+            }
         }
 
         public void CallAtB2()
         {
-            targetFloor = -2;
-            isCommanded = true;
+            if (GameManager.Data.isElevatorPowerOn)
+            {
+                targetFloor = -2;
+                isCommanded = true;
+            }
         }
 
         public void OpenTheDoor()
         {
-            if (!isMove)
-                stateMachine.ChangeState(State.Open);
+            if (GameManager.Data.isElevatorPowerOn)
+            {
+                if (!isMove)
+                    stateMachine.ChangeState(State.Open);
+            }
         }
 
         public void CloseTheDoor()
         {
-            if (!isMove)
-                stateMachine.ChangeState(State.Close);
+            if (GameManager.Data.isElevatorPowerOn)
+            {
+                if (!isMove)
+                    stateMachine.ChangeState(State.Close);
+            }
         }
 
         #region State
