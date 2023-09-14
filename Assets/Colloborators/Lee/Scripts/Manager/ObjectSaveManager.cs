@@ -15,9 +15,13 @@ namespace Lee
         public void SaveObj()
         {
             SaveData.current.objList = null;
+            SaveData.current.invenList = null;
+
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
+
+            SaveData.current.invenList = new List<InventoryData>();
             SaveData.current.objList = new List<ObjectData>();
-            InTheInventory();
+
             foreach (InteratableObject target in targets)
             {
                 if(target.IsInven == false)
@@ -31,14 +35,6 @@ namespace Lee
                     SaveData.current.objList.Add(objectData);
                 }
             }
-        }
-
-        public void InTheInventory()  
-        {
-            SaveData.current.invenList = null;
-            InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
-            SaveData.current.invenList = new List<InventoryData>();
-            SaveObj();
             foreach (InteratableObject target in targets)
             {
                 if (target.IsInven == true)
@@ -50,12 +46,6 @@ namespace Lee
                     SaveData.current.invenList.Add(inventoryData);
                 }
             }
-        }
-
-        public void AutoSave() // ÀÌµ¿Àü SceneÀúÀå ÇÔ¼ö
-        {
-            SaveObj();
-            InTheInventory();
         }
 
         public void LoadObj()
@@ -76,7 +66,7 @@ namespace Lee
             }
         }
 
-        public void SceneInvenLoad()    // Scene ÀÌµ¿ÈÄ ½ÇÇàÇÔ¼ö
+        public void SceneInvenLoad()    
         {
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
             foreach (InteratableObject target in targets)
