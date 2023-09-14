@@ -7,6 +7,10 @@ namespace Darik
 {
     public class DataManager : MonoBehaviour
     {
+        public bool isDungeonRoomClear = false;
+        public bool isPrisonRoomClear = false;
+        public bool isCaveRoomClear = false;
+
         private void Start()
         {
             SetRandomColor();
