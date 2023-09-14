@@ -34,8 +34,7 @@ namespace Bae
             {
                 if(OfferCheck(figure))
                 {
-                    chest.GetComponent<Animator>().SetTrigger("Open");
-                    GameManager.Sound.PlayDungeonSound("ChestOpen");
+                    StartCoroutine(ChestOpenRoutine());
                 }
                 else
                 {
@@ -47,6 +46,12 @@ namespace Bae
            
         }
 
+        IEnumerator ChestOpenRoutine()
+        {
+            yield return new WaitForSeconds(1f);
+            chest.GetComponent<Animator>().SetTrigger("Open");
+            GameManager.Sound.PlayDungeonSound("ChestOpen");
+        }
         private bool OfferCheck(List<string> figure)
         {
             for (int i = 0; i < count; i++)
