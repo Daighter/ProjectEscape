@@ -67,7 +67,7 @@ namespace Jeong
             {
                 RescueMessage.SetActive(true);
                 ExitPoint.SetActive(true);
-                // GameManager.Data.isCaveClear = true;
+                GameManager.Data.CaveClear();
                 return;
             }
         }
