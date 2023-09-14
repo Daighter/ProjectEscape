@@ -29,6 +29,8 @@ namespace Darik
         {
             if (player != null)
                 playerName = player.name;
+            else
+                playerName = "";
         }
 
         public void MoveInElevator(float moveSpeed)
