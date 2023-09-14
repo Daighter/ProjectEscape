@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Jeong
 {
     public class LantonPositionController : MonoBehaviour
     {
         [SerializeField] LantonLinkGimmick lantonLinkGimmick;
-        LantonPositionNum lantonPositionNum;
+        [SerializeField] LantonStandNameKey lantonStandNameKey;
+        [SerializeField] LantonPositionNum lantonPositionNum;
 
         public GameObject[] lantonStand = new GameObject[12];
         public GameObject[] lantonStandKey = new GameObject[3];
@@ -16,7 +15,9 @@ namespace Jeong
         public int lantonStandPos2;
         public int lantonStandPos3;
 
-        bool isPosition = false;
+        bool isFstPosition = false;
+        bool isSecPosition = false;
+        bool isTrdPosition = false;
 
         private void Start()
         {
@@ -40,36 +41,102 @@ namespace Jeong
             
         }
 
-        public void PostionController()
+        public void FstPostionController()
         {
-            
+           /* if (lantonStandNameKey.name == null)
+            {
+                Debug.Log($"{lantonStandNameKey.name}");
+                return;
+            }*/
+                
+
+            if (lantonStandKey[0].gameObject.name != lantonStandNameKey.name)
+            {
+                isFstPosition = false;
+                Debug.Log($"Fst lanton flase");
+            }
+
+            if (lantonStandKey[0].gameObject.name == lantonStandNameKey.name)
+            {
+                isFstPosition = true;
+                Debug.Log($"Fst lanton true");
+            }
+                
         }
 
-       /* public void LantonPositioning()
+        public void SecPostionController()
         {
-            for(int i = 0; i < lantonStand.Length; i++)
+           /* if (lantonStandNameKey.name == null)
             {
-                if(lantonStand[i] == lantonLinkGimmick.caveTime[0])
-                {
-                    lantonStand[i] = lantonLinkGimmick.caveTime[0];
-                }
-            }
+                Debug.Log($"{lantonStandNameKey.name}");
+                return;
+            }*/
 
-            for (int i = 0; i < lantonStand.Length; i++)
-            {
-                if (lantonStand[i] == lantonLinkGimmick.caveTime[1])
-                {
-                    lantonStand[i] = lantonLinkGimmick.caveTime[1];
-                }
-            }
 
-            for (int i = 0; i < lantonStand.Length; i++)
+            if (lantonStandKey[1].gameObject.name != lantonStandNameKey.name)
             {
-                if (lantonStand[i] == lantonLinkGimmick.caveTime[2])
-                {
-                    lantonStand[i] = lantonLinkGimmick.caveTime[2];
-                }
+                isSecPosition = false;
+                Debug.Log($"Sec lanton flase");
             }
-        }*/
+                
+
+            if (lantonStandKey[1].gameObject.name == lantonStandNameKey.name)
+            {
+                Debug.Log($"Sec lanton true");
+                isSecPosition = true;
+            }
+                
+        }
+
+        public void TrdPostionController()
+        {
+            /*if (lantonStandNameKey.name == null)
+            {
+                Debug.Log($"{lantonStandNameKey.name}");
+                return;
+            }*/
+
+
+            if (lantonStandKey[0].gameObject.name != lantonStandNameKey.name)
+            {
+                Debug.Log($"Trd lanton false");
+                isTrdPosition = false;
+            }
+                
+
+            if (lantonStandKey[0].gameObject.name == lantonStandNameKey.name)
+            {
+                Debug.Log($"Trd lanton true");
+                isTrdPosition = true;
+            }
+                
+        }
+
+        /* public void LantonPositioning()
+         {
+             for(int i = 0; i < lantonStand.Length; i++)
+             {
+                 if(lantonStand[i] == lantonLinkGimmick.caveTime[0])
+                 {
+                     lantonStand[i] = lantonLinkGimmick.caveTime[0];
+                 }
+             }
+
+             for (int i = 0; i < lantonStand.Length; i++)
+             {
+                 if (lantonStand[i] == lantonLinkGimmick.caveTime[1])
+                 {
+                     lantonStand[i] = lantonLinkGimmick.caveTime[1];
+                 }
+             }
+
+             for (int i = 0; i < lantonStand.Length; i++)
+             {
+                 if (lantonStand[i] == lantonLinkGimmick.caveTime[2])
+                 {
+                     lantonStand[i] = lantonLinkGimmick.caveTime[2];
+                 }
+             }
+         }*/
     }
 }

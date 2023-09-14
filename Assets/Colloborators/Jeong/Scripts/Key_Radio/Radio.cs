@@ -15,7 +15,6 @@ namespace Jeong
 
         public bool radioPowerOn;
         public bool radioPlay;
-        public bool isCaveClear = false;
        
         private void Start()
         {
@@ -33,7 +32,6 @@ namespace Jeong
         {
             radioPowerOn = true;
         }
-
 
         public void RadioPlayState()
         {
