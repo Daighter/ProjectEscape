@@ -17,6 +17,14 @@ namespace Jeong
             
         }
 
+        public void LantonPositioning()
+        {
+            for(int i = 0; i < lantonStand.Length; i++)
+            {
+                
+            }
+        }
+
        /* public void LantonPositioning()
         {
             for(int i = 0; i < lantonStand.Length; i++)
