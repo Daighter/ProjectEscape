@@ -33,7 +33,7 @@ namespace Lee
                     objectData.rotation = target.rotation;
                     objectData.isInven = target.IsInven;
                     SaveData.current.objList.Add(objectData);
-                 }
+                }
                 else
                 {
                     InventoryData inventoryData = new InventoryData();
