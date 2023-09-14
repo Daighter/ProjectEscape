@@ -8,12 +8,15 @@ namespace Bae
     public class DoorSocket : MonoBehaviour
     {
         [SerializeField] int count;
+        [SerializeField] Collider col;
+        AudioSource audio;
         
         int runeTrue;
         int socketCount;
         Animator animator;
         public void Awake()
         {
+            audio = GetComponent<AudioSource>();
             animator = GetComponent<Animator>();
         }
 
@@ -23,15 +26,12 @@ namespace Bae
             {
                 if(runeTrue == count)
                 {
+                    col.enabled = false;
                     animator.SetTrigger("Open");
-                }
-                else
-                {
-                    
+                    gameObject.GetComponent<AudioSource>().Play();
                 }
             }
         }
-
         public void ONCheckSocket(SelectEnterEventArgs args)
         {
             RuneCheck key =args.interactableObject.transform.GetComponent<RuneCheck>();
