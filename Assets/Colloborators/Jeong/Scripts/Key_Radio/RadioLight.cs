@@ -9,31 +9,13 @@ namespace Jeong
         [SerializeField] Material[] radionLingtMats = new Material[3];
         [SerializeField] Material radioMats;
         [SerializeField] ChangeFrequency changeFrequency;
-
         
         [SerializeField] Radio radio;
 
-        private void Awake()
-        {
-            
-        }
-
-        private void Start()
-        {
-            
-        }
-
-        private void Update()
-        {
-            StartCoroutine(ChangeRadioLightRoutine());
-        }
-
-        private IEnumerator ChangeRadioLightRoutine()
+        private void FixedUpdate()
         {
             LightState();
-            yield return new WaitForFixedUpdate();
         }
-
 
         public void LightState()
         {
@@ -56,15 +38,13 @@ namespace Jeong
 
             else if (radio.radioPlay && !changeFrequency.ch180)
             {
-                Debug.Log("radioPlay");
-                gameObject.GetComponent<MeshRenderer>().material = radionLingtMats[1];
+                gameObject.GetComponent<MeshRenderer>().material = radionLingtMats[2];
                 return;
             }
 
 
             else if (radio.radioPlay && changeFrequency.ch180)
             {
-                Debug.Log("radioPlay && changeFrequency.ch180");
                 gameObject.GetComponent<MeshRenderer>().material = radionLingtMats[2];
                 return;
             }

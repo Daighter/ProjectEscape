@@ -26,13 +26,13 @@ namespace Lee
 
             sockets = new List<GameObject>();
 
-            socketInteractor.selectEntered.AddListener(OnSave);
+            //socketInteractor.selectEntered.AddListener(OnSave);
         }
 
-        public void OnSave(SelectEnterEventArgs arg)
-        {
-            GameManager.ObjM.InTheInventory();
-        }
-
+        //public void OnSave(SelectEnterEventArgs arg)
+        //{
+        //    GameManager.ObjM.InTheInventory();
+        //}
+        //
     }
 }

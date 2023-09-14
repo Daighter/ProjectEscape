@@ -20,121 +20,121 @@ namespace Jeong
 
         // 엘레베이터 사운드
         #region Elevator
-        public void AddElevatorSound(string name, AudioSource audioSource)
+        public void AddElevatorSound(string key, AudioSource audioSource)
         {
-            if (ContainkeysElevatorSound(name))
-                RemoveElevatorSound(name);
-            elevatorSound.Add(name, audioSource);
+            if (ContainkeysElevatorSound(key))
+                RemoveElevatorSound(key);
+            elevatorSound.Add(key, audioSource);
         }
 
-        public void RemoveElevatorSound(string name)
+        public void RemoveElevatorSound(string key)
         {
-            elevatorSound.Remove(name);
+            elevatorSound.Remove(key);
         }
 
-        public void PlayElevatorSound(string name)
+        public void PlayElevatorSound(string key)
         {
-            elevatorSound[name].Play();
+            elevatorSound[key].Play();
         }
 
-        public bool ContainkeysElevatorSound(string name)
+        public bool ContainkeysElevatorSound(string key)
         {
-            return elevatorSound.ContainsKey(name);
+            return elevatorSound.ContainsKey(key);
         }
 
-        public void LogElevatorSound(string name) // 디버그 로그 확인용
+        public void LogElevatorSound(string key) // 디버그 로그 확인용
         {
-            Debug.Log($"{name} Sound log");
+            Debug.Log($"{key} Sound log");
         }
         #endregion
 
         // 감옥 사운드
         #region Prison
-        public void AddPrisonSound(string name, AudioSource audioSource)
+        public void AddPrisonSound(string key, AudioSource audioSource)
         {
-            if(ContainkeysPrisonSound(name))
-                RemovePrisonSound(name);
-            prisonSound.Add(name, audioSource);
+            if(ContainkeysPrisonSound(key))
+                RemovePrisonSound(key);
+            prisonSound.Add(key, audioSource);
         }
 
-        public void RemovePrisonSound(string name)
+        public void RemovePrisonSound(string key)
         {
-            prisonSound.Remove(name);
+            prisonSound.Remove(key);
         }
 
-        public void PlayPrisonSound(string name)
+        public void PlayPrisonSound(string key)
         {
-            prisonSound[name].Play();
+            prisonSound[key].Play();
         }
 
-        public bool ContainkeysPrisonSound(string name)
+        public bool ContainkeysPrisonSound(string key)
         {
-            return prisonSound.ContainsKey(name);
+            return prisonSound.ContainsKey(key);
         }
 
-        public void LogPrisonSound(string name) // 디버그 로그 확인용
+        public void LogPrisonSound(string key) // 디버그 로그 확인용
         {
-            Debug.Log($"{name} Sound log");
+            Debug.Log($"{key} Sound log");
         }
         #endregion
 
         // 던전 사운드
         #region Dungeon
-        public void AddDungeonSound(string name, AudioSource audioSource)
+        public void AddDungeonSound(string key, AudioSource audioSource)
         {
-            if(ContainkeysDungeonSound(name))
-                RemoveDungeonSound(name);
-            dungeonSound.Add(name, audioSource);
+            if(ContainkeysDungeonSound(key))
+                RemoveDungeonSound(key);
+            dungeonSound.Add(key, audioSource);
         }
 
-        public void RemoveDungeonSound(string name)
+        public void RemoveDungeonSound(string key)
         {
-            dungeonSound.Remove(name);
+            dungeonSound.Remove(key);
         }
 
-        public void PlayDungeonSound(string name)
+        public void PlayDungeonSound(string key)
         {
-            dungeonSound[name].Play();
+            dungeonSound[key].Play();
         }
 
-        public bool ContainkeysDungeonSound(string name)
+        public bool ContainkeysDungeonSound(string key)
         {
-            return dungeonSound.ContainsKey(name);
+            return dungeonSound.ContainsKey(key);
         }
 
-        public void LogDungeonSound(string name) // 디버그 로그 확인용
+        public void LogDungeonSound(string key) // 디버그 로그 확인용
         {
-            Debug.Log($"{name} Sound log");
+            Debug.Log($"{key} Sound log");
         }
         #endregion
 
         // 동굴 사운드
         #region CaveSound
-        public void AddCaveSound(string name, AudioSource audioSource)
+        public void AddCaveSound(string key, AudioSource audioSource)
         {
-            if(ContainkeysCaveSound(name))
-                RemoveCaveSound(name);
-            caveSound.Add(name, audioSource);
+            if(ContainkeysCaveSound(key))
+                RemoveCaveSound(key);
+            caveSound.Add(key, audioSource);
         }
 
-        public void RemoveCaveSound(string name)
+        public void RemoveCaveSound(string key)
         {
-            caveSound.Remove(name);
+            caveSound.Remove(key);
         }
 
-        public void PlayCaveSound(string name)
+        public void PlayCaveSound(string key)
         {
-            caveSound[name].Play();
+            caveSound[key].Play();
         }
 
-        public bool ContainkeysCaveSound(string name)
+        public bool ContainkeysCaveSound(string key)
         {
-            return caveSound.ContainsKey(name);
+            return caveSound.ContainsKey(key);
         }
 
-        public void LogCaveSound(string name) // 디버그 로그 확인용
+        public void LogCaveSound(string key) // 디버그 로그 확인용
         {
-            Debug.Log($"{name} Play");
+            Debug.Log($"{key} Play");
         }
         #endregion
     }

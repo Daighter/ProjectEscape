@@ -15,9 +15,13 @@ namespace Lee
         public void SaveObj()
         {
             SaveData.current.objList = null;
+            SaveData.current.invenList = null;
+
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
+
+            SaveData.current.invenList = new List<InventoryData>();
             SaveData.current.objList = new List<ObjectData>();
-            InTheInventory();
+
             foreach (InteratableObject target in targets)
             {
                 if(target.IsInven == false)
@@ -31,14 +35,6 @@ namespace Lee
                     SaveData.current.objList.Add(objectData);
                 }
             }
-        }
-
-        public void InTheInventory()  
-        {
-            SaveData.current.invenList = null;
-            InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
-            SaveData.current.invenList = new List<InventoryData>();
-            SaveObj();
             foreach (InteratableObject target in targets)
             {
                 if (target.IsInven == true)
@@ -52,10 +48,22 @@ namespace Lee
             }
         }
 
-        public void AutoSave() // ÀÌµ¿Àü SceneÀúÀå ÇÔ¼ö
+        public void InTheInventory()  
         {
-            SaveObj();
-            InTheInventory();
+            SaveData.current.invenList = null;
+            InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
+            SaveData.current.invenList = new List<InventoryData>();
+            foreach (InteratableObject target in targets)
+            {
+                if (target.IsInven == true)
+                {
+                    InventoryData inventoryData = new InventoryData();
+                    inventoryData.inObjName = target.name;
+                    inventoryData.inObjprefabPath = $"Puzzle/{target.name}";
+                    inventoryData.isInven = target.IsInven;
+                    SaveData.current.invenList.Add(inventoryData);
+                }
+            }
         }
 
         public void LoadObj()
@@ -76,7 +84,7 @@ namespace Lee
             }
         }
 
-        public void SceneInvenLoad()    // Scene ÀÌµ¿ÈÄ ½ÇÇàÇÔ¼ö
+        public void SceneInvenLoad()    
         {
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
             foreach (InteratableObject target in targets)
@@ -92,6 +100,12 @@ namespace Lee
                     }
                 }
             }
+        }
+
+        public void SceneLoad()
+        {
+            LoadObj();
+            SceneInvenLoad();
         }
     }
 }
