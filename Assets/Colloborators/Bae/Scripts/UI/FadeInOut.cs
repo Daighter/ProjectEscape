@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,9 +9,8 @@ namespace Bae
 {
     public class FadeInOut : MonoBehaviour
     {
-        public float fadeDuration = 2;
-        public Color fadeColor;
         public Image image;
+        public Color fadeColor;
 
         private void OnEnable()
         {
@@ -18,7 +18,7 @@ namespace Bae
         }
         public void FadeIn()
         {
-            Fade(1, 0);
+            Fade(1,0);
         }
 
         public void FadeOut()
@@ -28,12 +28,12 @@ namespace Bae
             
         }
 
-        public void Fade(float alphIn,float alphOut)
+        public void Fade(float alphIn,float alphOut,float fadeDuration=2)
         {
-            StartCoroutine(FadeRoutine(alphIn,alphOut));
+            StartCoroutine(FadeRoutine(alphIn,alphOut,fadeDuration));
         }
 
-        public IEnumerator FadeRoutine(float alphIn, float alphOut)
+        public IEnumerator FadeRoutine(float alphIn, float alphOut,float fadeDuration)
         {
             float timer = 0;
             Time.timeScale = 0f;
