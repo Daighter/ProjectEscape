@@ -825,6 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04d14945b18deb4c89360bc41139a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stair1FDoorPuzzle: {fileID: 1262423444}
   lockedImage: {fileID: 1319208683}
   unlockedImage: {fileID: 793524660}
   isDungeonRoom: 0
@@ -3677,7 +3678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdeff6345481aa041888239074ec6061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: DungeonMapT
+  sceneName: DungeonMap T
 --- !u!114 &295622712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5676,6 +5677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04d14945b18deb4c89360bc41139a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stair1FDoorPuzzle: {fileID: 1262423444}
   lockedImage: {fileID: 1481921446}
   unlockedImage: {fileID: 370899326}
   isDungeonRoom: 1
@@ -7717,12 +7719,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0912871ffb24d4e44b036e420d98e57d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stair1FDoorPuzzle: {fileID: 1262423444}
   colorChangers:
   - {fileID: 5450518225938956056}
   - {fileID: 421219938}
   - {fileID: 297772436}
   - {fileID: 1326862476}
-  stair1FDoor: {fileID: 1887648011}
 --- !u!1 &666808291
 GameObject:
   m_ObjectHideFlags: 0
@@ -11132,6 +11134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04d14945b18deb4c89360bc41139a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stair1FDoorPuzzle: {fileID: 1262423444}
   lockedImage: {fileID: 705020631}
   unlockedImage: {fileID: 1760735633}
   isDungeonRoom: 0
@@ -13590,6 +13593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1262423443}
+  - component: {fileID: 1262423444}
   m_Layer: 0
   m_Name: 1FStairDoorPuzzle
   m_TagString: Untagged
@@ -13615,6 +13619,19 @@ Transform:
   m_Father: {fileID: 1835393485}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1262423444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262423442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ad47c7cc3623248937345e93f2f743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stair1FDoor: {fileID: 1887648011}
 --- !u!1 &1269193280
 GameObject:
   m_ObjectHideFlags: 0
