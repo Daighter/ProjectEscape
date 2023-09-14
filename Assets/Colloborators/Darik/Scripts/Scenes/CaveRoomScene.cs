@@ -6,6 +6,12 @@ namespace Darik
 {
     public class CaveRoomScene : BaseScene
     {
+        protected override void Awake()
+        {
+            base.Awake();
+            SceneNum = 1;
+        }
+
         protected override IEnumerator LoadingCoroutine()
         {
             progress = 0.0f;

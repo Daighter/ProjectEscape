@@ -14,7 +14,9 @@ namespace Darik
         [SerializeField] protected Transform openLPosition;
         [SerializeField] protected Transform openRPosition;
 
-        public bool isClosed;
+        private bool isClosed;
+
+        public bool IsClosed { get { return isClosed; } set { isClosed = value; } }
 
         protected virtual void Start()
         {
@@ -25,7 +27,7 @@ namespace Darik
 
         public IEnumerator OpenCoroutine()
         {
-            while (isClosed)
+            while (IsClosed)
             {
                 OpenMovement();
                 yield return null;
@@ -34,7 +36,7 @@ namespace Darik
 
         public IEnumerator CloseCoroutine()
         {
-            while (!isClosed)
+            while (!IsClosed)
             {
                 CloseMovement();
                 yield return null;

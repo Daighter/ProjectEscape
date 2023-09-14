@@ -1,37 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 namespace Jeong
 {
     public class ChangeFrequency : MonoBehaviour
     {
 
-        [SerializeField] GameObject Dial;        
-        [SerializeField] GameObject ExitPoint;
-        [SerializeField] GameObject RescueMessage;
+        [SerializeField] GameObject Dial;
+
         [SerializeField] Transform frequencyPointer;
 
-        [SerializeField] float basePos;
-        
-        RadioDial radioDial;
+        [SerializeField] RadioDial radioDial;
 
-        bool ch180 = false;
+        [SerializeField] public float basePos;
+
+        [SerializeField] public bool ch180 = false;
 
         private void Awake()
         {
             radioDial = GetComponent<RadioDial>();
-            frequencyPointer = GameObject.Find("Frequency Pointer").GetComponent<Transform>();
+            frequencyPointer = GameObject.Find("FrequencyPointer").GetComponent<Transform>();
         }
 
         private void Start()
         {
             ch180 = false;
-            RescueMessage.SetActive(false);
-            ExitPoint.SetActive(false);
         }
 
         private void Update()
@@ -41,8 +34,6 @@ namespace Jeong
 
         private IEnumerator ChangePointerPositionRoutine()
         {
-            basePos = radioDial.value;
-            frequencyPointer.transform.localPosition = new Vector3(0.5f, basePos, 2f);
             SelectChannelRoutine();
             yield return new WaitForFixedUpdate();
         }
@@ -55,16 +46,15 @@ namespace Jeong
             else if (0.55f <= basePos&&basePos < 0.60f)
             {
                 ch180 = true;
-                if(ch180)
-                {
-                    RescueMessage.SetActive(true);
-                    ExitPoint.SetActive(true);
-                }
+                radioDial.enabled = false;
+                frequencyPointer.transform.localPosition = new Vector3(0.5f, 0.57f, 2f);
             }
+
             else
             {
                 ch180 = false;
-                ExitPoint.SetActive(false);
+                basePos = radioDial.value;
+                frequencyPointer.transform.localPosition = new Vector3(0.5f, basePos, 2f);
             }
         }
     }
