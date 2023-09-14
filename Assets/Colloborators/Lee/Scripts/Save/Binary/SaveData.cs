@@ -10,7 +10,8 @@ namespace Lee
         private static SaveData _current;
 
         public List<ObjectData> objList;
-        
+        public List<InventoryData> invenList;
+
         public static SaveData current
         {
             get
