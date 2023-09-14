@@ -27,7 +27,7 @@ namespace Bae
                     col.enabled = false;
                     animator.SetTrigger("Open");
                     GameManager.Sound.PlayDungeonSound("Door");
-                    GameManager.Data.isDungeonRoomClear = true;
+                    //GameManager.Data.isDungeonRoomClear = true;
                 }
             }
         }
