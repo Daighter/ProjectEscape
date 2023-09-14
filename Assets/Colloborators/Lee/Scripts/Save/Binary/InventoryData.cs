@@ -13,5 +13,7 @@ namespace Lee
         public string inObjprefabPath;
 
         public bool isInven;
+
+        public Vector3 ItemScale;
     }
 }

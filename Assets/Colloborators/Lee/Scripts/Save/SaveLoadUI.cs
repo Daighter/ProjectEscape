@@ -16,7 +16,7 @@ namespace Lee
         public void OnLoad()
         {
             SaveData.current = (SaveData)SaveManager_Binary.Load(Application.persistentDataPath + "/saves/ObjectSave.save");
-            GameManager.ObjM.LoadObj();
+            GameManager.ObjM.SceneLoad();
         }
 
 
