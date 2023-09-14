@@ -25,7 +25,7 @@ namespace Bae
                 other.transform.position = notBurn.position;
                 return;
             }
-            gameObject.GetComponent<AudioSource>().Play();
+            GameManager.Sound.PlayDungeonSound("Burn");
             other.gameObject.SetActive(false);
             figure.Add(other.gameObject.name);
             overStack++;
@@ -35,7 +35,7 @@ namespace Bae
                 if(OfferCheck(figure))
                 {
                     chest.GetComponent<Animator>().SetTrigger("Open");
-                    chest.GetComponent<AudioSource>().Play();
+                    GameManager.Sound.PlayDungeonSound("ChestOpen");
                 }
                 else
                 {

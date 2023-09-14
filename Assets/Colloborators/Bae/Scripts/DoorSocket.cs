@@ -1,3 +1,4 @@
+using Jeong;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,14 +10,11 @@ namespace Bae
     {
         [SerializeField] int count;
         [SerializeField] Collider col;
-        AudioSource audio;
-        
         int runeTrue;
         int socketCount;
         Animator animator;
         public void Awake()
         {
-            audio = GetComponent<AudioSource>();
             animator = GetComponent<Animator>();
         }
 
@@ -28,13 +26,14 @@ namespace Bae
                 {
                     col.enabled = false;
                     animator.SetTrigger("Open");
-                    gameObject.GetComponent<AudioSource>().Play();
+                    GameManager.Sound.PlayDungeonSound("Door");
                 }
             }
         }
         public void ONCheckSocket(SelectEnterEventArgs args)
         {
             RuneCheck key =args.interactableObject.transform.GetComponent<RuneCheck>();
+            GameManager.Sound.PlayDungeonSound("RuneIn");
             if (key.key)
             {
                 runeTrue++;
@@ -45,6 +44,7 @@ namespace Bae
 
         public void ExitRune(SelectExitEventArgs args)
         {
+            GameManager.Sound.PlayDungeonSound("RuneOut");
             socketCount--;
         }
     }
