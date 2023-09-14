@@ -13,7 +13,7 @@ namespace Darik
         {
             if (playerLayer.Contain(other.gameObject.layer) && sceneName != null)
             {
-                other.gameObject.GetComponentInChildren<Bae.FadeInOut>().FadeOut();
+                //other.gameObject.GetComponentInChildren<Bae.FadeInOut>().FadeOut();
                 GameManager.Scene.LoadScene(sceneName);
             }
         }
