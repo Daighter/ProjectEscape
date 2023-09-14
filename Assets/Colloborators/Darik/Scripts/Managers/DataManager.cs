@@ -10,7 +10,6 @@ namespace Darik
     {
         public bool isDungeonRoomClear
         {
-            get { return isDungeonRoomClear; }
             set
             {
                 isDungeonRoomClear = value;
@@ -20,7 +19,6 @@ namespace Darik
 
         public bool isPrisonRoomClear
         {
-            get { return isPrisonRoomClear; }
             set
             {
                 isPrisonRoomClear = value;
@@ -30,7 +28,6 @@ namespace Darik
 
         public bool isCaveRoomClear
         {
-            get { return isCaveRoomClear; }
             set
             {
                 isCaveRoomClear = value;
