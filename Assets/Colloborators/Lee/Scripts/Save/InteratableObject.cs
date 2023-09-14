@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -12,41 +13,61 @@ namespace Lee
     public class InteratableObject : MonoBehaviour
     {
         private XRGrabInteractable xRGrab;
-        public string id;
-        public string resourcePath;
-        public Vector3 position;
-        public Quaternion rotation;
 
-        public Vector3 scale;
+        private string objname;
+        public string Objname {  get { return objname; } set { objname = value; } }
+
+        public string resourcePath;
+        public string ResourcePath { get { return resourcePath; } set { resourcePath = value; } }   
+        public Vector3 position=> transform.position;
+        public Quaternion rotation => transform.rotation;
+
+        public Vector3 scale => transform.localScale;
 
         private bool isInven = false;
 
-        public bool IsInven { get { return isInven; } set { isInven = value; } }
+        public bool IsInven { get {  return isInven; } set {  isInven = value; } }
 
         private void Awake()
         {
-            id = gameObject.name;
-            resourcePath = $"Puzzle/{gameObject.name}";
-            position = transform.position;
-            rotation = transform.rotation;
-            scale = transform.localScale;
             xRGrab = GetComponent<XRGrabInteractable>();
+            xRGrab.selectExited.AddListener(OnSelectExited);
+        }
+
+        private void OnSelectExited(SelectExitEventArgs args)
+        {
+            if (isInven == true)
+                args.interactableObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            if (isInven == false)
+                args.interactableObject.transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
             {
-                IsInven = true;
+                isInven = true;
+            }
+        }
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
+            {
+                isInven = true;
             }
         }
 
-        public void OnInven()
+        private void OnTriggerExit(Collider other)
         {
-            if(IsInven==true)
+            if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
             {
-                scale = new Vector3(0.005f, 0.005f, 0.005f);
+                isInven = false;
             }
+        }
+
+        public void Arem()
+        {
+            Debug.Log("호버응애");
         }
     }
 }

@@ -1,3 +1,4 @@
+using Jeong;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace Bae
     public class DoorSocket : MonoBehaviour
     {
         [SerializeField] int count;
-        
+        [SerializeField] Collider col;
         int runeTrue;
         int socketCount;
         Animator animator;
@@ -23,18 +24,17 @@ namespace Bae
             {
                 if(runeTrue == count)
                 {
+                    col.enabled = false;
                     animator.SetTrigger("Open");
-                }
-                else
-                {
-                    
+                    GameManager.Sound.PlayDungeonSound("Door");
+                    GameManager.Data.isDungeonRoomClear = true;
                 }
             }
         }
-
         public void ONCheckSocket(SelectEnterEventArgs args)
         {
             RuneCheck key =args.interactableObject.transform.GetComponent<RuneCheck>();
+            GameManager.Sound.PlayDungeonSound("RuneIn");
             if (key.key)
             {
                 runeTrue++;
@@ -45,6 +45,7 @@ namespace Bae
 
         public void ExitRune(SelectExitEventArgs args)
         {
+            GameManager.Sound.PlayDungeonSound("RuneOut");
             socketCount--;
         }
     }
