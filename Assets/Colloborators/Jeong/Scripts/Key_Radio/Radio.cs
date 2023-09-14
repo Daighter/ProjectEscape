@@ -15,7 +15,7 @@ namespace Jeong
 
         public bool radioPowerOn;
         public bool radioPlay;
-
+        public bool isCaveClear = false;
        
         private void Start()
         {
@@ -67,6 +67,7 @@ namespace Jeong
             {
                 RescueMessage.SetActive(true);
                 ExitPoint.SetActive(true);
+                isCaveClear = true;
                 return;
             }
         }
