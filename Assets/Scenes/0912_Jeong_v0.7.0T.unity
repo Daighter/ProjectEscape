@@ -5330,6 +5330,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Radio Model
       objectReference: {fileID: 0}
+    - target: {fileID: 3927067629460554445, guid: a5692252a65d2784fad5bd6673ab750f,
+        type: 3}
+      propertyPath: m_Name
+      value: FrequencyPointer
+      objectReference: {fileID: 0}
     - target: {fileID: 4265502871271991535, guid: a5692252a65d2784fad5bd6673ab750f,
         type: 3}
       propertyPath: m_RootOrder
