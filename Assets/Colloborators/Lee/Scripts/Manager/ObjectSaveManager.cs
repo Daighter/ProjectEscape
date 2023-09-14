@@ -34,28 +34,7 @@ namespace Lee
                     objectData.isInven = target.IsInven;
                     SaveData.current.objList.Add(objectData);
                 }
-            }
-            foreach (InteratableObject target in targets)
-            {
-                if (target.IsInven == true)
-                {
-                    InventoryData inventoryData = new InventoryData();
-                    inventoryData.inObjName = target.name;
-                    inventoryData.inObjprefabPath = $"Puzzle/{target.name}";
-                    inventoryData.isInven = target.IsInven;
-                    SaveData.current.invenList.Add(inventoryData);
-                }
-            }
-        }
-
-        public void InTheInventory()  
-        {
-            SaveData.current.invenList = null;
-            InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
-            SaveData.current.invenList = new List<InventoryData>();
-            foreach (InteratableObject target in targets)
-            {
-                if (target.IsInven == true)
+                else
                 {
                     InventoryData inventoryData = new InventoryData();
                     inventoryData.inObjName = target.name;
