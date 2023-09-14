@@ -3,41 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Darik
 {
     public class DataManager : MonoBehaviour
     {
-        public bool isDungeonRoomClear
+        public bool isDungeonRoomClear { get; private set; }
+        public bool isPrisonRoomClear { get; private set; }
+        public bool isCaveRoomClear { get; private set; }
+
+        public void DungeonClear()
         {
-            set
-            {
-                isDungeonRoomClear = value;
-                OnClearDungeonRoom?.Invoke();
-            }
+            isDungeonRoomClear = true;
         }
 
-        public bool isPrisonRoomClear
+        public void PrisonClear()
         {
-            set
-            {
-                isPrisonRoomClear = value;
-                OnClearPrisonRoom?.Invoke();
-            }
+            isPrisonRoomClear = true;
         }
 
-        public bool isCaveRoomClear
+        public void CaveClear()
         {
-            set
-            {
-                isCaveRoomClear = value;
-                OnClearCaveRoom?.Invoke();
-            }
+            isCaveRoomClear = true;
         }
-
-        public UnityEvent OnClearDungeonRoom;
-        public UnityEvent OnClearPrisonRoom;
-        public UnityEvent OnClearCaveRoom;
 
         private void Start()
         {
