@@ -308,10 +308,13 @@ namespace UnityEngine.XR.Content.Interaction
 
         private void ChangeColor(bool pressed)
         {
-            if (pressed)
-                color.color = Color.red;
-            else
-                color.color = Color.black;
+            if (GameManager.Data.isElevatorPowerOn)
+            {
+                if (pressed)
+                    color.color = Color.red;
+                else
+                    color.color = Color.black;
+            }
         }
     }
 }
