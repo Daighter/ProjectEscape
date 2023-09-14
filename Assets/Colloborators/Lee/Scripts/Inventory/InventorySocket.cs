@@ -25,18 +25,14 @@ namespace Lee
             socket = GameManager.Resource.Load<GameObject>("UI/Socket");
 
             sockets = new List<GameObject>();
+
+            socketInteractor.selectEntered.AddListener(OnSave);
         }
 
-        public void OnCreat()
+        public void OnSave(SelectEnterEventArgs arg)
         {
-            Instantiate(socket, transform);
-            socket.transform.SetAsFirstSibling();
-            socketInteractor.attachTransform = socket.transform;
+            GameManager.ObjM.InTheInventory();
         }
 
-        public void OnRemove()
-        {
-            Destroy(socket);
-        }
     }
 }

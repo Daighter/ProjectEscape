@@ -11,5 +11,7 @@ namespace Lee
         public string inObjName;
 
         public string inObjprefabPath;
+
+        public bool isInven;
     }
 }

@@ -24,7 +24,9 @@ namespace Lee
 
         public Vector3 scale => transform.localScale;
 
-        public bool isInven = false;
+        private bool isInven = false;
+
+        public bool IsInven { get {  return isInven; } set {  isInven = value; } }
 
         private void Awake()
         {
@@ -41,6 +43,13 @@ namespace Lee
         }
 
         private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
+            {
+                isInven = true;
+            }
+        }
+        private void OnTriggerStay(Collider other)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
             {
