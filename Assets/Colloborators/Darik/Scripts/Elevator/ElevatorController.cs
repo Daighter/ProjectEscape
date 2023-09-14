@@ -153,7 +153,7 @@ namespace Darik
 
             public override void Enter()
             {
-                elevator.isArrived = false;
+                elevator.IsArrived = false;
                 owner.isMove = true;
                 owner.state = "Move";
 
@@ -170,7 +170,7 @@ namespace Darik
 
             public override void Transition()
             {
-                if (elevator.isArrived)
+                if (elevator.IsArrived)
                     stateMachine.ChangeState(State.Open);
             }
 
@@ -195,16 +195,16 @@ namespace Darik
 
             public override void Enter()
             {
-                elevator.isClosed = true;
+                elevator.IsClosed = true;
                 owner.StartCoroutine(elevator.OpenCoroutine());
                 if (elevator.CurFloor == -1)
                 {
-                    owner.b1Outside.isClosed = true;
+                    owner.b1Outside.IsClosed = true;
                     owner.StartCoroutine(owner.b1Outside.OpenCoroutine());
                 }
                 else if (elevator.CurFloor == -2)
                 {
-                    owner.b2Outside.isClosed = true;
+                    owner.b2Outside.IsClosed = true;
                     owner.StartCoroutine(owner.b2Outside.OpenCoroutine());
                 }
 
@@ -220,12 +220,12 @@ namespace Darik
             {
                 if (elevator.CurFloor == -1)
                 {
-                    if (!elevator.isClosed && !owner.b1Outside.isClosed)
+                    if (!elevator.IsClosed && !owner.b1Outside.IsClosed)
                         stateMachine.ChangeState(State.Wait);
                 }
                 else if (elevator.CurFloor == -2)
                 {
-                    if (!elevator.isClosed && !owner.b2Outside.isClosed)
+                    if (!elevator.IsClosed && !owner.b2Outside.IsClosed)
                         stateMachine.ChangeState(State.Wait);
                 }
             }
@@ -249,16 +249,16 @@ namespace Darik
 
             public override void Enter()
             {
-                elevator.isClosed = false;
+                elevator.IsClosed = false;
                 owner.StartCoroutine(elevator.CloseCoroutine());
                 if (elevator.CurFloor == -1)
                 {
-                    owner.b1Outside.isClosed = false;
+                    owner.b1Outside.IsClosed = false;
                     owner.StartCoroutine(owner.b1Outside.CloseCoroutine());
                 }
                 else if (elevator.CurFloor == -2)
                 {
-                    owner.b2Outside.isClosed = false;
+                    owner.b2Outside.IsClosed = false;
                     owner.StartCoroutine(owner.b2Outside.CloseCoroutine());
                 }
 
@@ -274,12 +274,12 @@ namespace Darik
             {
                 if (elevator.CurFloor == -1)
                 {
-                    if (elevator.isClosed && owner.b1Outside.isClosed)
+                    if (elevator.IsClosed && owner.b1Outside.IsClosed)
                         stateMachine.ChangeState(State.Idle);
                 }
                 else if (elevator.CurFloor == -2)
                 {
-                    if (elevator.isClosed && owner.b2Outside.isClosed)
+                    if (elevator.IsClosed && owner.b2Outside.IsClosed)
                         stateMachine.ChangeState(State.Idle);
                 }
             }

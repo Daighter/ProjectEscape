@@ -9,9 +9,13 @@ namespace Darik
         [SerializeField] ElevatorFloorViewer[] floorViewerTexts;
         [SerializeField] private float moveSpeed = 1f;
 
-        private PlayerTrigger playerTrigger;
-        public bool isArrived = true;
+        [SerializeField] private PlayerTrigger insideTrigger;
+        [SerializeField] private PlayerTrigger roofTopTrigger;
+
+        private bool isArrived = true;
         private int curFloor = 0;
+
+        public bool IsArrived { get { return isArrived; } set { isArrived = value; } }
 
         public int CurFloor
         {
@@ -26,17 +30,14 @@ namespace Darik
             }
         }
 
-        private void Awake()
-        {
-            playerTrigger = GetComponentInChildren<PlayerTrigger>();
-        }
-
         protected override void Start()
         {
             base.Start();
 
             CurFloor = -1;
             transform.position = new Vector3(transform.position.x, -3, transform.position.z);
+
+            StartCoroutine(BadEndingCheckCoroutine());
         }
 
         public void Move(int targetFloor)
@@ -44,8 +45,8 @@ namespace Darik
             if (targetFloor == -1)
             {
                 transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
-                if (playerTrigger.Player != null)
-                    playerTrigger.MoveInElevator(moveSpeed);
+                if (insideTrigger.Player != null)
+                    insideTrigger.MoveInElevator(moveSpeed);
 
                 if (transform.position.y >= -3)
                 {
@@ -57,8 +58,8 @@ namespace Darik
             else if (targetFloor == -2)
             {
                 transform.Translate(Vector3.up * -moveSpeed * Time.deltaTime);
-                if (playerTrigger.Player != null)
-                    playerTrigger.MoveInElevator(-moveSpeed);
+                if (insideTrigger.Player != null)
+                    insideTrigger.MoveInElevator(-moveSpeed);
 
                 if (transform.position.y <= -6)
                 {
@@ -67,6 +68,26 @@ namespace Darik
                     isArrived = true;
                 }
             }
+        }
+
+        IEnumerator BadEndingCheckCoroutine()
+        {
+            while (true)
+            {
+                if (roofTopTrigger.Player != null && CurFloor == -2)
+                {
+                    StartCoroutine(BadEndingCoroutine());
+                    yield break;
+                }
+
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+
+        IEnumerator BadEndingCoroutine()
+        {
+            yield return new WaitForSeconds(5f);
+            Debug.Log("BadEnd");
         }
     }
 }

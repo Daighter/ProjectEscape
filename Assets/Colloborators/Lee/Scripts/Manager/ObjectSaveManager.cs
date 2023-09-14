@@ -52,7 +52,7 @@ namespace Lee
             }
         }
 
-        public void AutoSave() // ÀÌµ¿Àü SceneÀúÀå ÇÔ¼ö
+        public void AutoSave() // Ã€ÃŒÂµÂ¿Ã€Ã¼ SceneÃ€ÃºÃ€Ã¥ Ã‡Ã”Â¼Ã¶
         {
             SaveObj();
             InTheInventory();
@@ -76,7 +76,7 @@ namespace Lee
             }
         }
 
-        public void SceneInvenLoad()    // Scene ÀÌµ¿ÈÄ ½ÇÇàÇÔ¼ö
+        public void SceneInvenLoad()    // Scene Ã€ÃŒÂµÂ¿ÃˆÃ„ Â½Ã‡Ã‡Ã Ã‡Ã”Â¼Ã¶
         {
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
             foreach (InteratableObject target in targets)
