@@ -28,6 +28,7 @@ namespace Lee
         {
             rb.isKinematic = false;
             hinge.limits = openDoorLimits;
+            GameManager.Data.PrisonClear();
         }
     }
 }
