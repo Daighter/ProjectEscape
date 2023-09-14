@@ -12,11 +12,10 @@ namespace Jeong
         [SerializeField] GameObject RescueMessage;
 
         [SerializeField] ChangeFrequency changeFrequency;
-        [SerializeField] RadioDial radioDial;
 
-        [SerializeField] public bool radioPowerOn;
-        [SerializeField] public bool radioPlay;
-
+        public bool radioPowerOn;
+        public bool radioPlay;
+        public bool isCaveClear = false;
        
         private void Start()
         {
@@ -25,27 +24,16 @@ namespace Jeong
             RescueMessage.SetActive(false);
             ExitPoint.SetActive(false);
         }
-        private void Update()
-        {
-            StartCoroutine(ChangeRadioStateRoutine());
-        }
-
-        private IEnumerator ChangeRadioStateRoutine()
+        private void FixedUpdate()
         {
             RadioPlayState();
-            yield return new WaitForFixedUpdate();
         }
-
+        
         public void RadioPowerOn()
         {
             radioPowerOn = true;
         }
-        
-        public void RadioPlay()
-        {
-            radioPlay = true;
-        }
-        
+
 
         public void RadioPlayState()
         {
@@ -61,38 +49,27 @@ namespace Jeong
                 return;
             }
 
-            else if (radioPowerOn)
+            else if (radioPowerOn && !radioPlay)
             {
                 radioPointer.SetActive(true);
                 return;
                 // 애니메이션 or 이펙트 재생
             }
 
-
             else if (radioPlay && !changeFrequency.ch180)
             {
-                Debug.Log($"{changeFrequency.ch180}");
                 RescueMessage.SetActive(false);
                 ExitPoint.SetActive(false);
                 return;
             }
-
 
             else if (radioPlay && changeFrequency.ch180)
             {
-                Debug.Log($"{changeFrequency.ch180}");
                 RescueMessage.SetActive(true);
                 ExitPoint.SetActive(true);
+                GameManager.Data.CaveClear();
                 return;
             }
-
-            else
-            {
-                RescueMessage.SetActive(false);
-                ExitPoint.SetActive(false);
-                return;
-            }
-                
         }
     }
 }
