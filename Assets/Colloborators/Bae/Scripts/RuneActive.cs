@@ -12,6 +12,7 @@ namespace Bae
         {
            foreach(GameObject rune in runes)
             {
+                GameManager.Sound.PlayDungeonSound("JewelSocket");
                 rune.SetActive(true);
             }
         }
