@@ -27,31 +27,31 @@ namespace Jeong
                     
                     if(i == j)
                     {
-                        Debug.Log($"i : {i}, j : {j} -> result: i == j");
+                        Debug.Log($"i : {i}, j : {j} -> result: i == j (X)");
                     }
                     else if (i != j)
                     {
-                        Debug.Log($"i : {i}, j : {j} -> result: i != j");
+                        Debug.Log($"i : {i}, j : {j} -> result: i != j (O)");
                         for (int k = 1; k < times.Length; k++)
                         {
                             k = Random.Range(1, times.Length + 1);
                             if (j == k)
                             {
-                                Debug.Log($"j : {j}, k : {k} -> result: j == k");
+                                Debug.Log($"j : {j}, k : {k} -> result: j == k (X)");
                                 //return;
                             }
 
                             else if (j != k)
                             {
-                                Debug.Log($"j : {j}, k : {k} -> result: j != k");
+                                Debug.Log($"j : {j}, k : {k} -> result: j != k (O)");
                                 if (i == k)
                                 {
-                                    Debug.Log($"i : {i}, k : {k} -> result: i == k");
+                                    Debug.Log($"i : {i}, k : {k} -> result: i == k (X)");
                                 }
 
                                 else if (i != k)
                                 {
-                                    Debug.Log($"i : {i}, k : {k} -> result: i != k");
+                                    Debug.Log($"i : {i}, k : {k} -> result: i != k (O)");
                                     Debug.Log("****************************");
                                     Debug.Log($"i : {i}, j : {j}, k : {k}");
                                     Debug.Log("****************************");
