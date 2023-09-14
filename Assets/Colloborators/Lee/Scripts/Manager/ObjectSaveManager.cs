@@ -17,7 +17,6 @@ namespace Lee
             SaveData.current.objList = null;
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
             SaveData.current.objList = new List<ObjectData>();
-            InTheInventory();
             foreach (InteratableObject target in targets)
             {
                 if(target.IsInven == false)
@@ -38,7 +37,6 @@ namespace Lee
             SaveData.current.invenList = null;
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
             SaveData.current.invenList = new List<InventoryData>();
-            SaveObj();
             foreach (InteratableObject target in targets)
             {
                 if (target.IsInven == true)
