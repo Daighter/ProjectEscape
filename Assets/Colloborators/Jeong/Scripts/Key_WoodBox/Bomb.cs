@@ -24,6 +24,7 @@ namespace Jeong
         [SerializeField] GameObject bomb;
         [SerializeField] GameObject bombexplosion;
         [SerializeField] GameObject lanton;
+        [SerializeField] GameObject raadio;
 
         
 
@@ -38,6 +39,7 @@ namespace Jeong
         {
             bombexplosion.SetActive(false);
             lanton.SetActive(false);
+            raadio.SetActive(false);
             effect1.SetActive(false);
             effect2.SetActive(false);
             effect3.SetActive(false);
@@ -45,6 +47,7 @@ namespace Jeong
             effect5.SetActive(false);
             effect6.SetActive(false);
             effect7.SetActive(false);
+            
             rock1.SetActive(true);
             rock2.SetActive(true);
             rock3.SetActive(true);
@@ -105,6 +108,7 @@ namespace Jeong
             yield return new WaitForSeconds(0.2f);
             effect1.SetActive(true);
             effect4.SetActive(true);
+            raadio.SetActive(true);
             lanton.SetActive(true);
             effect6.SetActive(true);
             effect7.SetActive(true);
