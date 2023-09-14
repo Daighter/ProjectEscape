@@ -24,12 +24,17 @@ namespace Bae
             {
                 if(runeTrue == count)
                 {
-                    col.enabled = false;
-                    animator.SetTrigger("Open");
-                    GameManager.Sound.PlayDungeonSound("Door");
-                    //GameManager.Data.isDungeonRoomClear = true;
+                    StartCoroutine(DoorOpenRoutine());
                 }
             }
+        }
+        IEnumerator DoorOpenRoutine()
+        {
+            yield return new WaitForSeconds(1f);
+            col.enabled = false;
+            animator.SetTrigger("Open");
+            GameManager.Sound.PlayDungeonSound("Door");
+            GameManager.Data.DungeonClear();
         }
         public void ONCheckSocket(SelectEnterEventArgs args)
         {
