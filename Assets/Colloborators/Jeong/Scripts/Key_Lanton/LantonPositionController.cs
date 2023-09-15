@@ -11,9 +11,6 @@ namespace Jeong
 
         public GameObject[] lantonStand = new GameObject[12];
         public GameObject[] lantonStandKey = new GameObject[3];
-        public int lantonStandPos1;
-        public int lantonStandPos2;
-        public int lantonStandPos3;
 
         bool isFstPosition = false;
         bool isSecPosition = false;

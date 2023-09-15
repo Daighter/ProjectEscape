@@ -19,7 +19,28 @@ namespace Jeong
         public bool radioPowerOn;
         public bool radioPlay;
         public bool isRadioClear;
-       
+
+        [SerializeField] AudioSource[] caveRadioAudio;
+
+        private string[] key = new string[3];
+
+        private void Awake()
+        {
+            Keys();
+            for (int i = 0; i < key.Length; i++)
+            {
+                GameManager.Sound.AddCaveSound(key[i], caveRadioAudio[i]);
+            }
+
+        }
+
+        private void Keys()
+        {
+            key[0] = "RadioDialSound";
+            key[1] = "RadioClearSound";
+            key[2] = "RadioPowerOnSound";
+        }
+
         private void Start()
         {
             rb = radioKey.GetComponent<Rigidbody>();
@@ -37,6 +58,7 @@ namespace Jeong
         public void RadioPowerOn()
         {
             radioPowerOn = true;
+            GameManager.Sound.PlayCaveSound("RadioPowerOnSound");
             
         }
 
@@ -64,6 +86,7 @@ namespace Jeong
 
                 else if (radioPlay && !changeFrequency.ch180)
                 {
+                    GameManager.Sound.PlayCaveSound("RadioDialSound");
                     RescueMessage.SetActive(false);
                     ExitPoint.SetActive(false);
                     return;
@@ -74,8 +97,10 @@ namespace Jeong
                     isRadioClear = true;
                     if (isRadioClear)
                     {
+                        GameManager.Sound.PlayCaveSound("RadioClearSound");
                         RescueMessage.SetActive(true);
                         ExitPoint.SetActive(true);
+                        GameManager.Data.isCaveLantonClear = true;
                         GameManager.Data.CaveClear();
                         return;
                     }

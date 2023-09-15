@@ -16,6 +16,8 @@ namespace Jeong
         
         [SerializeField] LantonPositionController lantonPositionController;
 
+        bool isLantonClear;
+
         private void Start()
         {
             LantonGimmick();
@@ -25,10 +27,11 @@ namespace Jeong
            // lantonPositionController.lantonStand[2] = lantonPositionController.lantonStand[caveTime[2]];
         }
 
-        private void LantonClaer()
+        /*private void LantonClaer()
         {
+            if (!isLantonClear)
             GameManager.Data.isCaveLantonClear = true;
-        }
+        }*/
 
         // 랜덤숫자 3개 뽑시(중복없음)
         #region 
