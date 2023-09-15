@@ -7,6 +7,8 @@ namespace Darik
 {
     public class MiniRoomClearChecker : MonoBehaviour
     {
+        [SerializeField] private Stair1FDoorPuzzle stair1FDoorPuzzle;
+
         [SerializeField] private Image lockedImage;
         [SerializeField] private Image unlockedImage;
 
@@ -19,13 +21,28 @@ namespace Darik
             Init();
 
             if (isDungeonRoom && GameManager.Data.isDungeonRoomClear)
+            {
+                stair1FDoorPuzzle.IsDungeonRoomClear = true;
+                stair1FDoorPuzzle.CheckAllClear();
                 ChangeClearImage();
+                Debug.Log("DungeonRoom Claer");
+            }
 
             else if (isPrisonRoom && GameManager.Data.isPrisonRoomClear)
+            {
+                stair1FDoorPuzzle.IsPrisonRoomClear = true;
+                stair1FDoorPuzzle.CheckAllClear();
                 ChangeClearImage();
+                Debug.Log("PrisonRoom Claer");
+            }
 
             else if (isCaveRoom && GameManager.Data.isCaveRoomClear)
+            {
+                stair1FDoorPuzzle.IsCaveRoomClear = true;
+                stair1FDoorPuzzle.CheckAllClear();
                 ChangeClearImage();
+                Debug.Log("CaveRoom Claer");
+            }
         }
 
         private void Init()
@@ -48,8 +65,6 @@ namespace Darik
             color = unlockedImage.color;
             color.a = 1f;
             unlockedImage.color = color;
-
-            Debug.Log("MiniRoom Claer");
         }
     }
 }

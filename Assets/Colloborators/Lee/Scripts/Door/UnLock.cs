@@ -12,9 +12,11 @@ namespace Lee
         private HingeJoint hinge;
         private Rigidbody rb;
         private XRGrabInteractable xRGrab;
+        private XRSocketInteractor socketInteractor;
 
         private void Awake()
         {
+            socketInteractor = GetComponentInChildren<XRSocketInteractor>();
             hinge = GetComponent<HingeJoint>();
             rb = GetComponent<Rigidbody>();
             openDoorLimits = hinge.limits;
@@ -23,12 +25,27 @@ namespace Lee
             hinge.limits = closedDoorLimits;
            
         }
-        
+
+        private void OnEnable()
+        {
+            socketInteractor.selectEntered.AddListener(OnOpen);
+        }
+
+        private void OnDisable()
+        {
+            socketInteractor.selectEntered.RemoveListener(OnOpen);
+        }
+
         public void OnSelectKey()
         {
             rb.isKinematic = false;
             hinge.limits = openDoorLimits;
             GameManager.Data.PrisonClear();
+        }
+
+        public void OnOpen(SelectEnterEventArgs arg)
+        {
+            arg.interactableObject.transform.gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 }
