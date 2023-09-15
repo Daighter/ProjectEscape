@@ -5,23 +5,23 @@ using UnityEngine;
 
 public class OpenChest : MonoBehaviour
 {
-    public Vector3 rota;
+    public Quaternion rota;
+    private bool isOpen;
+    public bool IsOpen { get { return isOpen; } set { isOpen = value; } }
 
     private void Awake()
     {
-        rota = transform.rotation.eulerAngles;
+        rota = Quaternion.Euler(-120, 0, 0);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        StartCoroutine(Open());
+        if (IsOpen == true)
+            Open();
     }
 
-
-    IEnumerator Open()
+    public void Open()
     {
-        
-        yield return new WaitForSeconds(3f);
-        transform.localRotation = Quaternion.Euler(-120,0,0);
+        transform.localRotation = rota;
     }
 }
