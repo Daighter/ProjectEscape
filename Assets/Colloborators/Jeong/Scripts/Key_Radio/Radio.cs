@@ -14,7 +14,8 @@ namespace Jeong
 
         [SerializeField] ChangeFrequency changeFrequency;
 
-        Rigidbody rb;
+
+
 
         public bool radioPowerOn;
         public bool radioPlay;
@@ -43,7 +44,7 @@ namespace Jeong
 
         private void Start()
         {
-            rb = radioKey.GetComponent<Rigidbody>();
+            
             isRadioClear = false;
             radioPowerOn = false;
             radioPlay = false;
