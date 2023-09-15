@@ -8,11 +8,7 @@ namespace Jeong
 {
     public class LantonLinkGimmick : MonoBehaviour
     {
-        
-
         private int[] times = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-
-        public int[] caveTime = new int[3];
         
         [SerializeField] LantonPositionController lantonPositionController;
 
@@ -21,10 +17,6 @@ namespace Jeong
         private void Start()
         {
             LantonGimmick();
-
-           // lantonPositionController.lantonStand[0] = lantonPositionController.lantonStand[caveTime[0]];
-           // lantonPositionController.lantonStand[1] = lantonPositionController.lantonStand[caveTime[1]];
-           // lantonPositionController.lantonStand[2] = lantonPositionController.lantonStand[caveTime[2]];
         }
 
         /*private void LantonClaer()
@@ -75,9 +67,9 @@ namespace Jeong
                                     //Debug.Log("****************************");
                                     Debug.Log($"i : {i}, j : {j}, k : {k}");
                                     //Debug.Log("****************************");
-                                    caveTime[0] = i;
-                                    caveTime[1] = j;
-                                    caveTime[2] = k;
+                                    GameManager.Data.caveTime[0] = i;
+                                    GameManager.Data.caveTime[1] = j;
+                                    GameManager.Data.caveTime[2] = k;
                                     return;
                                 }
                             }
@@ -86,9 +78,9 @@ namespace Jeong
 
                 }    
             }
-            Debug.Log($"caveTime 0 : {caveTime[0]}");
-            Debug.Log($"caveTime 1 : {caveTime[1]}");
-            Debug.Log($"caveTime 2 : {caveTime[2]}");
+            Debug.Log($"caveTime 0 : {GameManager.Data.caveTime[0]}");
+            Debug.Log($"caveTime 1 : {GameManager.Data.caveTime[1]}");
+            Debug.Log($"caveTime 2 : {GameManager.Data.caveTime[2]}");
         }
         #endregion
     }
