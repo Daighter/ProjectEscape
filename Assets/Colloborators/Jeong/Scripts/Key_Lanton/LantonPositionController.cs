@@ -8,13 +8,13 @@ namespace Jeong
         [SerializeField] LantonLinkGimmick  lantonLinkGimmick;
         
         public LantonSocket[] lantonSocket = new LantonSocket[12];
-        public LantonSocket[] lantonSocketKey = new LantonSocket[3];
+        
         public GameObject[] lantonStand = new GameObject[12];
         public GameObject[] lantonStandKey = new GameObject[3];
 
-        bool isOnePosition = false;
-        bool isTwoPosition = false;
-        bool isThreePosition = false;
+        public bool isOnePosition = false;
+        public bool isTwoPosition = false;
+        public bool isThreePosition = false;
 
         private void Start()
         {
@@ -28,39 +28,34 @@ namespace Jeong
             lantonStandKey[2] = lantonStand[GameManager.Data.caveTime[2] - 1];
         }
 
-        private void Update()
-        {
-            
-        }
 
         public void Check1()
         {
-            for (int i = 0;i < lantonStand.Length;i++)
+            for (int i = 0; i < lantonStand.Length; i++)
             {
                 if (lantonSocket[i].isSocketed)
                 {
                     for (int j = 0; j < lantonStand.Length; j++)
                     {
-
                         lantonStand[j] = GameObject.Find($"Wood {j + 1}");
 
-                        if (lantonStandKey[0].name == lantonStand[j].name)
+                        if (lantonStandKey[0].name != lantonSocket[i].name)
                         {
-                            isOnePosition = true;
-                            Debug.Log($"Check : {lantonStandKey[0].name} 과 {lantonStand[j].name} 의 값은 {lantonStandKey[0].name == lantonStand[j].name}");
+                            Debug.Log($"Check : {lantonStandKey[0].name} 과 {lantonSocket[i].name} 의 값은 {lantonStandKey[0].name == lantonSocket[i].name}");
                             return;
                         }
 
-                        else if (lantonStandKey[0].name != lantonStand[j].name)
+                        if (lantonStandKey[0].name == lantonSocket[i].name)
                         {
-                            isTwoPosition = false;
-                            Debug.Log($"Check : {lantonStandKey[0].name} 과 {lantonStand[j].name} 의 값은 {lantonStandKey[0].name == lantonStand[j].name}");
-
+                            isOnePosition = true;
+                            Debug.Log($"Check : {lantonStandKey[0].name} 과 {lantonSocket[i].name} 의 값은 {lantonStandKey[0].name == lantonSocket[i].name}");
+                            return;
                         }
-
                     }
+                    return;
                 }
             }
+
         }
 
         public void Check2()
@@ -71,25 +66,22 @@ namespace Jeong
                 {
                     for (int j = 0; j < lantonStand.Length; j++)
                     {
-
                         lantonStand[j] = GameObject.Find($"Wood {j + 1}");
 
-                        if (lantonStandKey[1].name == lantonStand[j].name)
+                        if (lantonStandKey[1].name != lantonSocket[i].name)
                         {
-                            isTwoPosition = true;
-                            Debug.Log($"Check : {lantonStandKey[1].name} 과 {lantonStand[j].name} 의 값은 {lantonStandKey[1].name == lantonStand[j].name}");
+                            Debug.Log($"Check : {lantonStandKey[1].name} 과 {lantonSocket[i].name} 의 값은 {lantonStandKey[1].name == lantonSocket[i].name}");
                             return;
                         }
 
-                        else if(lantonStandKey[1].name != lantonStand[j].name)
+                        if (lantonStandKey[1].name == lantonSocket[i].name)
                         {
-                            isTwoPosition = false;
-                            Debug.Log($"Check : {lantonStandKey[1].name} 과 {lantonStand[j].name} 의 값은 {lantonStandKey[1].name == lantonStand[j].name}");
-                            
+                            isTwoPosition = true;
+                            Debug.Log($"Check : {lantonStandKey[1].name} 과 {lantonSocket[i].name} 의 값은 {lantonStandKey[1].name == lantonSocket[i].name}");
+                            return;
                         }
-
-
                     }
+                    return;
                 }
             }
         }
@@ -98,30 +90,26 @@ namespace Jeong
         {
             for (int i = 0; i < lantonStand.Length; i++)
             {
-                if (!lantonSocket[i].isSocketed)
-                    return;
-                
-                else if (lantonSocket[i].isSocketed)
+                if (lantonSocket[i].isSocketed)
                 {
                     for (int j = 0; j < lantonStand.Length; j++)
                     {
-
                         lantonStand[j] = GameObject.Find($"Wood {j + 1}");
 
-                        if (lantonStandKey[2].name == lantonStand[j].name)
+                        if (lantonStandKey[2].name != lantonSocket[i].name)
                         {
-                            isThreePosition = true;
-                            Debug.Log($"Check : {lantonStandKey[2].name} 과 {lantonStand[j].name} 의 값은 {lantonStandKey[2].name == lantonStand[j].name}");
+                            Debug.Log($"Check : {lantonStandKey[2].name} 과 {lantonSocket[i].name} 의 값은 {lantonStandKey[2].name == lantonSocket[i].name}");
                             return;
                         }
 
-                        else if (lantonStandKey[2].name != lantonStand[j].name)
+                        if (lantonStandKey[2].name == lantonSocket[i].name)
                         {
-                            isTwoPosition = false;
-                            Debug.Log($"Check : {lantonStandKey[2].name} 과 {lantonStand[j].name} 의 값은 {lantonStandKey[2].name == lantonStand[j].name}");
-
+                            isThreePosition = true;
+                            Debug.Log($"Check : {lantonStandKey[2].name} 과 {lantonSocket[i].name} 의 값은 {lantonStandKey[2].name == lantonSocket[i].name}");
+                            return;
                         }
                     }
+                    return;
                 }
             }
         }
