@@ -30,7 +30,7 @@ namespace Lee
 
         public Vector3 Scale { get { return scale; } set { scale = value; } }
 
-        private bool isInven = false;
+        private bool isInven;
 
         public bool IsInven { get {  return isInven; } set {  isInven = value; } }
 
@@ -53,9 +53,16 @@ namespace Lee
         private void OnSelectExited(SelectExitEventArgs args)
         {
             if (isInven == true)
+            {
+                isInven = true;
                 args.interactableObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
+                
             if (isInven == false)
+            {
+                isInven = false;
                 args.interactableObject.transform.localScale = Scale;
+            }
         }
 
        private void OnTriggerEnter(Collider other)
@@ -80,6 +87,16 @@ namespace Lee
             {
                 isInven = false;
             }
+        }
+
+        public void OnInventory()
+        {
+            isInven = true;
+        }
+
+        public void OutInventory()
+        {
+            isInven = false;
         }
     }
 }

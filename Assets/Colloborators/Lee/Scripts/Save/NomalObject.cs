@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class NomalObject : MonoBehaviour
 {
-    private bool objActive;
 
+    private string objname;
+    public string Objname { get { return objname; } set { objname = value; } }
+
+    private bool objActive;
     public bool ObjActive {get { return objActive;} set { objActive = value; } }    
 
     private Vector3 position;

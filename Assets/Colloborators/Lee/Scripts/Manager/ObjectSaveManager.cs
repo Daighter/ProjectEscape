@@ -37,7 +37,7 @@ namespace Lee
                     objectData.prefabPath = $"Puzzle/{target.name}";
                     objectData.position = target.transform.position;
                     objectData.rotation = target.transform.rotation;
-                    objectData.isInven = target.IsInven;
+                    objectData.isInven = false;
                     SaveData.current.objList.Add(objectData);
                 }
 
@@ -48,7 +48,7 @@ namespace Lee
                     inventoryData.inObjprefabPath = $"Puzzle/{target.name}";
                     inventoryData.position = target.transform.position;
                     inventoryData.rotation = target.transform.rotation;
-                    inventoryData.isInven = target.IsInven;
+                    inventoryData.isInven = true;
                     inventoryData.itemScale = target.Scale;
                     SaveData.current.invenList.Add(inventoryData);
                 }
@@ -59,6 +59,7 @@ namespace Lee
                 if(nomal.enabled == true)
                 {
                     ObjectData objectData = new ObjectData();
+                    objectData.name = nomal.name;
                     objectData.enable = nomal.ObjActive;
                     objectData.position = nomal.Position;
                     objectData.rotation = nomal.Rotation;
@@ -95,17 +96,24 @@ namespace Lee
                 {
                     InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(obj.prefabPath);
                     GameManager.Pool.Get(targetPrefab, obj.position, obj.rotation);
+                    targetPrefab.name = obj.name;   
                     targetPrefab.IsInven = obj.isInven;
                 }
 
-                foreach (InventoryData inven in SaveData.current.invenList)
+                for (int i = 0; i < targets.Length; i++)
                 {
-                    InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
-                    GameManager.Resource.Instantiate(targetPrefab, inven.position, inven.rotation);
-                    targetPrefab.name = inven.inObjName;
-                    targetPrefab.IsInven = inven.isInven;
-                    targetPrefab.Scale = inven.itemScale;
-                }
+                    foreach (InventoryData inven in SaveData.current.invenList)
+                    {
+                        if (targets[i].IsInven == true && inven.inObjName != targets[i].name)
+                        {
+                            InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
+                            GameManager.Pool.Get(targetPrefab, inven.position, inven.rotation);
+                            targetPrefab.name = inven.inObjName;
+                            targetPrefab.IsInven = inven.isInven;
+                            targetPrefab.Scale = inven.itemScale;
+                        }
+                    }
+                }  
             }
             if(nomals.Any() != false )
             {
