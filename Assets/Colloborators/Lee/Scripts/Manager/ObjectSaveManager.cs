@@ -22,7 +22,8 @@ namespace Lee
             SaveData.current.invenList = null;
 
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
-            NomalObject[] nomals = FindObjectsOfType<NomalObject>();    
+            NomalObject[] nomals = FindObjectsOfType<NomalObject>();
+            ColorChanger[] colors = FindObjectsOfType<ColorChanger>();
 
             SaveData.current.invenList = new List<InventoryData>();
             SaveData.current.objList = new List<ObjectData>();
@@ -39,7 +40,8 @@ namespace Lee
                     objectData.isInven = target.IsInven;
                     SaveData.current.objList.Add(objectData);
                 }
-                else
+
+                if (target.IsInven == true)
                 {
                     InventoryData inventoryData = new InventoryData();
                     inventoryData.inObjName = target.name;
@@ -64,15 +66,11 @@ namespace Lee
                 }
             }
 
-            if(scene == "MainRoomSceneT")
+            foreach (ColorChanger target in colors)
             {
-                ColorChanger[] colors = FindObjectsOfType<ColorChanger>();
-                foreach (ColorChanger target in colors)
-                {
-                    ObjectData objectData = new ObjectData();
-                    objectData.colorIndex = target.CurIndex;
-                    SaveData.current.objList.Add(objectData);
-                }
+                ObjectData objectData = new ObjectData();
+                objectData.colorIndex = target.CurIndex;
+                SaveData.current.objList.Add(objectData);
             }
         }
 
@@ -81,49 +79,55 @@ namespace Lee
             scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
             NomalObject[] nomals = FindObjectsOfType<NomalObject>();
+            ColorChanger[] colors = FindObjectsOfType<ColorChanger>();
 
-            foreach (InteratableObject target in targets)
+            if (targets.Any() != false )
             {
-                if (target.IsInven == false) 
+                foreach (InteratableObject target in targets)
                 {
-                    GameManager.Pool.Release(target.gameObject);
-                }
-            }
-
-            foreach (ObjectData obj in SaveData.current.objList)
-            {
-                InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(obj.prefabPath);
-                GameManager.Pool.Get(targetPrefab, obj.position, obj.rotation);
-                targetPrefab.IsInven = obj.isInven;
-            }
-
-            foreach (InventoryData inven in SaveData.current.invenList)
-            {
-                InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
-                GameManager.Pool.Get(targetPrefab, inven.position, inven.rotation);
-                targetPrefab.IsInven = inven.isInven;
-                targetPrefab.Scale = inven.itemScale;
-            }
-
-            for (int i = 0; i < nomals.Length; i++)
-            {
-                foreach (ObjectData obj in SaveData.current.objList)
-                {
-                    if (obj.name == nomals[i].name)
+                    if (target.IsInven == false)
                     {
-                        nomals[i].ObjActive = obj.enable;
-                        nomals[i].Position = obj.position;
-                        nomals[i].Rotation = obj.rotation;
+                        GameManager.Pool.Release(target.gameObject);
                     }
                 }
-            }
 
-            if (scene == "MainRoomSceneT")
-            {
-                ColorChanger[] colors = FindObjectsOfType<ColorChanger>();
-                for(int i  = 0; i < colors.Length; i++)
+                foreach (ObjectData obj in SaveData.current.objList)
                 {
-                    foreach(ObjectData obj in SaveData.current.objList)
+                    InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(obj.prefabPath);
+                    GameManager.Pool.Get(targetPrefab, obj.position, obj.rotation);
+                    targetPrefab.IsInven = obj.isInven;
+                }
+
+                foreach (InventoryData inven in SaveData.current.invenList)
+                {
+                    InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
+                    GameManager.Resource.Instantiate(targetPrefab, inven.position, inven.rotation);
+                    targetPrefab.name = inven.inObjName;
+                    targetPrefab.IsInven = inven.isInven;
+                    targetPrefab.Scale = inven.itemScale;
+                }
+            }
+            if(nomals.Any() != false )
+            {
+                for (int i = 0; i < nomals.Length; i++)
+                {
+                    foreach (ObjectData obj in SaveData.current.objList)
+                    {
+                        if (obj.name == nomals[i].name)
+                        {
+                            nomals[i].ObjActive = obj.enable;
+                            nomals[i].Position = obj.position;
+                            nomals[i].Rotation = obj.rotation;
+                        }
+                    }
+                }
+
+            }
+            if(colors.Any() != false)
+            {
+                for (int i = 0; i < colors.Length; i++)
+                {
+                    foreach (ObjectData obj in SaveData.current.objList)
                     {
                         if (obj.name == colors[i].name)
                         {
