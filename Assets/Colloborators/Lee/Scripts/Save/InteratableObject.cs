@@ -18,10 +18,13 @@ namespace Lee
         public string Objname {  get { return objname; } set { objname = value; } }
 
         public string resourcePath;
-        public string ResourcePath { get { return resourcePath; } set { resourcePath = value; } }   
-        public Vector3 position=> transform.position;
+        public string ResourcePath { get { return resourcePath; } set { resourcePath = value; } }
 
-        public Quaternion rotation => transform.rotation;
+        private Vector3 position;
+        public Vector3 Position { get { return position; }set { position = value; } }
+
+        private Quaternion rotation; 
+        public Quaternion Rotation { get { return rotation; } set { rotation = value; } }
 
         private Vector3 scale;
 
@@ -34,6 +37,7 @@ namespace Lee
         private void Awake()
         {
             xRGrab = GetComponent<XRGrabInteractable>();
+            Scale = transform.localScale;
         }
 
         private void OnEnable()
@@ -51,7 +55,7 @@ namespace Lee
             if (isInven == true)
                 args.interactableObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             if (isInven == false)
-                args.interactableObject.transform.localScale = new Vector3(1f, 1f, 1f);
+                args.interactableObject.transform.localScale = Scale;
         }
 
        private void OnTriggerEnter(Collider other)
@@ -59,7 +63,6 @@ namespace Lee
            if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
            {
                isInven = true;
-               
             }
        }
        
@@ -68,7 +71,6 @@ namespace Lee
            if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
            {
                isInven = true;
-                
             }
        }
 
@@ -78,21 +80,6 @@ namespace Lee
             {
                 isInven = false;
             }
-        }
-
-        public void Arem()
-        {
-            Debug.Log("호버응애");
-        }
-
-        public void Smaller()
-        {
-            Scale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
-
-        public void Largeer() 
-        {
-            Scale = Vector3.one;
         }
     }
 }
