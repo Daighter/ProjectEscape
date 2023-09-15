@@ -27,12 +27,12 @@ namespace Lee
                 if(target.IsInven == false)
                 {
                     ObjectData objectData = new ObjectData();
+                    objectData.enable = target.enabled;
                     objectData.name = target.name;
                     objectData.prefabPath = $"Puzzle/{target.name}";
                     objectData.position = target.position;
                     objectData.rotation = target.rotation;
                     objectData.isInven = target.IsInven;
-                    objectData.scale = target.Scale;
                     SaveData.current.objList.Add(objectData);
                 }
                 else
@@ -41,7 +41,7 @@ namespace Lee
                     inventoryData.inObjName = target.name;
                     inventoryData.inObjprefabPath = $"Puzzle/{target.name}";
                     inventoryData.isInven = target.IsInven;
-                    inventoryData.ItemScale = target.Scale;
+                    inventoryData.itemScale = target.Scale;
                     SaveData.current.invenList.Add(inventoryData);
                 }
             }
@@ -62,6 +62,7 @@ namespace Lee
             {
                 InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(obj.prefabPath);
                 GameManager.Pool.Get(targetPrefab, obj.position, obj.rotation);
+                targetPrefab.enabled = obj.enable;
             }
         }
 
@@ -74,12 +75,14 @@ namespace Lee
                 {
                     if (target.name == SaveData.current.invenList[i].inObjName)
                         return;
-                    else
-                    {
-                        InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(SaveData.current.invenList[i].inObjprefabPath);
-                        GameManager.Resource.Instantiate(targetPrefab);
-                    }
                 }
+            }
+            foreach (InventoryData inven in SaveData.current.invenList)
+            {
+                InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
+                GameManager.Resource.Instantiate(targetPrefab);
+                targetPrefab.IsInven = inven.isInven;
+                targetPrefab.Scale = inven.itemScale;
             }
         }
 

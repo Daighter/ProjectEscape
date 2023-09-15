@@ -14,6 +14,6 @@ namespace Lee
 
         public bool isInven;
 
-        public Vector3 ItemScale;
+        public Vector3 itemScale;
     }
 }
