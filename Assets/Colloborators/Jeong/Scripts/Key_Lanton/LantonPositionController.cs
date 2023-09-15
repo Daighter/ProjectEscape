@@ -23,9 +23,9 @@ namespace Jeong
                 lantonStand[i] = GameObject.Find($"Wood {i + 1}");
             }
 
-            lantonStandKey[0] = lantonStand[lantonLinkGimmick.caveTime[0] - 1];
-            lantonStandKey[1] = lantonStand[lantonLinkGimmick.caveTime[1] - 1];
-            lantonStandKey[2] = lantonStand[lantonLinkGimmick.caveTime[2] - 1];
+            lantonStandKey[0] = lantonStand[GameManager.Data.caveTime[0] - 1];
+            lantonStandKey[1] = lantonStand[GameManager.Data.caveTime[1] - 1];
+            lantonStandKey[2] = lantonStand[GameManager.Data.caveTime[2] - 1];
         }
 
         private void Update()
