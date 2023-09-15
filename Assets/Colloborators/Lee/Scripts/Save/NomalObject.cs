@@ -4,9 +4,32 @@ using UnityEngine;
 
 public class NomalObject : MonoBehaviour
 {
-    public string resourcePath;
-    public string ResourcePath { get { return resourcePath; } set { resourcePath = value; } }
-    public Vector3 position => transform.position;
+    private bool objActive;
 
-    public Quaternion rotation => transform.rotation;
+    public bool ObjActive {get { return objActive;} set { objActive = value; } }    
+
+    private Vector3 position;
+    public Vector3 Position { get { return position; } set { position = value; } }
+
+    private Quaternion rotation;
+    public Quaternion Rotation { get { return rotation; } set { rotation = value; } }
+
+    private void Start()
+    {
+        if(objActive==false)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnEnable()
+    {
+        objActive = true;
+    }
+
+    private void OnDisable()
+    {
+        objActive = false;
+    }
+
 }

@@ -21,6 +21,8 @@ namespace Lee
         public Vector3 scale;
 
         public bool isInven;
+
+        public int colorIndex;
     }
 }
 

@@ -18,10 +18,13 @@ namespace Lee
         public string Objname {  get { return objname; } set { objname = value; } }
 
         public string resourcePath;
-        public string ResourcePath { get { return resourcePath; } set { resourcePath = value; } }   
-        public Vector3 position=> transform.position;
+        public string ResourcePath { get { return resourcePath; } set { resourcePath = value; } }
 
-        public Quaternion rotation => transform.rotation;
+        private Vector3 position;
+        public Vector3 Position { get { return position; }set { position = value; } }
+
+        private Quaternion rotation; 
+        public Quaternion Rotation { get { return rotation; } set { rotation = value; } }
 
         private Vector3 scale;
 
