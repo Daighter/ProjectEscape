@@ -1,3 +1,4 @@
+using Jeong;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,7 +12,7 @@ namespace Bae
         [SerializeField] TMP_Text Text;
         [SerializeField] GameObject caveHint;
 
-        private void Update()
+        private void OnEnable()
         {
             if(GameManager.Data.isCaveLantonClear)
             {

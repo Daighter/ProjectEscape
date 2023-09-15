@@ -18,25 +18,21 @@ namespace Bae
             animator = GetComponent<Animator>();
         }
 
-        private void Update()
-        {
-            
-        }
+   
         IEnumerator DoorOpenRoutine()
         {
+
             yield return new WaitForSeconds(1f);
-            GameManager.Sound.PlayDungeonSound("Door");
-            yield return new WaitForSeconds(2f);
             col.enabled = false;
             animator.SetTrigger("Open");
-            
+            GameManager.Sound.PlayDungeonSound("Door");
             GameManager.Data.DungeonClear();
         }
         public void ONCheckSocket(SelectEnterEventArgs args)
         {
             RuneCheck key =args.interactableObject.transform.GetComponent<RuneCheck>();
             GameManager.Sound.PlayDungeonSound("RuneIn");
-            if (key.key)
+            if (key.getKey)
             {
                 runeTrue++;
             }
@@ -48,13 +44,20 @@ namespace Bae
                     StartCoroutine(DoorOpenRoutine());
                 }
             }
+           
         }
 
 
         public void ExitRune(SelectExitEventArgs args)
         {
             GameManager.Sound.PlayDungeonSound("RuneOut");
+            RuneCheck key = args.interactableObject.transform.GetComponent<RuneCheck>();
+            if (key.getKey)
+            {
+                runeTrue--;
+            }
             socketCount--;
+           
         }
     }
 }
