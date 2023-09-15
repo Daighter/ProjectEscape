@@ -12,6 +12,8 @@ namespace Jeong
         [SerializeField] GameObject RescueMessage;
         [SerializeField] GameObject radioKey;
 
+        [SerializeField] AudioSource[] radioSounds;
+
         [SerializeField] ChangeFrequency changeFrequency;
 
 
