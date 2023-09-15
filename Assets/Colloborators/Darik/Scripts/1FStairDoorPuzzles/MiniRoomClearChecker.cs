@@ -36,7 +36,7 @@ namespace Darik
                 Debug.Log("PrisonRoom Claer");
             }
 
-            else if (isCaveRoom)// && GameManager.Data.isCaveRoomClear)
+            else if (isCaveRoom && GameManager.Data.isCaveRoomClear)
             {
                 stair1FDoorPuzzle.IsCaveRoomClear = true;
                 stair1FDoorPuzzle.CheckAllClear();
