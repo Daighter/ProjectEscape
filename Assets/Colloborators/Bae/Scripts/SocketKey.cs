@@ -21,14 +21,13 @@ namespace Bae
             RuneCheck rune = args.interactableObject.transform.GetComponent<RuneCheck>();
             if(socketKeyName == rune.state)
             {
-                rune.key = true;
+                rune.getKey = true;
 
             }
             else
             {
-                rune.key = false;
+                rune.getKey=false;
             }
-            
         }
     }
 }

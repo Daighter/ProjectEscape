@@ -7,7 +7,14 @@ namespace Bae
     public class RuneCheck : MonoBehaviour
     {
         public string state;
-        public bool key;
+        [SerializeField]
+        bool key;
+
+        public bool getKey
+        {
+            get { return key; }
+            set { key = value; }
+        }
         private void OnEnable()
         {
             state= gameObject.name;
