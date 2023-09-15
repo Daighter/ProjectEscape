@@ -14,11 +14,13 @@ namespace Bae
 
         public void CoffinOpen()
         {
+            GameManager.Sound.PlayDungeonSound("CoffinOpen");
             animator.SetBool("Open", true);
         }
         public void CoffinClose()
         {
             animator.SetBool("Open", false);
+            GameManager.Sound.PlayDungeonSound("CoffinClose");
         }
     }
 }
