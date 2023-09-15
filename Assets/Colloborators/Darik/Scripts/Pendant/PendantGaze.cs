@@ -52,8 +52,13 @@ namespace Darik
                 Debug.Log(state);
                 updateTimer = state;
 
-                if (!state)
+                if (state)
+                    renderer.material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendants/JewalColors/None");
+                else
+                {
                     curGazedTime = 0f;
+                    GameManager.Data.SetPendantColor(GameManager.Scene.CurScene.SceneNum, renderer);
+                }
             }
         }
     }
