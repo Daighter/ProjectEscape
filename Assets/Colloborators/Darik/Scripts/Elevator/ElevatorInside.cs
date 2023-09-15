@@ -34,10 +34,13 @@ namespace Darik
         {
             base.Start();
 
-            CurFloor = -1;
+            curFloor = -1;
             transform.position = new Vector3(transform.position.x, -3, transform.position.z);
 
             StartCoroutine(BadEndingCheckCoroutine());
+
+            if (GameManager.Data.isElevatorPowerOn)
+                CurFloor = curFloor;
         }
 
         public void Move(int targetFloor)
