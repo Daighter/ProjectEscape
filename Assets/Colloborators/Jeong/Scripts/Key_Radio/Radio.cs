@@ -15,9 +15,11 @@ namespace Jeong
 
         public bool radioPowerOn;
         public bool radioPlay;
+        public bool isRadioClear;
        
         private void Start()
         {
+            isRadioClear = false;
             radioPowerOn = false;
             radioPlay = false;
             RescueMessage.SetActive(false);
@@ -35,38 +37,46 @@ namespace Jeong
 
         public void RadioPlayState()
         {
-
-            if (!radioPowerOn && !radioPlay)
+            if(!isRadioClear)
             {
-                radioPointer.SetActive(false);
-                return;
-            }
+                if (!radioPowerOn && !radioPlay)
+                {
+                    radioPointer.SetActive(false);
+                    return;
+                }
 
-            else if (!radioPowerOn && radioPlay)
-            {
-                return;
-            }
+                else if (!radioPowerOn && radioPlay)
+                {
+                    return;
+                }
 
-            else if (radioPowerOn && !radioPlay)
-            {
-                radioPointer.SetActive(true);
-                return;
-                // 애니메이션 or 이펙트 재생
-            }
+                else if (radioPowerOn && !radioPlay)
+                {
+                    radioPointer.SetActive(true);
+                    return;
+                    // 애니메이션 or 이펙트 재생
+                }
 
-            else if (radioPlay && !changeFrequency.ch180)
-            {
-                RescueMessage.SetActive(false);
-                ExitPoint.SetActive(false);
-                return;
-            }
+                else if (radioPlay && !changeFrequency.ch180)
+                {
+                    RescueMessage.SetActive(false);
+                    ExitPoint.SetActive(false);
+                    return;
+                }
 
-            else if (radioPlay && changeFrequency.ch180)
-            {
-                RescueMessage.SetActive(true);
-                ExitPoint.SetActive(true);
-                GameManager.Data.CaveClear();
-                return;
+                else if (radioPlay && changeFrequency.ch180)
+                {
+                    isRadioClear = true;
+                    if (isRadioClear)
+                    {
+                        RescueMessage.SetActive(true);
+                        ExitPoint.SetActive(true);
+                        GameManager.Data.CaveClear();
+                        return;
+                    }
+                }
+
+               
             }
         }
     }
