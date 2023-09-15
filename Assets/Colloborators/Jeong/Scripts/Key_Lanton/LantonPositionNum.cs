@@ -18,9 +18,9 @@ namespace Jeong
       
         public void LantonPositionUI()
         {
-            int lantonPos1 = lantonLinkGimmick.caveTime[0];
-            int lantonPos2 = lantonLinkGimmick.caveTime[1];
-            int lantonPos3 = lantonLinkGimmick.caveTime[2];
+            int lantonPos1 = GameManager.Data.caveTime[0];
+            int lantonPos2 = GameManager.Data.caveTime[1];
+            int lantonPos3 = GameManager.Data.caveTime[2];
             lantonPosition.text = $" LantonPos1 = {lantonPos1}\n LantonPos2 = {lantonPos2}\n LantonPos3 = {lantonPos3}";
         }
     }
