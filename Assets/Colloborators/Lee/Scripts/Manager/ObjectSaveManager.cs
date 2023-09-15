@@ -32,6 +32,7 @@ namespace Lee
                     objectData.position = target.position;
                     objectData.rotation = target.rotation;
                     objectData.isInven = target.IsInven;
+                    objectData.scale = target.Scale;
                     SaveData.current.objList.Add(objectData);
                 }
                 else
@@ -40,6 +41,7 @@ namespace Lee
                     inventoryData.inObjName = target.name;
                     inventoryData.inObjprefabPath = $"Puzzle/{target.name}";
                     inventoryData.isInven = target.IsInven;
+                    inventoryData.ItemScale = target.Scale;
                     SaveData.current.invenList.Add(inventoryData);
                 }
             }
