@@ -13,10 +13,10 @@ namespace Jeong
         private int[] times = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 
         public int[] caveTime = new int[3];
-        public bool isCaveClear = false;
-
-
+        
         [SerializeField] LantonPositionController lantonPositionController;
+
+        bool isLantonClear;
 
         private void Start()
         {
@@ -26,6 +26,12 @@ namespace Jeong
            // lantonPositionController.lantonStand[1] = lantonPositionController.lantonStand[caveTime[1]];
            // lantonPositionController.lantonStand[2] = lantonPositionController.lantonStand[caveTime[2]];
         }
+
+        /*private void LantonClaer()
+        {
+            if (!isLantonClear)
+            GameManager.Data.isCaveLantonClear = true;
+        }*/
 
         // 랜덤숫자 3개 뽑시(중복없음)
         #region 
