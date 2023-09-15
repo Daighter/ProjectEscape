@@ -6,8 +6,8 @@ namespace Darik
 {
     public class ColorMatch : MonoBehaviour
     {
+        [SerializeField] private Stair1FDoorPuzzle stair1FDoorPuzzle;
         [SerializeField] private ColorChanger[] colorChangers;
-        [SerializeField] private GameObject stair1FDoor;
 
         private bool isClear = false;
 
@@ -22,8 +22,9 @@ namespace Darik
             if (!isClear)
             {
                 isClear = true;
-                stair1FDoor.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
-                Debug.Log("Open1FStairDoor");
+                stair1FDoorPuzzle.IsColorMatchClear = true;
+                stair1FDoorPuzzle.CheckAllClear();
+                Debug.Log("ColorMatch Clear");
             }
         }
     }
