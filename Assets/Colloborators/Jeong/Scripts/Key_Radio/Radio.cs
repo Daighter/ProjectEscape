@@ -10,8 +10,11 @@ namespace Jeong
         [SerializeField] GameObject radioPointer;
         [SerializeField] GameObject ExitPoint;
         [SerializeField] GameObject RescueMessage;
+        [SerializeField] GameObject radioKey;
 
         [SerializeField] ChangeFrequency changeFrequency;
+
+        Rigidbody rb;
 
         public bool radioPowerOn;
         public bool radioPlay;
@@ -19,6 +22,7 @@ namespace Jeong
        
         private void Start()
         {
+            rb = radioKey.GetComponent<Rigidbody>();
             isRadioClear = false;
             radioPowerOn = false;
             radioPlay = false;
@@ -33,6 +37,7 @@ namespace Jeong
         public void RadioPowerOn()
         {
             radioPowerOn = true;
+            
         }
 
         public void RadioPlayState()
