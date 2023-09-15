@@ -23,7 +23,9 @@ namespace Lee
 
         public Quaternion rotation => transform.rotation;
 
-        public Vector3 scale => transform.localScale;
+        private Vector3 scale;
+
+        public Vector3 Scale { get { return scale; } set { scale = value; } }
 
         private bool isInven = false;
 
@@ -32,7 +34,16 @@ namespace Lee
         private void Awake()
         {
             xRGrab = GetComponent<XRGrabInteractable>();
+        }
+
+        private void OnEnable()
+        {
             xRGrab.selectExited.AddListener(OnSelectExited);
+        }
+
+        private void OnDisable()
+        {
+            xRGrab.selectExited.RemoveListener(OnSelectExited);
         }
 
         private void OnSelectExited(SelectExitEventArgs args)
@@ -43,13 +54,24 @@ namespace Lee
                 args.interactableObject.transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
-            {
-                isInven = true;
+       private void OnTriggerEnter(Collider other)
+       {
+           if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
+           {
+               isInven = true;
+               
             }
-        }
+       }
+       
+       private void OnTriggerStay(Collider other)
+       {
+           if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
+           {
+               isInven = true;
+                
+            }
+       }
+
         private void OnTriggerExit(Collider other)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
@@ -61,6 +83,16 @@ namespace Lee
         public void Arem()
         {
             Debug.Log("호버응애");
+        }
+
+        public void Smaller()
+        {
+            Scale = new Vector3(0.1f, 0.1f, 0.1f);
+        }
+
+        public void Largeer() 
+        {
+            Scale = Vector3.one;
         }
     }
 }
