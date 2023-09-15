@@ -20,16 +20,17 @@ namespace Bae
 
         private void Update()
         {
-            if(socketCount == count)
-            {
-                if(runeTrue == count)
-                {
-                    col.enabled = false;
-                    animator.SetTrigger("Open");
-                    GameManager.Sound.PlayDungeonSound("Door");
-                    //GameManager.Data.isDungeonRoomClear = true;
-                }
-            }
+            
+        }
+        IEnumerator DoorOpenRoutine()
+        {
+            yield return new WaitForSeconds(1f);
+            GameManager.Sound.PlayDungeonSound("Door");
+            yield return new WaitForSeconds(2f);
+            col.enabled = false;
+            animator.SetTrigger("Open");
+            
+            GameManager.Data.DungeonClear();
         }
         public void ONCheckSocket(SelectEnterEventArgs args)
         {
@@ -40,6 +41,13 @@ namespace Bae
                 runeTrue++;
             }
             socketCount++;
+            if (socketCount == count)
+            {
+                if (runeTrue == count)
+                {
+                    StartCoroutine(DoorOpenRoutine());
+                }
+            }
         }
 
 

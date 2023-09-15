@@ -10,7 +10,7 @@ namespace Darik
 
         private int curIndex = 1;
 
-        public int CurIndex { get { return curIndex; } }
+        public int CurIndex { get { return curIndex; } set { curIndex = value; } }
 
         public void ChangeColor()
         {
