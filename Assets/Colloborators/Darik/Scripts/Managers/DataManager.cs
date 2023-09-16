@@ -86,6 +86,11 @@ namespace Darik
                     material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Blue");     break;
                 case Color.Purple:
                     material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Purple");   break;
+
+                case Color.None:
+                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/None");
+                    material.color = UnityEngine.Color.white;
+                    break;
             }
 
             return material;
