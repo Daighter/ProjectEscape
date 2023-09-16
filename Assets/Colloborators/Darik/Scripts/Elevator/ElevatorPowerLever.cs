@@ -6,6 +6,8 @@ namespace Darik
 {
     public class ElevatorPowerLever : MonoBehaviour
     {
+        [SerializeField] private bool debug;
+
         private bool isPowered = false;
 
         public void PowerOn()
@@ -14,7 +16,10 @@ namespace Darik
             {
                 isPowered = true;
                 GameManager.Data.isElevatorPowerOn = true;
-                Debug.Log("Elevator Power On");
+
+                GameManager.Sound.PlayMainRoomSound("ElevatorPowerOn");
+                if (debug)
+                    Debug.Log("Elevator Power On");
             }
         }
     }
