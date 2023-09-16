@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace Darik
 {
@@ -64,7 +62,6 @@ namespace Darik
 
         public void SetPendantColor(int sceneNum, Renderer renderer)
         {
-            Debug.Log(colors[sceneNum]);
             renderer.material = LoadMaterial(colors[sceneNum]);
         }
 
