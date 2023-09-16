@@ -2465,10 +2465,6 @@ MonoBehaviour:
   - {fileID: 1327849139}
   - {fileID: 131085346}
   - {fileID: 913286787}
-  lantonSocketKey:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   lantonStand:
   - {fileID: 0}
   - {fileID: 0}
@@ -2486,6 +2482,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  isOnePosition: 0
+  isTwoPosition: 0
+  isThreePosition: 0
 --- !u!1 &377213965 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1640357401124442, guid: 512245daca745f64693d790c6c69d575,
@@ -8066,7 +8065,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
