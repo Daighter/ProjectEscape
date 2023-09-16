@@ -10,29 +10,46 @@ using static UnityEditor.Progress;
 
 namespace Lee
 {
-    public class InventorySocket : XRGridSocket
+    public class InventorySocket : MonoBehaviour
     {
         private XRSocketInteractor socketInteractor;
         private List<GameObject> sockets;
-        private GameObject socket;
+        private GameObject item;
         private InteratableObject interatableObject;
 
-        protected override void Awake()
+        //protected override void Awake()
+        //{
+        //    base.Awake();
+        //    socketInteractor = GetComponent<XRSocketInteractor>();
+        //    sockets = new List<GameObject>();
+        //}
+
+        private void Awake()
         {
-            base.Awake();
             socketInteractor = GetComponent<XRSocketInteractor>();
-
-            socket = GameManager.Resource.Load<GameObject>("UI/Socket");
-
             sockets = new List<GameObject>();
-
-            socketInteractor.selectEntered.AddListener(OnSave);
         }
 
-        public void OnSave(SelectEnterEventArgs arg)
-        {
-            GameManager.ObjM.SaveObj();
-        }
-        
+       //private void OnEnable()
+       //{
+       //    socketInteractor.hoverEntered.AddListener(OnInven);
+       //    socketInteractor.hoverExited.AddListener(OutInven);
+       //}
+       //
+       //private void OnDisable()
+       //{
+       //    socketInteractor.hoverEntered.RemoveListener(OnInven);
+       //    socketInteractor.hoverExited.RemoveListener(OutInven);
+       //}
+       //
+       //public void OnInven(HoverEnterEventArgs arg)
+       //{
+       //    arg.interactableObject.transform.gameObject.GetComponent<InteratableObject>().Smaller();
+       //}
+       //
+       //public void OutInven(HoverExitEventArgs arg)
+       //{
+       //    arg.interactableObject.transform.gameObject.GetComponent<InteratableObject>().Largeer();
+       //}
     }
 }

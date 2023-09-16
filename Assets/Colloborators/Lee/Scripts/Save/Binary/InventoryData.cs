@@ -13,5 +13,11 @@ namespace Lee
         public string inObjprefabPath;
 
         public bool isInven;
+
+        public Vector3 position;
+
+        public Quaternion rotation;
+
+        public Vector3 itemScale;
     }
 }

@@ -9,8 +9,10 @@ namespace Darik
         [SerializeField] private Renderer jewal;
 
         private int curIndex = 1;
+        private string objname;
 
-        public int CurIndex { get { return curIndex; } }
+        public int CurIndex { get { return curIndex; } set { curIndex = value; } }
+        public string Objname { get { return objname; } set { objname = value; } }
 
         public void ChangeColor()
         {
