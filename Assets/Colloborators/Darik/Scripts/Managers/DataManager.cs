@@ -16,6 +16,11 @@ namespace Darik
         public bool isPrisonRoomClear { get; private set; }
         public bool isCaveRoomClear { get; private set; }
 
+        private void Start()
+        {
+            SetRandomColor();
+        }
+
         public void DungeonClear()
         {
             isDungeonRoomClear = true;
@@ -29,11 +34,6 @@ namespace Darik
         public void CaveClear()
         {
             isCaveRoomClear = true;
-        }
-
-        private void Start()
-        {
-            SetRandomColor();
         }
 
         #region PendantColor
