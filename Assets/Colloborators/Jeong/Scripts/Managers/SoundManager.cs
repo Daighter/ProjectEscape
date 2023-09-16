@@ -5,7 +5,7 @@ namespace Jeong
 {
     public class SoundManager : MonoBehaviour
     {
-        Dictianary<string, AudioSource> mainRoomSounds;
+        Dictionary<string, AudioSource> mainRoomSounds;
         Dictionary<string, AudioSource> caveSound;
         Dictionary<string, AudioSource> elevatorSound;
         Dictionary<string, AudioSource> prisonSound;
@@ -14,7 +14,7 @@ namespace Jeong
 
         private void Awake()
         {
-            mainRoomSounds = new Dictianary<string, AudioSource>();
+            mainRoomSounds = new Dictionary<string, AudioSource>();
             caveSound = new Dictionary<string, AudioSource>();
             elevatorSound = new Dictionary<string, AudioSource>();
             prisonSound = new Dictionary<string, AudioSource>();
