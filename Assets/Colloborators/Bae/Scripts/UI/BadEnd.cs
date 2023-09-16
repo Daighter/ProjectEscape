@@ -11,6 +11,9 @@ namespace Bae
 {
     public class BadEnd : MonoBehaviour
     {
+        [SerializeField] RectTransform badEndBlack;
+        [SerializeField] string sceneName = null;
+
         [SerializeField] TMP_Text badEnd;
         [SerializeField] Image image;
         [SerializeField] Color backColor;
@@ -19,7 +22,8 @@ namespace Bae
 
         public void BadEndOn(float badDuration)
         {
-            gameObject.SetActive(true);
+            badEndBlack.gameObject.SetActive(true);
+            badEndBlack.localPosition = new Vector3(0f,0f,11f);
             StartCoroutine(BadEndRoutine(badDuration));
         }
         IEnumerator BadEndRoutine(float badDuration)
@@ -50,6 +54,11 @@ namespace Bae
             Color textNewColor = textColor;
             textNewColor.a = 1;
             badEnd.color = textNewColor;
+
+            if(sceneName !=null)
+            {
+                GameManager.Scene.LoadScene(sceneName);
+            }
         }
     }
     
