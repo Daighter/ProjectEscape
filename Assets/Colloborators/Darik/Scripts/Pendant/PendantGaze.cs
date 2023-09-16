@@ -6,6 +6,7 @@ namespace Darik
 {
     public class PendantGaze : MonoBehaviour
     {
+        [SerializeField] private bool debug;
         [SerializeField] private GameObject player;
         [SerializeField] private bool isMainRoom;
         [SerializeField] private string MainRoomSceneName;
@@ -49,11 +50,15 @@ namespace Darik
         {
             if (!isMainRoom)
             {
-                Debug.Log(state);
+                if (debug)
+                    Debug.Log(state);
                 updateTimer = state;
 
                 if (state)
+                {
                     renderer.material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendants/JewalColors/None");
+                    renderer.material.color = Color.white;
+                }
                 else
                 {
                     curGazedTime = 0f;
