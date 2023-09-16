@@ -20,15 +20,7 @@ namespace Lee
         public string resourcePath;
         public string ResourcePath { get { return resourcePath; } set { resourcePath = value; } }
 
-        private Vector3 position;
-        public Vector3 Position { get { return position; }set { position = value; } }
-
-        private Quaternion rotation; 
-        public Quaternion Rotation { get { return rotation; } set { rotation = value; } }
-
         private Vector3 scale;
-
-        public Vector3 Scale { get { return scale; } set { scale = value; } }
 
         private bool isInven;
 
@@ -37,7 +29,7 @@ namespace Lee
         private void Awake()
         {
             xRGrab = GetComponent<XRGrabInteractable>();
-            Scale = transform.localScale;
+            scale = transform.localScale;
         }
 
         private void OnEnable()
@@ -61,7 +53,7 @@ namespace Lee
             if (isInven == false)
             {
                 isInven = false;
-                args.interactableObject.transform.localScale = Scale;
+                args.interactableObject.transform.localScale = scale;
             }
         }
 

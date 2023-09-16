@@ -9,6 +9,7 @@ using System.Linq;
 using static UnityEngine.GraphicsBuffer;
 using Darik;
 using UnityEditor.SearchService;
+using UnityEngine.SocialPlatforms;
 
 namespace Lee
 {
@@ -17,10 +18,6 @@ namespace Lee
         private string scene;
         public void SaveObj()
         {
-            scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-            SaveData.current.objList = null;
-            SaveData.current.invenList = null;
-
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
             NomalObject[] nomals = FindObjectsOfType<NomalObject>();
             ColorChanger[] colors = FindObjectsOfType<ColorChanger>();
@@ -49,7 +46,7 @@ namespace Lee
                     inventoryData.position = target.transform.position;
                     inventoryData.rotation = target.transform.rotation;
                     inventoryData.isInven = true;
-                    inventoryData.itemScale = target.Scale;
+                    inventoryData.itemScale = target.transform.lossyScale;
                     SaveData.current.invenList.Add(inventoryData);
                 }
             }
@@ -59,10 +56,10 @@ namespace Lee
                 if(nomal.enabled == true)
                 {
                     ObjectData objectData = new ObjectData();
-                    objectData.name = nomal.name;
+                    objectData.name = nomal.gameObject.name;
                     objectData.enable = nomal.ObjActive;
-                    objectData.position = nomal.Position;
-                    objectData.rotation = nomal.Rotation;
+                    objectData.position = nomal.transform.position;
+                    objectData.rotation = nomal.transform.rotation;
                     SaveData.current.objList.Add(objectData);
                 }
             }
@@ -70,6 +67,7 @@ namespace Lee
             foreach (ColorChanger target in colors)
             {
                 ObjectData objectData = new ObjectData();
+                objectData.name = target.gameObject.name;
                 objectData.colorIndex = target.CurIndex;
                 SaveData.current.objList.Add(objectData);
             }
@@ -84,27 +82,19 @@ namespace Lee
 
             if (targets.Any() != false )
             {
-                foreach (InteratableObject target in targets)
+                /*foreach (InteratableObject target in targets)
                 {
-                    if (target.IsInven == false)
+                    GameManager.Pool.Release(target.gameObject);
+                    foreach (ObjectData obj in SaveData.current.objList)
                     {
-                        GameManager.Pool.Release(target.gameObject);
+                        InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(obj.prefabPath);
+                        GameManager.Pool.Get(targetPrefab, obj.position, obj.rotation);
+                        targetPrefab.name = obj.name;
+                        targetPrefab.IsInven = obj.isInven;
                     }
-                }
-
-                foreach (ObjectData obj in SaveData.current.objList)
-                {
-                    InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(obj.prefabPath);
-                    GameManager.Pool.Get(targetPrefab, obj.position, obj.rotation);
-                    targetPrefab.name = obj.name;   
-                    targetPrefab.IsInven = obj.isInven;
-                }
-
-                for (int i = 0; i < targets.Length; i++)
-                {
                     foreach (InventoryData inven in SaveData.current.invenList)
                     {
-                        if (targets[i].IsInven == true && inven.inObjName != targets[i].name)
+                        if (target.IsInven == true && inven.inObjName != target.name)
                         {
                             InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
                             GameManager.Pool.Get(targetPrefab, inven.position, inven.rotation);
@@ -113,33 +103,67 @@ namespace Lee
                             targetPrefab.Scale = inven.itemScale;
                         }
                     }
-                }  
-            }
-            if(nomals.Any() != false )
-            {
-                for (int i = 0; i < nomals.Length; i++)
+                }*/
+
+                foreach (InteratableObject target in targets)
                 {
                     foreach (ObjectData obj in SaveData.current.objList)
                     {
-                        if (obj.name == nomals[i].name)
+                        if (obj.name == target.name)
                         {
-                            nomals[i].ObjActive = obj.enable;
-                            nomals[i].Position = obj.position;
-                            nomals[i].Rotation = obj.rotation;
+                            target.gameObject.name = obj.name;
+                            target.IsInven = obj.isInven;
+                            target.transform.position = obj.position;
+                            target.transform.rotation = obj.rotation;
+                        }
+                    }
+                    foreach (InventoryData inven in SaveData.current.invenList)
+                    {
+                        if (target.name == inven.inObjName)
+                        {
+                            target.gameObject.name = inven.inObjName;
+                            target.IsInven = inven.isInven;
+                            target.transform.position = inven.position;
+                            target.transform.rotation = inven.rotation;
+                            target.transform.localScale = inven.itemScale;
                         }
                     }
                 }
-
             }
-            if(colors.Any() != false)
+
+            foreach (InventoryData inven in SaveData.current.invenList)
             {
-                for (int i = 0; i < colors.Length; i++)
+                InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
+                GameManager.Pool.Release(targetPrefab);
+                GameManager.Pool.Get(targetPrefab, inven.position, inven.rotation);
+                targetPrefab.IsInven = inven.isInven;
+            }
+            
+            if (nomals.Any() != false )
+            {
+                foreach (NomalObject nomal in nomals)
                 {
                     foreach (ObjectData obj in SaveData.current.objList)
                     {
-                        if (obj.name == colors[i].name)
+                        if (obj.name == nomal.name)
                         {
-                            colors[i].CurIndex = obj.colorIndex;
+                            nomal.ObjActive = obj.enable;
+                            nomal.transform.position = obj.position;
+                            nomal.transform.rotation = obj.rotation;
+                        }
+                    }
+                }
+            }
+
+            if (colors.Any() != false)
+            {
+                foreach (ColorChanger color in colors)
+                {
+                    foreach (ObjectData obj in SaveData.current.objList)
+                    {
+                        if (obj.name == color.name)
+                        {
+                            color.CurIndex = obj.colorIndex;
                         }
                     }
                 }
