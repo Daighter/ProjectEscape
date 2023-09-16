@@ -10,6 +10,8 @@ namespace Darik
         public bool isElevatorPowerOn = false;
         public int elevatorCurFloor = -2;
 
+        public GameObject[] runeBox = new GameObject[4];
+
         public bool isDungeonRoomClear { get; private set; }
         public bool isPrisonRoomClear { get; private set; }
         public bool isCaveRoomClear { get; private set; }
