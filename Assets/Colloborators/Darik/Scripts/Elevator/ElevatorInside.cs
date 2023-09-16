@@ -11,6 +11,7 @@ namespace Darik
 
         [SerializeField] private PlayerTrigger insideTrigger;
         [SerializeField] private PlayerTrigger roofTopTrigger;
+        [SerializeField] private float badEndTime = 5f;
 
         private bool isArrived = true;
         private int curFloor = 0;
@@ -34,13 +35,18 @@ namespace Darik
         {
             base.Start();
 
-            curFloor = -1;
-            transform.position = new Vector3(transform.position.x, -3, transform.position.z);
-
+            SetStartFloor();
             StartCoroutine(BadEndingCheckCoroutine());
+        }
 
+        private void SetStartFloor()
+        {
             if (GameManager.Data.isElevatorPowerOn)
-                CurFloor = curFloor;
+                CurFloor = GameManager.Data.elevatorCurFloor;
+            else
+                curFloor = GameManager.Data.elevatorCurFloor;
+
+            transform.position = new Vector3(transform.position.x, GameManager.Data.elevatorCurFloor * 3, transform.position.z);
         }
 
         public void Move(int targetFloor)
@@ -55,6 +61,7 @@ namespace Darik
                 {
                     transform.position = new Vector3(transform.position.x, -3, transform.position.z);
                     CurFloor = -1;
+                    GameManager.Data.elevatorCurFloor = -1;
                     isArrived = true;
                 }
             }
@@ -68,6 +75,7 @@ namespace Darik
                 {
                     transform.position = new Vector3(transform.position.x, -6, transform.position.z);
                     CurFloor = -2;
+                    GameManager.Data.elevatorCurFloor = -2;
                     isArrived = true;
                 }
             }
@@ -89,7 +97,13 @@ namespace Darik
 
         IEnumerator BadEndingCoroutine()
         {
-            yield return new WaitForSeconds(5f);
+            if (badEndTime == 0)
+                badEndTime = 5f;
+
+            if (roofTopTrigger.Player != null)
+                roofTopTrigger.Player.GetComponentInChildren<Bae.BadEnd>().BadEndOn(badEndTime);
+
+            yield return new WaitForSeconds(badEndTime);
             Debug.Log("BadEnd");
         }
     }

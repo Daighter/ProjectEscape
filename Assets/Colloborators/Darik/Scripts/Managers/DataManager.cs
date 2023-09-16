@@ -8,6 +8,7 @@ namespace Darik
     public class DataManager : MonoBehaviour
     {
         public bool isElevatorPowerOn = false;
+        public int elevatorCurFloor = -2;
 
         public bool isDungeonRoomClear { get; private set; }
         public bool isPrisonRoomClear { get; private set; }
