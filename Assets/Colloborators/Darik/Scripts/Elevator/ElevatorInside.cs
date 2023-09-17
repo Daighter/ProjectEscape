@@ -26,7 +26,8 @@ namespace Darik
                 curFloor = value;
                 foreach (ElevatorFloorViewer text in floorViewerTexts)
                 {
-                    text.SetFloor(value);
+                    if (GameManager.Data.isElevatorPowerOn)
+                        text.SetFloor(value);
                 }
             }
         }
@@ -39,12 +40,9 @@ namespace Darik
             StartCoroutine(BadEndingCheckCoroutine());
         }
 
-        private void SetStartFloor()
+        public void SetStartFloor()
         {
-            if (GameManager.Data.isElevatorPowerOn)
-                CurFloor = GameManager.Data.elevatorCurFloor;
-            else
-                curFloor = GameManager.Data.elevatorCurFloor;
+            CurFloor = GameManager.Data.elevatorCurFloor;
 
             transform.position = new Vector3(transform.position.x, GameManager.Data.elevatorCurFloor * 3, transform.position.z);
         }

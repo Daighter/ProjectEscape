@@ -6,15 +6,24 @@ namespace Darik
 {
     public class ElevatorPowerLever : MonoBehaviour
     {
-        private bool isPowered = false;
+        [SerializeField] private bool debug;
+        [SerializeField] private UnityEngine.XR.Content.Interaction.XRLever XRLever;
+
+        private void Start()
+        {
+            if (GameManager.Data.isFacilityDoorOpen)
+                XRLever.value = true;
+        }
 
         public void PowerOn()
         {
-            if (!isPowered)
+            if (!GameManager.Data.isElevatorPowerOn)
             {
-                isPowered = true;
                 GameManager.Data.isElevatorPowerOn = true;
-                Debug.Log("Elevator Power On");
+
+                GameManager.Sound.PlayMainRoomSound("ElevatorPowerOn");
+                if (debug)
+                    Debug.Log("Elevator Power On");
             }
         }
     }

@@ -7,6 +7,7 @@ namespace Darik
 {
     public class DataManager : MonoBehaviour
     {
+        public bool isFacilityDoorOpen = false;
         public bool isElevatorPowerOn = false;
         public int elevatorCurFloor = -2;
 
@@ -15,6 +16,11 @@ namespace Darik
         public bool isDungeonRoomClear { get; private set; }
         public bool isPrisonRoomClear { get; private set; }
         public bool isCaveRoomClear { get; private set; }
+
+        private void Start()
+        {
+            SetRandomColor();
+        }
 
         public void DungeonClear()
         {
@@ -29,11 +35,6 @@ namespace Darik
         public void CaveClear()
         {
             isCaveRoomClear = true;
-        }
-
-        private void Start()
-        {
-            SetRandomColor();
         }
 
         #region PendantColor
@@ -86,6 +87,11 @@ namespace Darik
                     material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Blue");     break;
                 case Color.Purple:
                     material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Purple");   break;
+
+                case Color.None:
+                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/None");
+                    material.color = UnityEngine.Color.white;
+                    break;
             }
 
             return material;
