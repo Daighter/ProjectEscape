@@ -9,11 +9,11 @@ namespace Bae
     public class SocketKey : MonoBehaviour
     {
         [SerializeField] GameObject socketKey;
-        public string socketKeyName;
+        [SerializeField] string socketKeyName;
 
-        private void OnEnable()
+        private void Start()
         {
-            socketKeyName = socketKey.name;
+            socketKeyName = socketKey.transform.GetChild(0).name;
         }
 
         public void OnCheckRunes(SelectEnterEventArgs args)
