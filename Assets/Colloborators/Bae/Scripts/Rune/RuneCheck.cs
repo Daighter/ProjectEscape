@@ -17,7 +17,7 @@ namespace Bae
         }
         private void OnEnable()
         {
-            state= gameObject.name;
+            state= gameObject.name+"(Clone)";
         }
     }
 }
