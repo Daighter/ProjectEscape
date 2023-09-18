@@ -7,7 +7,7 @@ namespace Jeong
     public class LantonPositionController : MonoBehaviour
     {
 
-        [SerializeField] LantonLinkGimmick lantonLinkGimmick;
+        
         public LantonSocket[] lantonSocket = new LantonSocket[12];
         
         public GameObject[] lantonStand = new GameObject[12];
@@ -25,7 +25,7 @@ namespace Jeong
 
         public void LantonStandNumbering()
         {
-            if (!lantonLinkGimmick.lantonGimmickNumbering) // 데이터매니저에서 lantonGimmickNumbering을 가져와야한다.
+            if (!GameManager.Data.isLantonNumberingSet) // 데이터매니저에서 lantonGimmickNumbering을 가져와야한다.
                 return;
 
             for (int i = 0; i < lantonStand.Length; i++)
@@ -41,7 +41,7 @@ namespace Jeong
 
         public void Check1()
         {
-            if (!lantonLinkGimmick.lantonGimmickNumbering) // 데이터매니저에서 lantonGimmickNumbering을 가져와야한다.
+            if (!GameManager.Data.isLantonNumberingSet) // 데이터매니저에서 lantonGimmickNumbering을 가져와야한다.
                 return;
 
             for (int i = 0; i < lantonStand.Length; i++)
@@ -50,9 +50,7 @@ namespace Jeong
                 {
                     for (int j = 0; j < lantonStand.Length; j++)
                     {
-                        Debug.Log($"lantonSocket[i].name : {lantonSocket[i].name}");
-                        Debug.Log($"lantonStandKey[0] : {lantonStandKey[0].name}");
-                        
+                       
                         lantonStand[j] = GameObject.Find($"Wood {j + 1}");
 
                        
@@ -70,7 +68,7 @@ namespace Jeong
 
         public void Check2()
         {
-            if (!lantonLinkGimmick.lantonGimmickNumbering) // 데이터매니저에서 lantonGimmickNumbering을 가져와야한다.
+            if (!GameManager.Data.isLantonNumberingSet) // 데이터매니저에서 lantonGimmickNumbering을 가져와야한다.
                 return;
 
             for (int i = 0; i < lantonStand.Length; i++)
@@ -96,7 +94,7 @@ namespace Jeong
 
         public void Check3()
         {
-            if (!lantonLinkGimmick.lantonGimmickNumbering) // 데이터매니저에서 lantonGimmickNumbering을 가져와야한다.
+            if (!GameManager.Data.isLantonNumberingSet) // 데이터매니저에서 lantonGimmickNumbering을 가져와야한다.
                 return;
 
             for (int i = 0; i < lantonStand.Length; i++)
@@ -123,8 +121,7 @@ namespace Jeong
             if (isOnePosition && isTwoPosition && isThreePosition)
             {
                 GameManager.Data.isCaveLantonClear = true;
-                Debug.Log("랜턴기믹 클리어")
-                    ;
+                Debug.Log("랜턴기믹 클리어");
             }
             else
                 Debug.Log("랜턴기믹 진행중");

@@ -11,9 +11,6 @@ namespace Jeong
     {
         private int[] times = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 
-        public bool lantonGimmickNumbering = false;
-
-
         private void Start()
         {
             LantonGimmick();
@@ -24,11 +21,12 @@ namespace Jeong
         
         public void LantonGimmick()
         {
-            if (lantonGimmickNumbering == true)
+            if (GameManager.Data.isLantonNumberingSet == true)
             {
                 Debug.Log("기존의 숫자가 있어 새로 하지않음");
                 return;
             }
+
             Debug.Log("기존의 숫자가 없어 새로 생성함");
             for (int i = 1; i < times.Length; i++)
             {
@@ -71,7 +69,7 @@ namespace Jeong
                                     GameManager.Data.caveTime[0] = i;
                                     GameManager.Data.caveTime[1] = j;
                                     GameManager.Data.caveTime[2] = k;
-                                    lantonGimmickNumbering = true; // 데이터매니저로 lantonGimmickNumbering을 보내야한다.
+                                    GameManager.Data.isLantonNumberingSet = true; // 데이터매니저로 lantonGimmickNumbering을 보내야한다.
                                     return;
                                 }
                             }
