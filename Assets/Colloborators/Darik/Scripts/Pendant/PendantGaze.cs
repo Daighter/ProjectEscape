@@ -56,8 +56,7 @@ namespace Darik
 
                 if (state)
                 {
-                    renderer.material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendants/JewalColors/None");
-                    renderer.material.color = Color.white;
+                    renderer.material = GameManager.Data.LoadMaterial(DataManager.Color.None);
                 }
                 else
                 {

@@ -34,7 +34,10 @@ namespace Jeong
 
         private void SelectChannel()
         {
-            if(radio.radioPlay)
+            if (!radio.radioPlay)
+                return;
+
+            else if (radio.radioPlay)
             {
                 if (0.55f <= basePos && basePos < 0.60f)
                 {
@@ -50,9 +53,6 @@ namespace Jeong
                     frequencyPointer.transform.localPosition = new Vector3(0.5f, basePos, 2f);
                 }
             }
-            else if (!radio.radioPlay)
-                return;
-
             
         }
     }

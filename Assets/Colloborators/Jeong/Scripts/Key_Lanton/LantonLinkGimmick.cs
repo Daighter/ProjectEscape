@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,77 +11,48 @@ namespace Jeong
     {
         private int[] times = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 
-        bool isLantonClear;
-
         private void Start()
         {
-            LantonGimmick();
+            StartCoroutine(LantonGimmick());
         }
 
-        /*private void LantonClaer()
-        {
-            if (!isLantonClear)
-            GameManager.Data.isCaveLantonClear = true;
-        }*/
-
-        // 랜덤숫자 3개 뽑시(중복없음)
         #region 
-        public void LantonGimmick()
+        
+        public IEnumerator LantonGimmick()
         {
+            yield return new WaitForSeconds(1f);
+            if (GameManager.Data.isLantonNumberingSet == true)
+            {
+                yield break;
+            }
+
             for (int i = 1; i < times.Length; i++)
             {
-                i = Random.Range(1, times.Length + 1);
-                
+                i = Random.Range(1, times.Length);
+
                 for (int j = 1; j < times.Length; j++)
                 {
-                    j = Random.Range(1, times.Length + 1);
-                    
-                    if(i == j)
-                    {
-                        // Debug.Log($"i : {i}, j : {j} -> result: i == j (X)");
-                    }
-                    else if (i != j)
-                    {
-                        // Debug.Log($"i : {i}, j : {j} -> result: i != j (O)");
+                    j = Random.Range(1, times.Length);
+
+                    if (i != j)
+                    {   
                         for (int k = 1; k < times.Length; k++)
                         {
-                            k = Random.Range(1, times.Length + 1);
-                            if (j == k)
+                            k = Random.Range(1, times.Length);
+                            if (j != k && k != j && i != k)
                             {
-                                // Debug.Log($"j : {j}, k : {k} -> result: j == k (X)");
-                                //return;
-                            }
-
-                            else if (j != k)
-                            {
-                                // Debug.Log($"j : {j}, k : {k} -> result: j != k (O)");
-                                if (i == k)
-                                {
-                                    // Debug.Log($"i : {i}, k : {k} -> result: i == k (X)");
-                                }
-
-                                else if (i != k)
-                                {
-                                    //Debug.Log($"i : {i}, k : {k} -> result: i != k (O)");
-                                    //Debug.Log("****************************");
-                                    Debug.Log($"i : {i}, j : {j}, k : {k}");
-                                    //Debug.Log("****************************");
-                                    GameManager.Data.caveTime[0] = i;
-                                    GameManager.Data.caveTime[1] = j;
-                                    GameManager.Data.caveTime[2] = k;
-                                    return;
-                                }
+                                Debug.Log($"i : {i}, j : {j}, k : {k}");
+                                GameManager.Data.caveTime[0] = i;
+                                GameManager.Data.caveTime[1] = j;
+                                GameManager.Data.caveTime[2] = k;
+                                GameManager.Data.isLantonNumberingSet = true;
+                                yield break;
                             }
                         }
                     }
-
-                }    
+                }
             }
-            Debug.Log($"caveTime 0 : {GameManager.Data.caveTime[0]}");
-            Debug.Log($"caveTime 1 : {GameManager.Data.caveTime[1]}");
-            Debug.Log($"caveTime 2 : {GameManager.Data.caveTime[2]}");
         }
         #endregion
     }
-
 }

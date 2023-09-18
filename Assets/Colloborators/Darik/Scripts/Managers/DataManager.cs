@@ -7,14 +7,23 @@ namespace Darik
 {
     public class DataManager : MonoBehaviour
     {
+        public bool isFacilityDoorOpen = false;
+        public bool isCorridorDoorOpen = false;
         public bool isElevatorPowerOn = false;
         public int elevatorCurFloor = -2;
+
+        public bool isLantonNumberingSet = false;
 
         public GameObject[] runeBox = new GameObject[4];
 
         public bool isDungeonRoomClear { get; private set; }
         public bool isPrisonRoomClear { get; private set; }
         public bool isCaveRoomClear { get; private set; }
+
+        private void Start()
+        {
+            SetRandomColor();
+        }
 
         public void DungeonClear()
         {
@@ -29,11 +38,6 @@ namespace Darik
         public void CaveClear()
         {
             isCaveRoomClear = true;
-        }
-
-        private void Start()
-        {
-            SetRandomColor();
         }
 
         #region PendantColor
@@ -86,6 +90,11 @@ namespace Darik
                     material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Blue");     break;
                 case Color.Purple:
                     material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Purple");   break;
+
+                case Color.None:
+                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/None");
+                    material.color = UnityEngine.Color.white;
+                    break;
             }
 
             return material;
@@ -93,9 +102,7 @@ namespace Darik
         #endregion
 
         #region DungeonRecipe
-        private string[] dolls = { "", "", "", "", "", "" };
-
-        public string[] recipeDolls = new string[3];
+        public GameObject[] recipeDolls = new GameObject[3];
         #endregion
 
         #region CaveTime
