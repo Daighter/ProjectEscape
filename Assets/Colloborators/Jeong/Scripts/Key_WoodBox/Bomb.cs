@@ -25,10 +25,8 @@ namespace Jeong
         [SerializeField] GameObject bombexplosion;
         [SerializeField] GameObject lanton;
         [SerializeField] GameObject raadio;
-      
-        [SerializeField] AudioSource[] bombSounds;
 
-        private string[] keys = new string[2];
+        
 
         [SerializeField] AudioSource[] caveBombAudio;
 
@@ -79,6 +77,8 @@ namespace Jeong
                 return;
 
             StartCoroutine(RockExplosionRoutine());
+            // GameManager.Sound.PlayCaveBombSound("bombAudio");
+            
         }
 
         public IEnumerator RockExplosionRoutine()
@@ -87,6 +87,7 @@ namespace Jeong
             yield return new WaitForSeconds(0.3f);
 
             GameManager.Sound.PlayCaveSound("BombTimerSound");
+            Debug.Log("5");
             yield return new WaitForSeconds(1.0f);
             Debug.Log("4");
             yield return new WaitForSeconds(1.0f);
@@ -104,7 +105,6 @@ namespace Jeong
 
             yield return new WaitForSeconds(0.2f);
             effect5.SetActive(true);
-            GameManager.Sound.PlayCaveSound("bombSound"); 
             yield return new WaitForSeconds(0.2f);
             effect5.SetActive(false);
             yield return new WaitForSeconds(0.2f);
@@ -113,7 +113,6 @@ namespace Jeong
             GameManager.Sound.PlayCaveSound("BombFireSound");
             yield return new WaitForSeconds(0.2f);
             effect2.SetActive(true);
-            GameManager.Sound.PlayCaveSound("bombSound");
             effect3.SetActive(true);
             yield return new WaitForSeconds(0.2f);
             effect2.SetActive(false);
@@ -126,7 +125,6 @@ namespace Jeong
             effect4.SetActive(true);
             raadio.SetActive(true);
             lanton.SetActive(true);
-            GameManager.Sound.PlayCaveSound("bombSound");
             effect6.SetActive(true);
             effect7.SetActive(true);
             GameManager.Sound.PlayCaveSound("BombFireSound");
@@ -143,7 +141,6 @@ namespace Jeong
             effect1.SetActive(true);
             effect4.SetActive(true);
             effect6.SetActive(true);
-            GameManager.Sound.PlayCaveSound("bombSound");
             effect7.SetActive(true);
             yield return new WaitForSeconds(0.2f);
             rock1.SetActive(false);

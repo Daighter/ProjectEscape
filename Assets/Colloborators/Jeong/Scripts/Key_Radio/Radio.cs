@@ -12,8 +12,6 @@ namespace Jeong
         [SerializeField] GameObject RescueMessage;
         [SerializeField] GameObject radioKey;
 
-        [SerializeField] AudioSource[] radioSounds;
-
         [SerializeField] ChangeFrequency changeFrequency;
 
 
@@ -103,7 +101,6 @@ namespace Jeong
                         GameManager.Sound.PlayCaveSound("RadioClearSound");
                         RescueMessage.SetActive(true);
                         ExitPoint.SetActive(true);
-                        GameManager.Data.isCaveLantonClear = true;
                         GameManager.Data.CaveClear();
                         return;
                     }

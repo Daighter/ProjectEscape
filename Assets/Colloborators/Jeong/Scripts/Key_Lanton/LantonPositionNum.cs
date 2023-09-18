@@ -9,13 +9,18 @@ namespace Jeong
     public class LantonPositionNum : MonoBehaviour
     {
         TextMeshProUGUI lantonPosition;
-        [SerializeField] LantonLinkGimmick lantonLinkGimmick;
+        
 
         private void Awake()
         {
             lantonPosition = GetComponent<TextMeshProUGUI>();
         }
-      
+
+        private void Start()
+        {
+            LantonPositionUI();
+        }
+
         public void LantonPositionUI()
         {
             int lantonPos1 = GameManager.Data.caveTime[0];

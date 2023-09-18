@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,32 +11,34 @@ namespace Jeong
     {
         private int[] times = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 
-        bool isLantonClear;
+        public bool lantonGimmickNumbering = false;
+
 
         private void Start()
         {
             LantonGimmick();
         }
 
-        /*private void LantonClaer()
-        {
-            if (!isLantonClear)
-            GameManager.Data.isCaveLantonClear = true;
-        }*/
-
         // 랜덤숫자 3개 뽑시(중복없음)
         #region 
+        
         public void LantonGimmick()
         {
+            if (lantonGimmickNumbering == true)
+            {
+                Debug.Log("기존의 숫자가 있어 새로 하지않음");
+                return;
+            }
+            Debug.Log("기존의 숫자가 없어 새로 생성함");
             for (int i = 1; i < times.Length; i++)
             {
                 i = Random.Range(1, times.Length + 1);
-                
+
                 for (int j = 1; j < times.Length; j++)
                 {
                     j = Random.Range(1, times.Length + 1);
-                    
-                    if(i == j)
+
+                    if (i == j)
                     {
                         // Debug.Log($"i : {i}, j : {j} -> result: i == j (X)");
                     }
@@ -68,19 +71,15 @@ namespace Jeong
                                     GameManager.Data.caveTime[0] = i;
                                     GameManager.Data.caveTime[1] = j;
                                     GameManager.Data.caveTime[2] = k;
+                                    lantonGimmickNumbering = true; // 데이터매니저로 lantonGimmickNumbering을 보내야한다.
                                     return;
                                 }
                             }
                         }
                     }
-
-                }    
+                }
             }
-            Debug.Log($"caveTime 0 : {GameManager.Data.caveTime[0]}");
-            Debug.Log($"caveTime 1 : {GameManager.Data.caveTime[1]}");
-            Debug.Log($"caveTime 2 : {GameManager.Data.caveTime[2]}");
         }
         #endregion
     }
-
 }

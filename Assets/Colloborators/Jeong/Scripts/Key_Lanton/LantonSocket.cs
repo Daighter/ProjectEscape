@@ -36,6 +36,7 @@ namespace Jeong
             lantonPositionController.Check1();
             lantonPositionController.Check2();
             lantonPositionController.Check3();
+            lantonPositionController.LantonClear();
         }
     }
 }
