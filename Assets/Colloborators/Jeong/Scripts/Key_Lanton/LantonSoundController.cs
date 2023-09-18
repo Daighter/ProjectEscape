@@ -21,16 +21,16 @@ namespace Jeong
 
         private void Keys()
         {
-            key[0] = "LantonHangOnSound";
+            key[0] = "ObjectGrabSound";
         }
 
         public void LantonHangOn()
         {
-            GameManager.Sound.PlayCaveSound("LantonHangOnSound");
+            GameManager.Sound.PlayCaveSound("ObjectGrabSound");
         }
         public void LantonHangOff()
         {
-            GameManager.Sound.PlayCaveSound("LantonHangOnSound");
+            GameManager.Sound.PlayCaveSound("ObjectGrabSound");
         }
     }
 
