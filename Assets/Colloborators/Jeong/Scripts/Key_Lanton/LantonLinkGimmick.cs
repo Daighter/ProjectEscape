@@ -13,40 +13,40 @@ namespace Jeong
 
         private void Start()
         {
-            LantonGimmick();
+            StartCoroutine(LantonGimmick());
         }
 
-        // 랜덤숫자 3개 뽑시(중복없음)
         #region 
         
-        public void LantonGimmick()
+        public IEnumerator LantonGimmick()
         {
+            yield return new WaitForSeconds(1f);
             if (GameManager.Data.isLantonNumberingSet == true)
             {
-                return;
+                yield break;
             }
 
             for (int i = 1; i < times.Length; i++)
             {
-                i = Random.Range(1, times.Length + 1);
+                i = Random.Range(1, times.Length);
 
                 for (int j = 1; j < times.Length; j++)
                 {
-                    j = Random.Range(1, times.Length + 1);
+                    j = Random.Range(1, times.Length);
 
                     if (i != j)
                     {   
                         for (int k = 1; k < times.Length; k++)
                         {
-                            k = Random.Range(1, times.Length + 1);
-                            if (j != k && k != j)
+                            k = Random.Range(1, times.Length);
+                            if (j != k && k != j && i != k)
                             {
                                 Debug.Log($"i : {i}, j : {j}, k : {k}");
                                 GameManager.Data.caveTime[0] = i;
                                 GameManager.Data.caveTime[1] = j;
                                 GameManager.Data.caveTime[2] = k;
-                                GameManager.Data.isLantonNumberingSet = true; // 데이터매니저로 lantonGimmickNumbering을 보내야한다.
-                                return;
+                                GameManager.Data.isLantonNumberingSet = true;
+                                yield break;
                             }
                         }
                     }
