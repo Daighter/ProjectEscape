@@ -90,7 +90,7 @@ namespace Lee
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
             NomalObject[] nomals = FindObjectsOfType<NomalObject>();
             ColorChanger[] colors = FindObjectsOfType<ColorChanger>();
-            InventorySocket socket = FindObjectOfType<InventorySocket>();
+            PositionTracking socket = FindObjectOfType<PositionTracking>();
 
             if (targets.Any() != false)
             {
@@ -112,8 +112,7 @@ namespace Lee
                         {
                             target.gameObject.name = inven.inObjName;
                             target.IsInven = inven.isInven;
-                            target.transform.position = inven.position;
-                            target.transform.rotation = inven.rotation;
+                            target.transform.position = socket.transform.position;
                             target.transform.localScale = inven.itemScale;
                             target.transform.SetParent(socket.transform, false);
                         }
