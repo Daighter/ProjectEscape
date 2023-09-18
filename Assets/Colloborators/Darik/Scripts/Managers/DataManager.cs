@@ -11,6 +11,8 @@ namespace Darik
         public bool isElevatorPowerOn = false;
         public int elevatorCurFloor = -2;
 
+        public bool isLantonNumberingSet = false;
+
         public GameObject[] runeBox = new GameObject[4];
 
         public bool isDungeonRoomClear { get; private set; }
