@@ -37,36 +37,20 @@ namespace Lee
         private void OnEnable()
         {
             xRGrab.selectExited.AddListener(OnSelectExited);
-            xRGrab.selectEntered.AddListener(OnSelectEntered);
         }
 
         private void OnDisable()
         {
             xRGrab.selectExited.RemoveListener(OnSelectExited);
-            xRGrab.selectEntered.RemoveListener(OnSelectEntered);
         }
 
         private void OnSelectExited(SelectExitEventArgs arg)
         {
-            if (isInven == false)
-            {
-                arg.interactableObject.transform.localScale = scale;
-            }
+            if (isInven == true)
+                transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             else
             {
-                transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            }
-        }
-
-        private void OnSelectEntered(SelectEnterEventArgs arg)
-        {
-            if (isInven == false)
-            {
                 arg.interactableObject.transform.localScale = scale;
-            }
-            else
-            {
-                transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             }
         }
 
