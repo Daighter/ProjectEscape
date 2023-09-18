@@ -83,6 +83,29 @@ namespace Lee
 
             if (targets.Any() != false )
             {
+                /*foreach (InteratableObject target in targets)
+                {
+                    GameManager.Pool.Release(target.gameObject);
+                    foreach (ObjectData obj in SaveData.current.objList)
+                    {
+                        InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(obj.prefabPath);
+                        GameManager.Pool.Get(targetPrefab, obj.position, obj.rotation);
+                        targetPrefab.name = obj.name;
+                        targetPrefab.IsInven = obj.isInven;
+                    }
+                    foreach (InventoryData inven in SaveData.current.invenList)
+                    {
+                        if (target.IsInven == true && inven.inObjName != target.name)
+                        {
+                            InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
+                            GameManager.Pool.Get(targetPrefab, inven.position, inven.rotation);
+                            targetPrefab.name = inven.inObjName;
+                            targetPrefab.IsInven = inven.isInven;
+                            targetPrefab.Scale = inven.itemScale;
+                        }
+                    }
+                }*/
+
                 foreach (InteratableObject target in targets)
                 {
                     foreach (ObjectData obj in SaveData.current.objList)
@@ -105,20 +128,12 @@ namespace Lee
                             target.transform.rotation = inven.rotation;
                             target.transform.localScale = inven.itemScale;
                         }
-                        InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
-                        GameManager.Pool.Get(targetPrefab, inven.position, inven.rotation);
-                        targetPrefab.transform.localScale = inven.itemScale;
-                        GameManager.Pool.Release(targetPrefab);
+                        else if(target.name != inven.inObjName)
+                        {
+                            InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
+                            GameManager.Resource.Instantiate(targetPrefab, inven.position, inven.rotation);
+                        }
                     }
-                }
-            }
-            else
-            {
-                foreach (InventoryData inven in SaveData.current.invenList)
-                {
-                    InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
-                    GameManager.Resource.Instantiate(targetPrefab, inven.position, inven.rotation);
-                    targetPrefab.transform.localScale = inven.itemScale;
                 }
             }
             
@@ -152,11 +167,11 @@ namespace Lee
                 }
             }
         }
+
         public void SceneLoad()
         {
             LoadObj();
         }
-
     }
 }
 
