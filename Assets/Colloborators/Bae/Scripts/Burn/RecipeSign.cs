@@ -1,3 +1,4 @@
+using Jeong;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,6 +10,15 @@ namespace Bae
     public class RecipeSign : MonoBehaviour
     {
         [SerializeField] TMP_Text Text;
+        [SerializeField] GameObject caveHint;
+
+        private void OnEnable()
+        {
+            if(GameManager.Data.isCaveLantonClear)
+            {
+                caveHint.SetActive(false);
+            }
+        }
 
         private void Start()      
         {

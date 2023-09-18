@@ -30,26 +30,26 @@ namespace Lee
             sockets = new List<GameObject>();
         }
 
-        private void OnEnable()
-        {
-            socketInteractor.hoverEntered.AddListener(OnInven);
-            socketInteractor.hoverExited.AddListener(OutInven);
-        }
-
-        private void OnDisable()
-        {
-            socketInteractor.hoverEntered.RemoveListener(OnInven);
-            socketInteractor.hoverExited.RemoveListener(OutInven);
-        }
-
-        public void OnInven(HoverEnterEventArgs arg)
-        {
-            arg.interactableObject.transform.gameObject.GetComponent<InteratableObject>().Smaller();
-        }
-
-        public void OutInven(HoverExitEventArgs arg)
-        {
-            arg.interactableObject.transform.gameObject.GetComponent<InteratableObject>().Largeer();
-        }
+       //private void OnEnable()
+       //{
+       //    socketInteractor.hoverEntered.AddListener(OnInven);
+       //    socketInteractor.hoverExited.AddListener(OutInven);
+       //}
+       //
+       //private void OnDisable()
+       //{
+       //    socketInteractor.hoverEntered.RemoveListener(OnInven);
+       //    socketInteractor.hoverExited.RemoveListener(OutInven);
+       //}
+       //
+       //public void OnInven(HoverEnterEventArgs arg)
+       //{
+       //    arg.interactableObject.transform.gameObject.GetComponent<InteratableObject>().Smaller();
+       //}
+       //
+       //public void OutInven(HoverExitEventArgs arg)
+       //{
+       //    arg.interactableObject.transform.gameObject.GetComponent<InteratableObject>().Largeer();
+       //}
     }
 }

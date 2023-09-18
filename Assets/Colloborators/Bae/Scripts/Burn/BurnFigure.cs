@@ -48,7 +48,7 @@ namespace Bae
 
         IEnumerator ChestOpenRoutine()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             chest.GetComponent<Animator>().SetTrigger("Open");
             GameManager.Sound.PlayDungeonSound("ChestOpen");
         }

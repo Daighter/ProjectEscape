@@ -8,6 +8,8 @@ namespace Lee
     [System.Serializable]
     public class ObjectData
     {
+        public bool enable;
+
         public string name;
 
         public string prefabPath;
@@ -19,6 +21,8 @@ namespace Lee
         public Vector3 scale;
 
         public bool isInven;
+
+        public int colorIndex;
     }
 }
 

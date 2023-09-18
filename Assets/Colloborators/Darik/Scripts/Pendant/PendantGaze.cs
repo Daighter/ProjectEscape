@@ -6,6 +6,7 @@ namespace Darik
 {
     public class PendantGaze : MonoBehaviour
     {
+        [SerializeField] private bool debug;
         [SerializeField] private GameObject player;
         [SerializeField] private bool isMainRoom;
         [SerializeField] private string MainRoomSceneName;
@@ -49,11 +50,19 @@ namespace Darik
         {
             if (!isMainRoom)
             {
-                Debug.Log(state);
+                if (debug)
+                    Debug.Log(state);
                 updateTimer = state;
 
-                if (!state)
+                if (state)
+                {
+                    renderer.material = GameManager.Data.LoadMaterial(DataManager.Color.None);
+                }
+                else
+                {
                     curGazedTime = 0f;
+                    GameManager.Data.SetPendantColor(GameManager.Scene.CurScene.SceneNum, renderer);
+                }
             }
         }
     }
