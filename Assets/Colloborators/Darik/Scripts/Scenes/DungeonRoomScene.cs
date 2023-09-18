@@ -6,9 +6,8 @@ namespace Darik
 {
     public class DungeonRoomScene : BaseScene
     {
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
             SceneNum = 3;
         }
 
