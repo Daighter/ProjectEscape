@@ -8,7 +8,7 @@ namespace Jeong
         Animator anim;
         int buttonCount = 0;
 
-         [SerializeField] Radio radio;
+        [SerializeField] Radio radio;
 
         private void Awake()
         {
@@ -19,7 +19,6 @@ namespace Jeong
         {
             anim.SetBool("IsPressed", false);
         }
-
 
         public void PressPlayButton()
         {
@@ -42,7 +41,6 @@ namespace Jeong
             else
                 return;
         }
-      
     }
 }
 

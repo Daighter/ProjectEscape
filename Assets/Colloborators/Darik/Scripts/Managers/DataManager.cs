@@ -8,8 +8,11 @@ namespace Darik
     public class DataManager : MonoBehaviour
     {
         public bool isFacilityDoorOpen = false;
+        public bool isCorridorDoorOpen = false;
         public bool isElevatorPowerOn = false;
         public int elevatorCurFloor = -2;
+
+        public bool isLantonNumberingSet = false;
 
         public GameObject[] runeBox = new GameObject[4];
 
