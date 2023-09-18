@@ -2782,22 +2782,22 @@ PrefabInstance:
     - target: {fileID: 4863588230242001567, guid: 7f4079bcb6876bb42b2734597ff9b6e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.36
+      value: 2.154
       objectReference: {fileID: 0}
     - target: {fileID: 4863588230242001567, guid: 7f4079bcb6876bb42b2734597ff9b6e6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.714
       objectReference: {fileID: 0}
     - target: {fileID: 4863588230242001567, guid: 7f4079bcb6876bb42b2734597ff9b6e6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.203
+      value: 20.354
       objectReference: {fileID: 0}
     - target: {fileID: 4863588230242001567, guid: 7f4079bcb6876bb42b2734597ff9b6e6,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4863588230242001567, guid: 7f4079bcb6876bb42b2734597ff9b6e6,
         type: 3}
@@ -2807,7 +2807,7 @@ PrefabInstance:
     - target: {fileID: 4863588230242001567, guid: 7f4079bcb6876bb42b2734597ff9b6e6,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4863588230242001567, guid: 7f4079bcb6876bb42b2734597ff9b6e6,
         type: 3}
@@ -2822,7 +2822,7 @@ PrefabInstance:
     - target: {fileID: 4863588230242001567, guid: 7f4079bcb6876bb42b2734597ff9b6e6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4863588230242001567, guid: 7f4079bcb6876bb42b2734597ff9b6e6,
         type: 3}
@@ -4321,6 +4321,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jewal: {fileID: 2135626586}
+  curIndex: 1
+  objname: 
 --- !u!114 &297772437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5733,6 +5735,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jewal: {fileID: 1825584435}
+  curIndex: 1
+  objname: 
 --- !u!114 &421219939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11595,17 +11599,17 @@ PrefabInstance:
         type: 3}
       propertyPath: miniRoomClearCheckers.Array.data[0]
       value: 
-      objectReference: {fileID: 436211851}
+      objectReference: {fileID: 0}
     - target: {fileID: 1440652044195379324, guid: fa3485c708024954b9a2d949a11111dc,
         type: 3}
       propertyPath: miniRoomClearCheckers.Array.data[1]
       value: 
-      objectReference: {fileID: 1020583875}
+      objectReference: {fileID: 0}
     - target: {fileID: 1440652044195379324, guid: fa3485c708024954b9a2d949a11111dc,
         type: 3}
       propertyPath: miniRoomClearCheckers.Array.data[2]
       value: 
-      objectReference: {fileID: 64046654}
+      objectReference: {fileID: 0}
     - target: {fileID: 9137136332945614791, guid: fa3485c708024954b9a2d949a11111dc,
         type: 3}
       propertyPath: m_RootOrder
@@ -13230,7 +13234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1061499341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16484,6 +16488,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jewal: {fileID: 749399073}
+  curIndex: 1
+  objname: 
 --- !u!114 &1326862477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31570,6 +31576,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8337909968792732254, guid: 42361ce9c2497b84ebe36775a13a8526,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42361ce9c2497b84ebe36775a13a8526, type: 3}
 --- !u!4 &1570416707972415264 stripped
@@ -43658,6 +43669,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jewal: {fileID: 6840972335048997237}
+  curIndex: 1
+  objname: 
 --- !u!114 &5450518225938956057
 MonoBehaviour:
   m_ObjectHideFlags: 0

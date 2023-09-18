@@ -43,11 +43,11 @@ namespace Lee
             xRGrab.selectExited.AddListener(OnSelectExited);
         }
 
-        private void OnDisable()
-        {
-            xRGrab.selectExited.RemoveListener(OnSelectExited);
-        }
-
+        //private void OnDisable()
+        //{
+        //    xRGrab.selectExited.RemoveListener(OnSelectExited);
+        //}
+        
         private void OnSelectExited(SelectExitEventArgs args)
         {
             if (isInven == true)
@@ -60,22 +60,5 @@ namespace Lee
                 args.interactableObject.transform.localScale = scale;
             }
         }
-
-      //private void OnTriggerEnter(Collider other)
-      //{
-      //    if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
-      //    {
-      //         transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-      //    }
-      //}
-      //
-      //private void OnTriggerStay(Collider other)
-      //{
-      //    if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
-      //    {
-      //         transform.localScale = scale;
-      //    }
-      //}
-
     }
 }
