@@ -23,9 +23,7 @@ namespace Darik
 
                 KeyImage.gameObject.SetActive(false);
                 GameObject facilityKey = GameManager.Resource.Instantiate(GameManager.Resource.Load<GameObject>("Prefabs/Puzzles/Keys/FacilityRoomKey"),
-                    KeyImage.transform.localPosition + new Vector3(0f, 0f, -0.11f), Quaternion.identity);
-                facilityKey.transform.SetParent(KeyImage.transform.parent.transform, false);
-                facilityKey.transform.localScale = new Vector3(300f, 300f, 300f);
+                    KeyImage.transform.position + new Vector3(0f, 0f, -0.1f), Quaternion.identity);
             }
         }
     }
