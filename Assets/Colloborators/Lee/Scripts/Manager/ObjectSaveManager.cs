@@ -80,31 +80,8 @@ namespace Lee
             NomalObject[] nomals = FindObjectsOfType<NomalObject>();
             ColorChanger[] colors = FindObjectsOfType<ColorChanger>();
 
-            if (targets.Any() != false )
+            if (targets.Any() != false)
             {
-                /*foreach (InteratableObject target in targets)
-                {
-                    GameManager.Pool.Release(target.gameObject);
-                    foreach (ObjectData obj in SaveData.current.objList)
-                    {
-                        InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(obj.prefabPath);
-                        GameManager.Pool.Get(targetPrefab, obj.position, obj.rotation);
-                        targetPrefab.name = obj.name;
-                        targetPrefab.IsInven = obj.isInven;
-                    }
-                    foreach (InventoryData inven in SaveData.current.invenList)
-                    {
-                        if (target.IsInven == true && inven.inObjName != target.name)
-                        {
-                            InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
-                            GameManager.Pool.Get(targetPrefab, inven.position, inven.rotation);
-                            targetPrefab.name = inven.inObjName;
-                            targetPrefab.IsInven = inven.isInven;
-                            targetPrefab.Scale = inven.itemScale;
-                        }
-                    }
-                }*/
-
                 foreach (InteratableObject target in targets)
                 {
                     foreach (ObjectData obj in SaveData.current.objList)
@@ -127,19 +104,24 @@ namespace Lee
                             target.transform.rotation = inven.rotation;
                             target.transform.localScale = inven.itemScale;
                         }
+                        InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
+                        GameManager.Pool.Get(targetPrefab, inven.position, inven.rotation);
+                        targetPrefab.transform.localScale = inven.itemScale;
+                        GameManager.Pool.Release(targetPrefab);
                     }
                 }
             }
-
-            foreach (InventoryData inven in SaveData.current.invenList)
+            else
             {
-                InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
-                GameManager.Pool.Release(targetPrefab);
-                GameManager.Pool.Get(targetPrefab, inven.position, inven.rotation);
-                targetPrefab.IsInven = inven.isInven;
+                foreach (InventoryData inven in SaveData.current.invenList)
+                {
+                    InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
+                    GameManager.Resource.Instantiate(targetPrefab, inven.position, inven.rotation);
+                    targetPrefab.transform.localScale = inven.itemScale;
+                }
             }
-            
-            if (nomals.Any() != false )
+
+            if (nomals.Any() != false)
             {
                 foreach (NomalObject nomal in nomals)
                 {
@@ -169,7 +151,6 @@ namespace Lee
                 }
             }
         }
-
         public void SceneLoad()
         {
             LoadObj();
