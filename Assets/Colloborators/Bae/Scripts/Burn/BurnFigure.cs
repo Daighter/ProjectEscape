@@ -56,7 +56,7 @@ namespace Bae
         {
             for (int i = 0; i < count; i++)
             {
-                if (figure[i] != GameManager.Data.recipeDolls[i])
+                if (figure[i] != GameManager.Data.recipeDolls[i].name)
                 {
                     return false;
                 }
