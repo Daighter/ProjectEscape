@@ -29,10 +29,10 @@ namespace Lee
            socketInteractor.selectEntered.RemoveListener(OnInven);
            socketInteractor.selectExited.RemoveListener(OutInven);
        }
-       
+
        public void OnInven(SelectEnterEventArgs arg)
        {
-           arg.interactableObject.transform.gameObject.GetComponent<InteratableObject>().OnInventory();
+            arg.interactableObject.transform.gameObject.GetComponent<InteratableObject>().OnInventory();
        }
        
        public void OutInven(SelectExitEventArgs arg)

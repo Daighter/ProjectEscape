@@ -37,7 +37,7 @@ namespace Lee
                     SaveData.current.objList.Add(objectData);
                 }
 
-                if (target.IsInven == true)
+                     if (target.IsInven == true)
                 {
                     InventoryData inventoryData = new InventoryData();
                     inventoryData.inObjName = target.name;
@@ -47,6 +47,7 @@ namespace Lee
                     inventoryData.isInven = true;
                     inventoryData.itemScale = target.transform.lossyScale;
                     SaveData.current.invenList.Add(inventoryData);
+                    target.transform.SetParent(transform, false);
                 }
             }
 
@@ -103,9 +104,7 @@ namespace Lee
                             target.transform.localScale = inven.itemScale;
                         }
                         InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
-                        GameManager.Pool.Get(targetPrefab, inven.position, inven.rotation);
                         targetPrefab.transform.localScale = inven.itemScale;
-                        GameManager.Pool.Release(targetPrefab);
                     }
                 }
             }
@@ -114,8 +113,8 @@ namespace Lee
                 foreach (InventoryData inven in SaveData.current.invenList)
                 {
                     InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
-                    GameManager.Pool.Get(targetPrefab, inven.position, inven.rotation);
                     targetPrefab.transform.localScale = inven.itemScale;
+                    GameManager.Resource.Instantiate(targetPrefab, gameObject.transform);
                 }
             }
 

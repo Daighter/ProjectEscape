@@ -16,12 +16,12 @@ public class OpenChest : MonoBehaviour
 
     private void OnEnable()
     {
-        if (IsOpen == true)
-            Open();
+        if (isOpen == true)
+            transform.localRotation = rota;
     }
 
     public void Open()
     {
-        transform.localRotation = rota;
+        isOpen = true;
     }
 }

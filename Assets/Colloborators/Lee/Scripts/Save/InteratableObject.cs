@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit;
 using static UnityEngine.GraphicsBuffer;
@@ -30,54 +31,42 @@ namespace Lee
         {
             xRGrab = GetComponent<XRGrabInteractable>();
             scale = transform.localScale;
+            isInven = false;
         }
 
         private void OnEnable()
         {
             xRGrab.selectExited.AddListener(OnSelectExited);
+            xRGrab.selectEntered.AddListener(OnSelectEntered);
         }
 
         private void OnDisable()
         {
             xRGrab.selectExited.RemoveListener(OnSelectExited);
+            xRGrab.selectEntered.RemoveListener(OnSelectEntered);
         }
 
-        private void OnSelectExited(SelectExitEventArgs args)
+        private void OnSelectExited(SelectExitEventArgs arg)
         {
-            if (isInven == true)
-            {
-                isInven = true;
-                args.interactableObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            }
-                
             if (isInven == false)
             {
-                isInven = false;
-                args.interactableObject.transform.localScale = scale;
+                arg.interactableObject.transform.localScale = scale;
+            }
+            else
+            {
+                transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             }
         }
 
-       private void OnTriggerEnter(Collider other)
-       {
-           if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
-           {
-               isInven = true;
-            }
-       }
-       
-       private void OnTriggerStay(Collider other)
-       {
-           if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
-           {
-               isInven = true;
-            }
-       }
-
-        private void OnTriggerExit(Collider other)
+        private void OnSelectEntered(SelectEnterEventArgs arg)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
+            if (isInven == false)
             {
-                isInven = false;
+                arg.interactableObject.transform.localScale = scale;
+            }
+            else
+            {
+                transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             }
         }
 
