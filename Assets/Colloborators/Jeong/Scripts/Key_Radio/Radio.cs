@@ -6,16 +6,12 @@ namespace Jeong
 {
     public class Radio : MonoBehaviour
     {
-        [SerializeField] GameObject radioLight;
         [SerializeField] GameObject radioPointer;
         [SerializeField] GameObject ExitPoint;
         [SerializeField] GameObject RescueMessage;
-        [SerializeField] GameObject radioKey;
 
         [SerializeField] ChangeFrequency changeFrequency;
-
-
-
+        [SerializeField] RadioUi radioUi;
 
         public bool radioPowerOn;
         public bool radioPlay;
@@ -44,7 +40,6 @@ namespace Jeong
 
         private void Start()
         {
-            
             isRadioClear = false;
             radioPowerOn = false;
             radioPlay = false;
@@ -95,16 +90,13 @@ namespace Jeong
 
                 else if (radioPlay && changeFrequency.ch180)
                 {
+                    GameManager.Sound.PlayCaveSound("RadioClearSound");
+                    RescueMessage.SetActive(true);
+                    StartCoroutine(radioUi.radioUiRoutine());
+                    ExitPoint.SetActive(true);
+                    GameManager.Data.CaveClear();
                     isRadioClear = true;
-                    if (isRadioClear)
-                    {
-                        GameManager.Sound.PlayCaveSound("RadioClearSound");
-                        RescueMessage.SetActive(true);
-                        ExitPoint.SetActive(true);
-                        GameManager.Data.isCaveLantonClear = true;
-                        GameManager.Data.CaveClear();
-                        return;
-                    }
+                    return;
                 }
 
                

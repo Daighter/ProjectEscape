@@ -23,7 +23,7 @@ namespace Bae
             yield return new WaitForSeconds(2f);
             foreach (GameObject rune in runes)
             {
-                rune.SetActive(true);
+                rune.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
     }
