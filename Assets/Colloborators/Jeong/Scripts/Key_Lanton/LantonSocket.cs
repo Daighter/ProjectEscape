@@ -28,7 +28,6 @@ namespace Jeong
             {
                 isSocketed = false;
             }
-            
         }
 
         public void Check()

@@ -28,7 +28,6 @@ namespace Jeong
             {
                 GameManager.Sound.AddCaveSound(key[i], caveRadioAudio[i]);
             }
-
         }
 
         private void Keys()
@@ -55,7 +54,6 @@ namespace Jeong
         {
             radioPowerOn = true;
             GameManager.Sound.PlayCaveSound("RadioPowerOnSound");
-            
         }
 
         public void RadioPlayState()
@@ -92,14 +90,13 @@ namespace Jeong
                 {
                     GameManager.Sound.PlayCaveSound("RadioClearSound");
                     RescueMessage.SetActive(true);
-                    StartCoroutine(radioUi.radioUiRoutine());
+                    StartCoroutine(radioUi.radioUiRoutine1());
+                    StartCoroutine(radioUi.radioUiRoutine2());
                     ExitPoint.SetActive(true);
                     GameManager.Data.CaveClear();
                     isRadioClear = true;
                     return;
                 }
-
-               
             }
         }
     }
