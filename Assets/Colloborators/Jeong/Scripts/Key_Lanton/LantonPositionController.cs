@@ -6,10 +6,7 @@ namespace Jeong
 {
     public class LantonPositionController : MonoBehaviour
     {
-
-        
         public LantonSocket[] lantonSocket = new LantonSocket[12];
-        
         public GameObject[] lantonStand = new GameObject[12];
         public GameObject[] lantonStandKey = new GameObject[3];
 
@@ -19,7 +16,6 @@ namespace Jeong
 
         private void Start()
         {
-           
             LantonStandNumbering();
         }
 
@@ -35,13 +31,12 @@ namespace Jeong
             lantonStandKey[0] = lantonStand[GameManager.Data.caveTime[0] - 1];
             lantonStandKey[1] = lantonStand[GameManager.Data.caveTime[1] - 1];
             lantonStandKey[2] = lantonStand[GameManager.Data.caveTime[2] - 1];
-                     
         }
 
 
         public void Check1()
         {
-            if (!GameManager.Data.isLantonNumberingSet) // 데이터매니저에서 lantonGimmickNumbering을 가져와야한다.
+            if (!GameManager.Data.isLantonNumberingSet)
                 return;
 
             for (int i = 0; i < lantonStand.Length; i++)
@@ -68,7 +63,7 @@ namespace Jeong
 
         public void Check2()
         {
-            if (!GameManager.Data.isLantonNumberingSet) // 데이터매니저에서 lantonGimmickNumbering을 가져와야한다.
+            if (!GameManager.Data.isLantonNumberingSet)
                 return;
 
             for (int i = 0; i < lantonStand.Length; i++)
@@ -94,7 +89,7 @@ namespace Jeong
 
         public void Check3()
         {
-            if (!GameManager.Data.isLantonNumberingSet) // 데이터매니저에서 lantonGimmickNumbering을 가져와야한다.
+            if (!GameManager.Data.isLantonNumberingSet)
                 return;
 
             for (int i = 0; i < lantonStand.Length; i++)
@@ -121,10 +116,8 @@ namespace Jeong
             if (isOnePosition && isTwoPosition && isThreePosition)
             {
                 GameManager.Data.isCaveLantonClear = true;
-                Debug.Log("랜턴기믹 클리어");
+                Debug.Log("Lanton Clear");
             }
-            else
-                Debug.Log("랜턴기믹 진행중");
         }
     }
 }
