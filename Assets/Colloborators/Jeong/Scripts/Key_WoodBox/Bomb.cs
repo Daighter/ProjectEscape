@@ -26,8 +26,6 @@ namespace Jeong
         [SerializeField] GameObject lanton;
         [SerializeField] GameObject raadio;
 
-        
-
         [SerializeField] AudioSource[] caveBombAudio;
 
         private string[] key = new string[2];
@@ -39,7 +37,6 @@ namespace Jeong
             {
                 GameManager.Sound.AddCaveSound(key[i], caveBombAudio[i]);
             }
-
         }
 
         private void Keys()
@@ -77,8 +74,6 @@ namespace Jeong
                 return;
 
             StartCoroutine(RockExplosionRoutine());
-            // GameManager.Sound.PlayCaveBombSound("bombAudio");
-            
         }
 
         public IEnumerator RockExplosionRoutine()

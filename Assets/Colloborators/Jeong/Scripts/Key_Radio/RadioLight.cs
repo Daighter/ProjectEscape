@@ -42,7 +42,6 @@ namespace Jeong
                 return;
             }
 
-
             else if (radio.radioPlay && changeFrequency.ch180)
             {
                 gameObject.GetComponent<MeshRenderer>().material = radionLingtMats[2];
