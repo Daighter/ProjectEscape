@@ -12,11 +12,6 @@ namespace Darik
 
         protected abstract IEnumerator LoadingCoroutine();
 
-        protected virtual void Awake()
-        {
-            GameManager.ObjM.SaveObj();
-        }
-
         public void LoadAsync()
         {
             StartCoroutine(LoadingCoroutine());
