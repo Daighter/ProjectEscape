@@ -15,7 +15,6 @@ namespace Lee
 {
     public class ObjectSaveManager : MonoBehaviour
     {
-        private string scene;
         public void SaveObj()
         {
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
@@ -75,7 +74,6 @@ namespace Lee
 
         public void LoadObj()
         {
-            scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
             NomalObject[] nomals = FindObjectsOfType<NomalObject>();
             ColorChanger[] colors = FindObjectsOfType<ColorChanger>();
@@ -116,7 +114,7 @@ namespace Lee
                 foreach (InventoryData inven in SaveData.current.invenList)
                 {
                     InteratableObject targetPrefab = GameManager.Resource.Load<InteratableObject>(inven.inObjprefabPath);
-                    GameManager.Resource.Instantiate(targetPrefab, inven.position, inven.rotation);
+                    GameManager.Pool.Get(targetPrefab, inven.position, inven.rotation);
                     targetPrefab.transform.localScale = inven.itemScale;
                 }
             }
