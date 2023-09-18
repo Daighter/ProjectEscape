@@ -5,16 +5,16 @@ namespace Jeong
 {
     public class LantonPositionController : MonoBehaviour
     {
-        [SerializeField] LantonLinkGimmick lantonLinkGimmick;
-        [SerializeField] LantonStandNameKey lantonStandNameKey;
-        [SerializeField] LantonPositionNum lantonPositionNum;
-
+        [SerializeField] LantonLinkGimmick  lantonLinkGimmick;
+        
+        public LantonSocket[] lantonSocket = new LantonSocket[12];
+        
         public GameObject[] lantonStand = new GameObject[12];
         public GameObject[] lantonStandKey = new GameObject[3];
 
-        bool isFstPosition = false;
-        bool isSecPosition = false;
-        bool isTrdPosition = false;
+        public bool isOnePosition = false;
+        public bool isTwoPosition = false;
+        public bool isThreePosition = false;
 
         private void Start()
         {
@@ -28,9 +28,98 @@ namespace Jeong
             lantonStandKey[2] = lantonStand[GameManager.Data.caveTime[2] - 1];
         }
 
-        private void Update()
+
+        public void Check1()
         {
-            
+            for (int i = 0; i < lantonStand.Length; i++)
+            {
+                if (lantonSocket[i].isSocketed)
+                {
+                    for (int j = 0; j < lantonStand.Length; j++)
+                    {
+                        lantonStand[j] = GameObject.Find($"Wood {j + 1}");
+
+                        if (lantonStandKey[0].name != lantonSocket[i].name)
+                        {
+                            Debug.Log($"Check : {lantonStandKey[0].name} 과 {lantonSocket[i].name} 의 값은 {lantonStandKey[0].name == lantonSocket[i].name}");
+                            return;
+                        }
+
+                        if (lantonStandKey[0].name == lantonSocket[i].name)
+                        {
+                            isOnePosition = true;
+                            Debug.Log($"Check : {lantonStandKey[0].name} 과 {lantonSocket[i].name} 의 값은 {lantonStandKey[0].name == lantonSocket[i].name}");
+                            return;
+                        }
+                    }
+                    return;
+                }
+            }
+
+        }
+
+        public void Check2()
+        {
+            for (int i = 0; i < lantonStand.Length; i++)
+            {
+                if (lantonSocket[i].isSocketed)
+                {
+                    for (int j = 0; j < lantonStand.Length; j++)
+                    {
+                        lantonStand[j] = GameObject.Find($"Wood {j + 1}");
+
+                        if (lantonStandKey[1].name != lantonSocket[i].name)
+                        {
+                            Debug.Log($"Check : {lantonStandKey[1].name} 과 {lantonSocket[i].name} 의 값은 {lantonStandKey[1].name == lantonSocket[i].name}");
+                            return;
+                        }
+
+                        if (lantonStandKey[1].name == lantonSocket[i].name)
+                        {
+                            isTwoPosition = true;
+                            Debug.Log($"Check : {lantonStandKey[1].name} 과 {lantonSocket[i].name} 의 값은 {lantonStandKey[1].name == lantonSocket[i].name}");
+                            return;
+                        }
+                    }
+                    return;
+                }
+            }
+        }
+
+        public void Check3()
+        {
+            for (int i = 0; i < lantonStand.Length; i++)
+            {
+                if (lantonSocket[i].isSocketed)
+                {
+                    for (int j = 0; j < lantonStand.Length; j++)
+                    {
+                        lantonStand[j] = GameObject.Find($"Wood {j + 1}");
+
+                        if (lantonStandKey[2].name != lantonSocket[i].name)
+                        {
+                            Debug.Log($"Check : {lantonStandKey[2].name} 과 {lantonSocket[i].name} 의 값은 {lantonStandKey[2].name == lantonSocket[i].name}");
+                            return;
+                        }
+
+                        if (lantonStandKey[2].name == lantonSocket[i].name)
+                        {
+                            isThreePosition = true;
+                            Debug.Log($"Check : {lantonStandKey[2].name} 과 {lantonSocket[i].name} 의 값은 {lantonStandKey[2].name == lantonSocket[i].name}");
+                            return;
+                        }
+                    }
+                    return;
+                }
+            }
+        }
+
+        public void LantonClear()
+        {
+            if(isOnePosition &&  isTwoPosition && isThreePosition)
+            {
+                Debug.Log("클리어");
+            }
         }
 
         public void LantonPositioning()
@@ -38,13 +127,13 @@ namespace Jeong
             
         }
 
-        public void FstPostionController()
+      /*  public void FstPostionController()
         {
-           /* if (lantonStandNameKey.name == null)
+           *//* if (lantonStandNameKey.name == null)
             {
                 Debug.Log($"{lantonStandNameKey.name}");
                 return;
-            }*/
+            }*//*
                 
 
             if (lantonStandKey[0].gameObject.name != lantonStandNameKey.name)
@@ -63,11 +152,11 @@ namespace Jeong
 
         public void SecPostionController()
         {
-           /* if (lantonStandNameKey.name == null)
+           *//* if (lantonStandNameKey.name == null)
             {
                 Debug.Log($"{lantonStandNameKey.name}");
                 return;
-            }*/
+            }*//*
 
 
             if (lantonStandKey[1].gameObject.name != lantonStandNameKey.name)
@@ -87,11 +176,11 @@ namespace Jeong
 
         public void TrdPostionController()
         {
-            /*if (lantonStandNameKey.name == null)
+            *//*if (lantonStandNameKey.name == null)
             {
                 Debug.Log($"{lantonStandNameKey.name}");
                 return;
-            }*/
+            }*//*
 
 
             if (lantonStandKey[0].gameObject.name != lantonStandNameKey.name)
@@ -109,7 +198,7 @@ namespace Jeong
                 
         }
 
-        /* public void LantonPositioning()
+        *//* public void LantonPositioning()
          {
              for(int i = 0; i < lantonStand.Length; i++)
              {

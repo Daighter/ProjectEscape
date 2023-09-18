@@ -5,18 +5,51 @@ namespace Jeong
 {
     public class SoundManager : MonoBehaviour
     {
+        Dictionary<string, AudioSource> mainRoomSounds;
         Dictionary<string, AudioSource> caveSound;
         Dictionary<string, AudioSource> elevatorSound;
         Dictionary<string, AudioSource> prisonSound;
         Dictionary<string, AudioSource> dungeonSound;
+        
 
         private void Awake()
         {
+            mainRoomSounds = new Dictionary<string, AudioSource>();
             caveSound = new Dictionary<string, AudioSource>();
             elevatorSound = new Dictionary<string, AudioSource>();
             prisonSound = new Dictionary<string, AudioSource>();
             dungeonSound = new Dictionary<string, AudioSource>();
         }
+        
+        // 메인룸 사운드
+        #region MainRoom
+        public void AddMainRoomSound(string key, AudioSource audioSource)
+        {
+            if (ContainkeysMainRoomSound(key))
+                RemoveMainRoomSound(key);
+            mainRoomSounds.Add(key, audioSource);
+        }
+
+        public void RemoveMainRoomSound(string key)
+        {
+            mainRoomSounds.Remove(key);
+        }
+
+        public void PlayMainRoomSound(string key)
+        {
+            mainRoomSounds[key].Play();
+        }
+
+        public bool ContainkeysMainRoomSound(string key)
+        {
+            return mainRoomSounds.ContainsKey(key);
+        }
+
+        public void LogMainRoomSound(string key) // 디버그 로그 확인용
+        {
+            Debug.Log($"{key} Sound log");
+        }
+        #endregion
 
         // 엘레베이터 사운드
         #region Elevator
