@@ -825,6 +825,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04d14945b18deb4c89360bc41139a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDungeonRoomClearMod: 0
+  isPrisonRoomClearMod: 0
+  isCaveRoomClearMod: 0
   stair1FDoorPuzzle: {fileID: 1343881505}
   lockedImage: {fileID: 1319208683}
   unlockedImage: {fileID: 793524660}
@@ -6439,6 +6442,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04d14945b18deb4c89360bc41139a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDungeonRoomClearMod: 0
+  isPrisonRoomClearMod: 0
+  isCaveRoomClearMod: 0
   stair1FDoorPuzzle: {fileID: 1343881505}
   lockedImage: {fileID: 1481921446}
   unlockedImage: {fileID: 370899326}
@@ -12924,6 +12930,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04d14945b18deb4c89360bc41139a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDungeonRoomClearMod: 0
+  isPrisonRoomClearMod: 0
+  isCaveRoomClearMod: 0
   stair1FDoorPuzzle: {fileID: 1343881505}
   lockedImage: {fileID: 705020631}
   unlockedImage: {fileID: 1760735633}
@@ -18679,7 +18688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdeff6345481aa041888239074ec6061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 0918_Jeong_v0.9.0T
+  sceneName: 0918_Jeong_v0.9.1T
 --- !u!1 &1443511107
 GameObject:
   m_ObjectHideFlags: 0
