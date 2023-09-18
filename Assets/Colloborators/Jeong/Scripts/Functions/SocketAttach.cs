@@ -16,5 +16,4 @@ namespace Jeong
             transform.SetPositionAndRotation(targetTransform.position, targetTransform.rotation);
         }
     }
-
 }

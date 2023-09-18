@@ -9,7 +9,6 @@ namespace Jeong
     public class LantonPositionNum : MonoBehaviour
     {
         TextMeshProUGUI lantonPosition;
-        
 
         private void Awake()
         {
@@ -18,11 +17,12 @@ namespace Jeong
 
         private void Start()
         {
-            LantonPositionUI();
+            StartCoroutine(LantonPositionUI());
         }
 
-        public void LantonPositionUI()
+        public IEnumerator LantonPositionUI()
         {
+            yield return new WaitForSeconds(1f);
             int lantonPos1 = GameManager.Data.caveTime[0];
             int lantonPos2 = GameManager.Data.caveTime[1];
             int lantonPos3 = GameManager.Data.caveTime[2];
