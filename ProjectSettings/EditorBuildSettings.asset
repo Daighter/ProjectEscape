@@ -18,8 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/DungeonMap T.unity
     guid: 50ebb9f6f3605ed42b831a8f8b9d718a
   - enabled: 1
-    path: Assets/Scenes/0918_Jeong_v0.9.0T.unity
-    guid: 3bcef72beea66bc42831129c1ffe7e9e
+    path: Assets/Scenes/0918_Jeong_v0.9.1T.unity
+    guid: 80d7269938e2be241aff05d0bf4ae086
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 370cb97999c4cbc49ac3148096aa2057,
       type: 2}
