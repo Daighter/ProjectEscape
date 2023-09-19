@@ -6,9 +6,8 @@ namespace Darik
 {
     public class PrisonRoomScene : BaseScene
     {
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
             SceneNum = 2;
         }
 
