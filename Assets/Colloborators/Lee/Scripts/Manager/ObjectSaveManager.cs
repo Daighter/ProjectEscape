@@ -18,7 +18,7 @@ namespace Lee
         public void SaveObj()
         {
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
-            NomalObject[] nomals = FindObjectsOfType<NomalObject>();
+            NomalObject[] nomals = FindObjectsOfType<NomalObject>(true);
             ColorChanger[] colors = FindObjectsOfType<ColorChanger>();
             
 
@@ -55,15 +55,13 @@ namespace Lee
                 SaveData.current.nomalObjList = new List<NomalObjData>();
                 foreach (NomalObject nomal in nomals)
                 {
-                    if (nomal.enabled == true)
-                    {
-                        NomalObjData nomalObjData = new NomalObjData();
-                        nomalObjData.name = nomal.gameObject.name;
-                        nomalObjData.enable = nomal.ObjActive;
-                        nomalObjData.position = nomal.transform.position;
-                        nomalObjData.rotation = nomal.transform.rotation;
-                        SaveData.current.nomalObjList.Add(nomalObjData);
-                    }
+
+                     NomalObjData nomalObjData = new NomalObjData();
+                     nomalObjData.name = nomal.gameObject.name;
+                     nomalObjData.enable = nomal.ObjActive;
+                     nomalObjData.position = nomal.transform.position;
+                     nomalObjData.rotation = nomal.transform.rotation;
+                     SaveData.current.nomalObjList.Add(nomalObjData);
                 }
             }
 
@@ -123,7 +121,7 @@ namespace Lee
                     {
                         if (obj.name == nomal.name)
                         {
-                            nomal.ObjActive = obj.enable;
+                            nomal.gameObject.SetActive(obj.enable);
                             nomal.transform.position = obj.position;
                             nomal.transform.rotation = obj.rotation;
                         }
