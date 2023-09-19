@@ -61,7 +61,8 @@ namespace Darik
                 else
                 {
                     curGazedTime = 0f;
-                    GameManager.Data.SetPendantColor(GameManager.Scene.CurScene.SceneNum, renderer);
+                    if (renderer != null)
+                        GameManager.Data.SetPendantColor(GameManager.Scene.CurScene.SceneNum, renderer);
                 }
             }
         }
