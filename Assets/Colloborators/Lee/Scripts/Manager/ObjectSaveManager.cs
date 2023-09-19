@@ -29,29 +29,24 @@ namespace Lee
 
                 foreach (InteratableObject target in targets)
                 {
-                    if (target.IsInven == false)
-                    {
-                        ObjectData objectData = new ObjectData();
-                        objectData.name = target.name;
-                        objectData.prefabPath = $"Puzzle/{target.name}";
-                        objectData.position = target.transform.position;
-                        objectData.rotation = target.transform.rotation;
-                        objectData.isInven = false;
-                        SaveData.current.objList.Add(objectData);
-                    }
-
-                    if (target.IsInven == true)
-                    {
-                        InventoryData inventoryData = new InventoryData();
-                        inventoryData.inObjName = target.name;         
-                        inventoryData.inObjprefabPath = $"Puzzle/{target.name}";
-                        inventoryData.position = target.transform.position;
-                        inventoryData.rotation = target.transform.rotation;
-                        inventoryData.isInven = true;
-                        inventoryData.itemScale = target.transform.lossyScale;
-                        SaveData.current.invenList.Add(inventoryData);
-                        target.transform.SetParent(transform, false);
-                    }
+                     ObjectData objectData = new ObjectData();
+                     objectData.name = target.name;
+                     objectData.prefabPath = $"Puzzle/{target.name}";
+                     objectData.position = target.transform.position;
+                     objectData.rotation = target.transform.rotation;
+                     SaveData.current.objList.Add(objectData);
+                   //if (target.IsInven == true)
+                   //{
+                   //    InventoryData inventoryData = new InventoryData();
+                   //    inventoryData.inObjName = target.name;         
+                   //    inventoryData.inObjprefabPath = $"Puzzle/{target.name}";
+                   //    inventoryData.position = target.transform.position;
+                   //    inventoryData.rotation = target.transform.rotation;
+                   //    inventoryData.isInven = true;
+                   //    inventoryData.itemScale = target.transform.lossyScale;
+                   //    SaveData.current.invenList.Add(inventoryData);
+                   //    target.transform.SetParent(transform, false);
+                   //}
                 }
             }
 
@@ -90,7 +85,7 @@ namespace Lee
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
             NomalObject[] nomals = FindObjectsOfType<NomalObject>();
             ColorChanger[] colors = FindObjectsOfType<ColorChanger>();
-            PositionTracking socket = FindObjectOfType<PositionTracking>();
+            //PositionTracking socket = FindObjectOfType<PositionTracking>();
 
             if (targets.Any() != false)
             {
@@ -106,17 +101,17 @@ namespace Lee
                             target.transform.rotation = obj.rotation;
                         }
                     }
-                    foreach (InventoryData inven in SaveData.current.invenList)
-                    {
-                        if (target.name == inven.inObjName)
-                        {
-                            target.gameObject.name = inven.inObjName;
-                            target.IsInven = inven.isInven;
-                            target.transform.position = socket.transform.position;
-                            target.transform.localScale = inven.itemScale;
-                            target.transform.SetParent(socket.transform, false);
-                        }
-                    }
+                   //foreach (InventoryData inven in SaveData.current.invenList)
+                   //{
+                   //    if (target.name == inven.inObjName)
+                   //    {
+                   //        target.gameObject.name = inven.inObjName;
+                   //        target.IsInven = inven.isInven;
+                   //        target.transform.position = socket.transform.position;
+                   //        target.transform.localScale = inven.itemScale;
+                   //        target.transform.SetParent(socket.transform, false);
+                   //    }
+                   //}
                 }
             }
 
