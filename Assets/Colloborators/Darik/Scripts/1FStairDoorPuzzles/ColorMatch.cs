@@ -11,6 +11,11 @@ namespace Darik
 
         private bool isClear = false;
 
+        private void Start()
+        {
+            StartCoroutine(CheckCoroutine());
+        }
+
         public void CheckAnswer()
         {
             for (int i = 0; i < 4; i++)
@@ -26,6 +31,14 @@ namespace Darik
                 stair1FDoorPuzzle.CheckAllClear();
                 Debug.Log("ColorMatch Clear");
             }
+        }
+
+        IEnumerator CheckCoroutine()
+        {
+            yield return new WaitForSeconds(0.5f);
+            CheckAnswer();
+            if (isClear && !GameManager.Data.is1FStairDoorOpen)
+                stair1FDoorPuzzle.CheckAllClear();
         }
     }
 }
