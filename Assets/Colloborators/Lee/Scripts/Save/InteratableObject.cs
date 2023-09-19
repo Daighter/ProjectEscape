@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit;
 using static UnityEngine.GraphicsBuffer;
@@ -30,6 +31,7 @@ namespace Lee
         {
             xRGrab = GetComponent<XRGrabInteractable>();
             scale = transform.localScale;
+            isInven = false;
         }
 
         private void OnEnable()
@@ -42,42 +44,13 @@ namespace Lee
             xRGrab.selectExited.RemoveListener(OnSelectExited);
         }
 
-        private void OnSelectExited(SelectExitEventArgs args)
+        private void OnSelectExited(SelectExitEventArgs arg)
         {
             if (isInven == true)
+                transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            else
             {
-                isInven = true;
-                args.interactableObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            }
-                
-            if (isInven == false)
-            {
-                isInven = false;
-                args.interactableObject.transform.localScale = scale;
-            }
-        }
-
-       private void OnTriggerEnter(Collider other)
-       {
-           if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
-           {
-               isInven = true;
-            }
-       }
-       
-       private void OnTriggerStay(Collider other)
-       {
-           if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
-           {
-               isInven = true;
-            }
-       }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.gameObject.layer == LayerMask.NameToLayer("UI"))
-            {
-                isInven = false;
+                arg.interactableObject.transform.localScale = scale;
             }
         }
 

@@ -11,6 +11,8 @@ namespace Lee
 
         public List<ObjectData> objList;
         public List<InventoryData> invenList;
+        public List<ColorData> colorList;
+        public List<NomalObjData> nomalObjList;
 
         public static SaveData current
         {

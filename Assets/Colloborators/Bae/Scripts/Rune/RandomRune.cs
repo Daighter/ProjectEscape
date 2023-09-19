@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Bae
@@ -20,12 +21,12 @@ namespace Bae
         }
         public void RuneAttach()
         {
+            
             for(int i = 0; i < runeMarks.Length; i++)
             {
                 GameObject rune = GameManager.Data.runeBox[i];
                 Instantiate(rune, runeMarks[i].transform);
                 rune.transform.localPosition = Vector3.zero;
-                rune.SetActive(false);
             }
         }
     }
