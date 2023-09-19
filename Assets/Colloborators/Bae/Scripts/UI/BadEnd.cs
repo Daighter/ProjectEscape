@@ -18,7 +18,8 @@ namespace Bae
         [SerializeField] TMP_Text savePoint;
         [SerializeField] Image image;
         [SerializeField] Color backColor;
-        [SerializeField] Color textColor;
+        [SerializeField] Color badColor;
+        [SerializeField] Color saveColor;
 
 
         public void BadEndOn(float badDuration)
@@ -32,14 +33,14 @@ namespace Bae
         {
             StartCoroutine(BadEndRoutine(image, badDuration));
             yield return new WaitForSeconds(badDuration);
-            StartCoroutine(BadEndRoutine(badEnd, badDuration / 2));
+            StartCoroutine(BadEndRoutine(badEnd, badDuration / 2, badColor));
             yield return new WaitForSeconds(badDuration / 2);
-            StartCoroutine(BadEndRoutine(savePoint, badDuration / 2));
+            StartCoroutine(BadEndRoutine(savePoint, badDuration / 2, saveColor));
             yield return new WaitForSeconds(badDuration / 2);
             StartCoroutine(SceneChangeRoutine());
         }
 
-        IEnumerator BadEndRoutine(TMP_Text text,float badDuration)
+        IEnumerator BadEndRoutine(TMP_Text text,float badDuration,Color textColor)
         {
             float time = 0;
             while (time < badDuration)
