@@ -39,12 +39,17 @@ namespace Lee
         {
             rb.isKinematic = false;
             hinge.limits = openDoorLimits;
-            GameManager.Data.PrisonClear();
         }
+            
 
         public void OnOpen(SelectEnterEventArgs arg)
         {
             arg.interactableObject.transform.gameObject.GetComponent<Collider>().enabled = false;
+        }
+
+        public void OnRoomClaer()
+        {
+            GameManager.Data.PrisonClear();
         }
     }
 }

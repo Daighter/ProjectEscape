@@ -14,11 +14,11 @@ public class NomalObject : MonoBehaviour
     {
         objActive = true;
     }
-/*
+
     private void OnEnable()
     {
         objActive = true;
-    }*/
+    }
 
     private void OnDisable()
     {
