@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
         instance = this;
         InitManagers();
+
+        Lee.SaveManager_Binary.Save("ObjectSave", Lee.SaveData.current);
     }
 
     private void OnDestroy()

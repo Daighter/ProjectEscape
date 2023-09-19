@@ -4866,9 +4866,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4c6e04b20bd0e42ba1ebf896c30550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabSounds:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &885477189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8048,7 +8045,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
