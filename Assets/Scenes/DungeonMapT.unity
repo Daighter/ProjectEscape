@@ -11272,6 +11272,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Device Simulator
       objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
 --- !u!4 &1838231152 stripped
@@ -13195,7 +13200,7 @@ PrefabInstance:
     - target: {fileID: 1494107785, guid: 30b2e41a917968c488bf8d1932b5ec55, type: 3}
       propertyPath: caveHint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3602346480847456684}
     - target: {fileID: 2078198825, guid: 30b2e41a917968c488bf8d1932b5ec55, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -13688,6 +13693,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30b2e41a917968c488bf8d1932b5ec55, type: 3}
+--- !u!1 &3602346480847456684 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4981666637585347505, guid: 30b2e41a917968c488bf8d1932b5ec55,
+    type: 3}
+  m_PrefabInstance: {fileID: 3602346480847456683}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3813890840002348788
 PrefabInstance:
   m_ObjectHideFlags: 0
