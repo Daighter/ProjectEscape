@@ -87,7 +87,7 @@ namespace Lee
             ColorChanger[] colors = FindObjectsOfType<ColorChanger>();
             //PositionTracking socket = FindObjectOfType<PositionTracking>();
 
-            if (targets.Any() != false)
+            if (targets.Any() != false && SaveData.current.objList != null)
             {
                 foreach (InteratableObject target in targets)
                 {
@@ -115,7 +115,7 @@ namespace Lee
                 }
             }
 
-            if (nomals.Any() != false)
+            if (nomals.Any() != false && SaveData.current.nomalObjList != null)
             {
                 foreach (NomalObject nomal in nomals)
                 {
@@ -131,7 +131,7 @@ namespace Lee
                 }
             }
 
-            if (colors.Any() != false)
+            if (colors.Any() != false && SaveData.current.colorList != null)
             {
                 foreach (ColorChanger color in colors)
                 {

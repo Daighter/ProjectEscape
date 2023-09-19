@@ -12931,7 +12931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDungeonRoomClearMod: 0
-  isPrisonRoomClearMod: 1
+  isPrisonRoomClearMod: 0
   isCaveRoomClearMod: 0
   stair1FDoorPuzzle: {fileID: 1343881505}
   lockedImage: {fileID: 705020631}
