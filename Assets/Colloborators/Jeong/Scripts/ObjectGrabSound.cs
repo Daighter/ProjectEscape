@@ -6,7 +6,7 @@ namespace Jeong
 {
     public class ObjectGrabSound : MonoBehaviour
     {
-        [SerializeField] AudioSource[] grabSounds;
+       /* [SerializeField] AudioSource[] grabSounds;
 
         private string[] keys = new string[2];
 
@@ -34,6 +34,6 @@ namespace Jeong
         public void OjbGrabOff()
         {
             GameManager.Sound.PlayCaveSound("OffGrab");
-        }
+        }*/
     }
 }
