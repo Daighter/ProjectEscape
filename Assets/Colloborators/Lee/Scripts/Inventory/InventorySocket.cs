@@ -23,7 +23,7 @@ namespace Lee
            socketInteractor.selectEntered.AddListener(OnInven);
            socketInteractor.selectExited.AddListener(OutInven);
            socketInteractor.hoverEntered.AddListener(OnHover);
-           //socketInteractor.hoverExited.AddListener(OutHover);
+           socketInteractor.hoverExited.AddListener(OutHover);
        }
 
         private void OnDisable()
@@ -31,7 +31,7 @@ namespace Lee
            socketInteractor.selectEntered.RemoveListener(OnInven);
            socketInteractor.selectExited.RemoveListener(OutInven);
            socketInteractor.hoverEntered.RemoveListener(OnHover);
-           //socketInteractor.hoverExited.RemoveListener(OutHover);
+           socketInteractor.hoverExited.RemoveListener(OutHover);
         }
 
        public void OnHover(HoverEnterEventArgs arg)
