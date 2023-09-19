@@ -9,7 +9,7 @@ namespace Darik
     public class DataManager : MonoBehaviour
     {
         public bool isFacilityDoorOpen = false;
-        public bool isCorridorDoorOpen = false;
+        public bool is1FStairDoorOpen = false;
         public bool isElevatorPowerOn = false;
         public int elevatorCurFloor = -2;
 

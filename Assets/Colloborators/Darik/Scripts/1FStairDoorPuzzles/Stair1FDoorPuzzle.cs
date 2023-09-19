@@ -17,26 +17,36 @@ namespace Darik
 
         private void Start()
         {
-            if (GameManager.Data.isCorridorDoorOpen)
+            if (GameManager.Data.is1FStairDoorOpen)
+            {
                 stair1FDoor.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+
+                if (!GameManager.Data.isFacilityDoorOpen)
+                    GenerateFacilityRoomKey();
+            }
             else
                 stair1FDoor.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
         public void CheckAllClear()
         {
-            if (!GameManager.Data.isCorridorDoorOpen)
+            if (!GameManager.Data.is1FStairDoorOpen)
             {
                 if (IsDungeonRoomClear && IsPrisonRoomClear && IsCaveRoomClear && IsColorMatchClear)
                 {
-                    GameManager.Data.isCorridorDoorOpen = true;
+                    GameManager.Data.is1FStairDoorOpen = true;
                     stair1FDoor.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
 
-                    KeyImage.gameObject.SetActive(false);
-                    GameObject facilityKey = GameManager.Resource.Instantiate(GameManager.Resource.Load<GameObject>("Prefabs/Puzzles/Keys/FacilityRoomKey"),
-                        KeyImage.transform.position + new Vector3(0f, 0f, -0.1f), Quaternion.identity);
+                    GenerateFacilityRoomKey();
                 }
             }
+        }
+
+        public void GenerateFacilityRoomKey()
+        {
+            KeyImage.gameObject.SetActive(false);
+            GameObject facilityKey = GameManager.Resource.Instantiate(GameManager.Resource.Load<GameObject>("Prefabs/Puzzles/Keys/FacilityRoomKey"),
+                KeyImage.transform.position + new Vector3(0f, 0f, -0.1f), Quaternion.identity);
         }
     }
 }

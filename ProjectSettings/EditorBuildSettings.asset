@@ -9,17 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainRoomSceneT.unity
     guid: 5cb10f2aec1c7d1479e4ba407a1bd157
   - enabled: 1
+    path: Assets/Scenes/0919_Jeong_v0.9.4T.unity
+    guid: 58fed2cb7e2bca5409a5f124dedb545b
+  - enabled: 1
     path: Assets/Scenes/DungeonMapT.unity
-    guid: 6d0c1303539a39548a07ac561125ba0b
+    guid: 1c8c9012b179c864c9560551867068ac
   - enabled: 1
     path: Assets/Scenes/PrisonSceneT.unity
-    guid: ed744a1999e4da64e8769dcb8175063a
-  - enabled: 1
-    path: Assets/Scenes/0918_Jeong_v0.9.2T.unity
-    guid: 8f0d755b0b845274ab50816f0ae57556
-  - enabled: 0
-    path: Assets/Scenes/DungeonMap T.unity
-    guid: c0a8afa5caf8d5c4a8df8f3f4877e7af
+    guid: 53021d7bfe5875642b2866525cd39cda
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 370cb97999c4cbc49ac3148096aa2057,
       type: 2}
