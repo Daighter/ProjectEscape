@@ -61,10 +61,10 @@ namespace Darik
                 colors[i] = (Color)index;
             }
 
-            foreach (Color color in colors)
-            {
-                Debug.Log(color);
-            }
+            Debug.Log($"∏ﬁ¿Œ ≈ª√‚πÊ : {colors[0]}");
+            Debug.Log($"µø±º ≈ª√‚πÊ : {colors[1]}");
+            Debug.Log($"∞®ø¡ ≈ª√‚πÊ : {colors[2]}");
+            Debug.Log($"¥¯¿¸ ≈ª√‚πÊ : {colors[3]}");
         }
 
         public void SetPendantColor(int sceneNum, Renderer renderer)
