@@ -25,7 +25,18 @@ namespace Bae
         {
             badEndBlack.gameObject.SetActive(true);
             badEndBlack.localPosition = new Vector3(0f,0f,11f);
+            StartCoroutine(BadEndFinalRoutein(badDuration));
+        }
+
+        IEnumerator BadEndFinalRoutein(float badDuration)
+        {
             StartCoroutine(BadEndRoutine(image, badDuration));
+            yield return new WaitForSeconds(badDuration);
+            StartCoroutine(BadEndRoutine(badEnd, badDuration / 2));
+            yield return new WaitForSeconds(badDuration / 2);
+            StartCoroutine(BadEndRoutine(savePoint, badDuration / 2));
+            yield return new WaitForSeconds(badDuration / 2);
+            StartCoroutine(SceneChangeRoutine());
         }
 
         IEnumerator BadEndRoutine(TMP_Text text,float badDuration)
@@ -59,11 +70,6 @@ namespace Bae
             Color backNewColor = backColor;
             backNewColor.a = 1;
             image.color = backNewColor;
-            StartCoroutine(BadEndRoutine(badEnd, badDuration / 2));
-            yield return new WaitForSeconds(badDuration / 2);
-            StartCoroutine(BadEndRoutine(savePoint, badDuration / 2));
-            yield return new WaitForSeconds(badDuration / 2);
-            StartCoroutine(SceneChangeRoutine());
         }
         IEnumerator SceneChangeRoutine()
         {
