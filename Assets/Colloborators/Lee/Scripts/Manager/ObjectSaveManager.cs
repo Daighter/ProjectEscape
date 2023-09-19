@@ -81,7 +81,7 @@ namespace Lee
         public void LoadObj()
         {
             InteratableObject[] targets = FindObjectsOfType<InteratableObject>();
-            NomalObject[] nomals = FindObjectsOfType<NomalObject>();
+            NomalObject[] nomals = FindObjectsOfType<NomalObject>(true);
             ColorChanger[] colors = FindObjectsOfType<ColorChanger>();
             //PositionTracking socket = FindObjectOfType<PositionTracking>();
 
