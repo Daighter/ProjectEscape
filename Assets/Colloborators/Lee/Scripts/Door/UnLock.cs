@@ -23,7 +23,6 @@ namespace Lee
             closedDoorLimits.min = 0.0f;
             closedDoorLimits.max = 0.0f;
             hinge.limits = closedDoorLimits;
-           
         }
 
         private void OnEnable()
