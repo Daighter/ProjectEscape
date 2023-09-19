@@ -24,7 +24,6 @@ namespace Darik
         public void LoadScene(string sceneName)
         {
             GameManager.ObjM.SaveObj();
-            Debug.Log("Save");
             StartCoroutine(LoadingCoroutine(sceneName));
         }
 
@@ -47,9 +46,7 @@ namespace Darik
 
             Time.timeScale = 1f;
             GameManager.ObjM.SceneLoad();
-            Debug.Log("Load");
             GameManager.ObjM.SaveObj();
-            Debug.Log("Save");
 
             yield return new WaitForSeconds(0.5f);
         }

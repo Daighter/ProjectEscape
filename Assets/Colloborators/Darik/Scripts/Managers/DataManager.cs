@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 namespace Darik
@@ -19,6 +20,7 @@ namespace Darik
         public bool isDungeonRoomClear { get; private set; }
         public bool isPrisonRoomClear { get; private set; }
         public bool isCaveRoomClear { get; private set; }
+        public bool isOpen { get; private set;}
 
         private void Start()
         {
@@ -38,6 +40,11 @@ namespace Darik
         public void CaveClear()
         {
             isCaveRoomClear = true;
+        }
+
+        public void OpenChest()
+        {
+            isOpen = true;
         }
 
         #region PendantColor
@@ -61,10 +68,10 @@ namespace Darik
                 colors[i] = (Color)index;
             }
 
-            foreach (Color color in colors)
-            {
-                Debug.Log(color);
-            }
+            Debug.Log($"∏ﬁ¿Œ ≈ª√‚πÊ : {colors[0]}");
+            Debug.Log($"µø±º ≈ª√‚πÊ : {colors[1]}");
+            Debug.Log($"∞®ø¡ ≈ª√‚πÊ : {colors[2]}");
+            Debug.Log($"¥¯¿¸ ≈ª√‚πÊ : {colors[3]}");
         }
 
         public void SetPendantColor(int sceneNum, Renderer renderer)
