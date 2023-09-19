@@ -6,8 +6,6 @@ using UnityEngine;
 public class OpenChest : MonoBehaviour
 {
     public Quaternion rota;
-    private bool isOpen;
-    public bool IsOpen { get { return isOpen; } set { isOpen = value; } }
 
     private void Awake()
     {
@@ -16,12 +14,7 @@ public class OpenChest : MonoBehaviour
 
     private void OnEnable()
     {
-        if (isOpen == true)
+        if (GameManager.Data.isOpen == true)
             transform.localRotation = rota;
-    }
-
-    public void Open()
-    {
-        isOpen = true;
     }
 }
