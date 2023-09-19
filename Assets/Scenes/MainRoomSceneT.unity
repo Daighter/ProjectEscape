@@ -5306,7 +5306,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
@@ -12931,7 +12931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDungeonRoomClearMod: 0
-  isPrisonRoomClearMod: 0
+  isPrisonRoomClearMod: 1
   isCaveRoomClearMod: 0
   stair1FDoorPuzzle: {fileID: 1343881505}
   lockedImage: {fileID: 705020631}
@@ -13001,7 +13001,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b03728c1f795346a35970b4e74c34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTrigger1F: {fileID: 1024973262}
 --- !u!65 &1024973264
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18688,7 +18687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdeff6345481aa041888239074ec6061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 0918_Jeong_v0.9.1T
+  sceneName: 0918_Jeong_v0.9.2T
 --- !u!1 &1443511107
 GameObject:
   m_ObjectHideFlags: 0
