@@ -102,9 +102,7 @@ namespace Darik
         #endregion
 
         #region DungeonRecipe
-        private string[] dolls = { "", "", "", "", "", "" };
-
-        public string[] recipeDolls = new string[3];
+        public GameObject[] recipeDolls = new GameObject[3];
         #endregion
 
         #region CaveTime

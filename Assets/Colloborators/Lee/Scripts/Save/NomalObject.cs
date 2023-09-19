@@ -5,12 +5,8 @@ using UnityEngine.UIElements;
 
 public class NomalObject : MonoBehaviour
 {
-
-    private string objname;
-    public string Objname { get { return objname; } set { objname = value; } }
-
     private bool objActive;
-    public bool ObjActive {get { return objActive;} set { objActive = value; } }    
+    public bool ObjActive {get { return objActive;} set { objActive = value; gameObject.SetActive(objActive); } }    
 
     private void Start()
     {

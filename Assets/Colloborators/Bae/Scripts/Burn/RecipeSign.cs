@@ -23,7 +23,7 @@ namespace Bae
         private void Start()      
         {
             
-          Text.text = $"{GameManager.Data.recipeDolls[0]}\n{GameManager.Data.recipeDolls[1]}\n{GameManager.Data.recipeDolls[2]}";
+          Text.text = $"{GameManager.Data.recipeDolls[0].name}\n{GameManager.Data.recipeDolls[1].name}\n{GameManager.Data.recipeDolls[2].name}";
         }
        
     }
