@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17762247, g: 0.22237931, b: 0.3045674, a: 1}
+  m_IndirectSpecularColor: {r: 0.1776227, g: 0.22237904, b: 0.30456725, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4112,7 +4112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdeff6345481aa041888239074ec6061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: DungeonMap T
+  sceneName: DungeonMapT
 --- !u!114 &295622712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13001,7 +13001,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b03728c1f795346a35970b4e74c34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTrigger1F: {fileID: 1024973262}
 --- !u!65 &1024973264
 BoxCollider:
   m_ObjectHideFlags: 0
