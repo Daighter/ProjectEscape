@@ -23,8 +23,6 @@ namespace Jeong
 
         [SerializeField] GameObject bomb;
         [SerializeField] GameObject bombexplosion;
-        [SerializeField] GameObject lanton;
-        [SerializeField] GameObject raadio;
 
         [SerializeField] AudioSource[] caveBombAudio;
 
@@ -48,8 +46,7 @@ namespace Jeong
         private void Start()
         {
             bombexplosion.SetActive(false);
-            lanton.SetActive(false);
-            raadio.SetActive(false);
+          
             effect1.SetActive(false);
             effect2.SetActive(false);
             effect3.SetActive(false);
@@ -105,7 +102,7 @@ namespace Jeong
             yield return new WaitForSeconds(0.2f);
             effect5.SetActive(true);
             rock5.SetActive(false);
-            GameManager.Sound.PlayCaveSound("BombFireSound");
+            
             yield return new WaitForSeconds(0.2f);
             effect2.SetActive(true);
             effect3.SetActive(true);
@@ -118,11 +115,8 @@ namespace Jeong
             yield return new WaitForSeconds(0.2f);
             effect1.SetActive(true);
             effect4.SetActive(true);
-            raadio.SetActive(true);
-            lanton.SetActive(true);
             effect6.SetActive(true);
             effect7.SetActive(true);
-            GameManager.Sound.PlayCaveSound("BombFireSound");
             yield return new WaitForSeconds(0.2f);
             rock2.SetActive(false);
             rock3.SetActive(false);
@@ -131,7 +125,6 @@ namespace Jeong
             effect4.SetActive(false);
             effect6.SetActive(false);
             effect7.SetActive(false);
-            GameManager.Sound.PlayCaveSound("BombFireSound");
             yield return new WaitForSeconds(0.2f);
             effect1.SetActive(true);
             effect4.SetActive(true);
