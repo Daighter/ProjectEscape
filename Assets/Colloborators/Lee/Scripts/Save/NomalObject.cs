@@ -9,15 +9,16 @@ public class NomalObject : MonoBehaviour
     private string chilenName;
     private bool objActive;
     public bool ObjActive {get { return objActive;} set { objActive = value; gameObject.SetActive(objActive); } }
-    private void Start()
+
+    private void Awake()
     {
         objActive = true;
     }
-
-    //private void OnEnable()
-    //{
-    //    objActive = true;
-    //}
+/*
+    private void OnEnable()
+    {
+        objActive = true;
+    }*/
 
     private void OnDisable()
     {
