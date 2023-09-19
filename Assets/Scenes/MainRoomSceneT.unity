@@ -827,7 +827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDungeonRoomClearMod: 0
   isPrisonRoomClearMod: 0
-  isCaveRoomClearMod: 1
+  isCaveRoomClearMod: 0
   stair1FDoorPuzzle: {fileID: 1343881505}
   lockedImage: {fileID: 1319208683}
   unlockedImage: {fileID: 793524660}
@@ -5021,7 +5021,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
@@ -6157,7 +6157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04d14945b18deb4c89360bc41139a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDungeonRoomClearMod: 1
+  isDungeonRoomClearMod: 0
   isPrisonRoomClearMod: 0
   isCaveRoomClearMod: 0
   stair1FDoorPuzzle: {fileID: 1343881505}
