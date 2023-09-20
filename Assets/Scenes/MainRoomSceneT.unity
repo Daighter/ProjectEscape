@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1776227, g: 0.22237904, b: 0.30456725, a: 1}
+  m_IndirectSpecularColor: {r: 0.17762247, g: 0.22237931, b: 0.3045674, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDungeonRoomClearMod: 0
   isPrisonRoomClearMod: 0
-  isCaveRoomClearMod: 0
+  isCaveRoomClearMod: 1
   stair1FDoorPuzzle: {fileID: 1343881505}
   lockedImage: {fileID: 1319208683}
   unlockedImage: {fileID: 793524660}
@@ -6157,7 +6157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04d14945b18deb4c89360bc41139a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDungeonRoomClearMod: 0
+  isDungeonRoomClearMod: 1
   isPrisonRoomClearMod: 0
   isCaveRoomClearMod: 0
   stair1FDoorPuzzle: {fileID: 1343881505}
@@ -12652,7 +12652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDungeonRoomClearMod: 0
-  isPrisonRoomClearMod: 0
+  isPrisonRoomClearMod: 1
   isCaveRoomClearMod: 0
   stair1FDoorPuzzle: {fileID: 1343881505}
   lockedImage: {fileID: 705020631}
