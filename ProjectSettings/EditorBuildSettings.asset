@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TextScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  m_configObjects: {}
+    path: Assets/Scenes/MainRoomSceneT.unity
+    guid: 5cb10f2aec1c7d1479e4ba407a1bd157
+  - enabled: 1
+    path: Assets/Scenes/0919_Jeong_v0.9.4T.unity
+    guid: 58fed2cb7e2bca5409a5f124dedb545b
+  - enabled: 1
+    path: Assets/Scenes/DungeonMapT.unity
+    guid: 1c8c9012b179c864c9560551867068ac
+  - enabled: 1
+    path: Assets/Scenes/PrisonSceneT.unity
+    guid: 53021d7bfe5875642b2866525cd39cda
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 370cb97999c4cbc49ac3148096aa2057,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 492a4ee7b0ef43f48b16208e4952ca13,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: c9a8689fa3288524085b6aa6249724a0,
+      type: 2}
