@@ -6,7 +6,7 @@ namespace Jeong
 {
     public class LantonSoundController : MonoBehaviour
     {
-        [SerializeField] AudioSource[] caveLantonAudio;
+        /*[SerializeField] AudioSource[] caveLantonAudio;
 
         private string[] key = new string[1];
 
@@ -31,7 +31,7 @@ namespace Jeong
         public void LantonHangOff()
         {
             GameManager.Sound.PlayCaveSound("ObjectGrabSound");
-        }
+        }*/
     }
 
 }
