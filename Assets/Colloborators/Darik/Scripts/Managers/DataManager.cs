@@ -25,6 +25,7 @@ namespace Darik
         private void Start()
         {
             SetRandomColor();
+            CashingColor();
         }
 
         public void DungeonClear()
@@ -49,6 +50,7 @@ namespace Darik
 
         #region PendantColor
         public enum Color { None, Red, Orange, Yellow, Green, Blue, Purple, Size }
+        private Material[] palette;
 
         public Color[] colors;
 
@@ -81,30 +83,36 @@ namespace Darik
 
         public Material LoadMaterial(Color color)
         {
-            Material material = null;
+            return palette[(int)color];
+        }
 
-            switch (color)
+        private void CashingColor()
+        {
+            palette = new Material[(int)Color.Size];
+
+            for (int i = 0; i < palette.Length; i++)
             {
-                case Color.Red:
-                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Red");      break;
-                case Color.Orange:
-                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Orange");   break;
-                case Color.Yellow:
-                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/yellow");   break;
-                case Color.Green:
-                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Green");    break;
-                case Color.Blue:
-                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Blue");     break;
-                case Color.Purple:
-                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Purple");   break;
+                switch ((Color)i)
+                {
+                    case Color.Red:
+                        palette[i] = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Red"); break;
+                    case Color.Orange:
+                        palette[i] = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Orange"); break;
+                    case Color.Yellow:
+                        palette[i] = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/yellow"); break;
+                    case Color.Green:
+                        palette[i] = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Green"); break;
+                    case Color.Blue:
+                        palette[i] = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Blue"); break;
+                    case Color.Purple:
+                        palette[i] = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/Purple"); break;
 
-                case Color.None:
-                    material = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/None");
-                    material.color = UnityEngine.Color.white;
-                    break;
+                    case Color.None:
+                        palette[i] = GameManager.Resource.Load<Material>("Prefabs/Puzzles/Pendant/JewalColors/None");
+                        palette[i].color = UnityEngine.Color.white;
+                        break;
+                }
             }
-
-            return material;
         }
         #endregion
 
