@@ -18,8 +18,8 @@ namespace Jeong
 
         private void Awake()
         {
-            radioDial = GetComponent<RadioDial>();
-            frequencyPointer = GameObject.Find("FrequencyPointer").GetComponent<Transform>();
+            //radioDial = GetComponent<RadioDial>();
+            //frequencyPointer = GameObject.Find("FrequencyPointer").GetComponent<Transform>();
         }
 
         private void Start()

@@ -11,8 +11,10 @@ namespace Darik
         [SerializeField] private bool isMainRoom;
         [SerializeField] private string MainRoomSceneName;
         [SerializeField] private float maxGazeSeconds = 5f;
+        [SerializeField] private Material gazedMaterial;
 
         private new Renderer renderer;
+        private Material basicMaterial;
         private bool updateTimer = false;
         private float curGazedTime = 0f;
 
@@ -24,6 +26,7 @@ namespace Darik
         private void Start()
         {
             GameManager.Data.SetPendantColor(GameManager.Scene.CurScene.SceneNum, renderer);
+            basicMaterial = renderer.material;
         }
 
         private void Update()
@@ -51,7 +54,10 @@ namespace Darik
             if (!isMainRoom)
             {
                 if (debug)
+                {
                     Debug.Log(state);
+                }
+                    
                 updateTimer = state;
 
                 if (state)

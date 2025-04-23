@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Bae
 {
@@ -55,7 +53,7 @@ namespace Bae
             #elif UNITY_WEBPLAYER
             Application.OpenURL("http://google.com");
             #else
-            Application.Quti();
+            Application.Quit();
             #endif
         }
     }

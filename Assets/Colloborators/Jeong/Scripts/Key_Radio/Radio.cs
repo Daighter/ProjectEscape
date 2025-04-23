@@ -53,6 +53,7 @@ namespace Jeong
         public void RadioPowerOn()
         {
             radioPowerOn = true;
+            Debug.Log("RadioPowerOn");
             GameManager.Sound.PlayCaveSound("RadioPowerOnSound");
         }
 
@@ -75,7 +76,7 @@ namespace Jeong
                 {
                     radioPointer.SetActive(true);
                     return;
-                    // ¾Ö´Ï¸ÞÀÌ¼Ç or ÀÌÆåÆ® Àç»ý
+                    // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ or ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
                 }
 
                 else if (radioPlay && !changeFrequency.ch180)

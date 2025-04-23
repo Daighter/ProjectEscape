@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Bae
 {
@@ -20,7 +18,7 @@ namespace Bae
         }
         private void OnTriggerEnter(Collider other)
         {
-            if(other.transform.tag!= "Figure")//ÇÇ±Ô¾î°¡ ¾Æ´Ñ°ÍÀÌ µé¾î°¥ ¶§
+            if(other.transform.tag!= "Figure")//ï¿½Ç±Ô¾î°¡ ï¿½Æ´Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½î°¥ ï¿½ï¿½
             {
                 other.transform.position = notBurn.position;
                 return;
